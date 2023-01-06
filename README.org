@@ -44,5 +44,7 @@ Or pulling directly with
 #+begin_src nix
 nix run github:luftmensch-luftmensch/neovim-flake
 #+end_src
+* Screenshot
+[[file:screenshot.png]]
 * Credits
 This configuration is heavily inspired by [[https://github.com/jordanisaacs/neovim-flake][jordanisaacs/neovim-flake]].
