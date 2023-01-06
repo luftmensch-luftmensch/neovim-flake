@@ -86,11 +86,6 @@
       flake = false;
     };
 
-    #rust-tools = {
-    #  url = "github:simrat39/rust-tools.nvim";
-    #  flake = false;
-    #};
-
     # Copying/Registers
     registers = {
       url = "github:tversteeg/registers.nvim";
@@ -224,12 +219,6 @@
       flake = false;
     };
 
-    # Rust crates
-    #crates-nvim = {
-    #  url = "github:Saecki/crates.nvim";
-    #  flake = false;
-    #};
-
     # Visuals
     nvim-cursorline = {
       url = "github:yamatsum/nvim-cursorline";
@@ -262,12 +251,6 @@
       url = "github:ellisonleao/glow.nvim";
       flake = false;
     };
-
-    # Tidal cycles
-    #tidalcycles = {
-    #  url = "github:mitchmindtree/tidalcycles.nix";
-    #  inputs.vim-tidal-src.url = "github:tidalcycles/vim-tidal";
-    #};
 
     # Plenary (required by crates-nvim)
     plenary-nvim = {
@@ -348,8 +331,7 @@
           enable = true;
           name  = "nightfox";
           style = "carbonfox";
-          #name  = "moonfly";
-          #style = "moonfly";
+          # Other possibile combination are [moonfly -> moonfly] & [onedark, [dark, darker, cool, deep, warm, warmer]]
         };
         vim.autopairs.enable = true;
         vim.autocomplete = {
@@ -369,10 +351,10 @@
           };
         };
         vim.tabline.nvimBufferline.enable = true;
-        #vim.treesitter = {
-        #  enable = true;
-        #  context.enable = true;
-        #};
+        vim.treesitter = {
+          enable = true;
+          context.enable = true;
+        };
         vim.keys = {
           enable = true;
           whichKey.enable = true;
@@ -404,14 +386,12 @@
         inherit neovimConfiguration;
         neovim-nix = buildPkg prev [nixConfig];
         neovim-maximal = buildPkg prev [maximalConfig];
-        #neovim-tidal = buildPkg prev [tidalConfig];
       };
     }
     // (flake-utils.lib.eachDefaultSystem (system: let
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
-          #inputs.tidalcycles.overlays.default
           (final: prev: {
             rnix-lsp = inputs.rnix-lsp.defaultPackage.${system};
             nil = inputs.nil.packages.${system}.default;
@@ -424,7 +404,6 @@
         nmdSrc = inputs.nmd;
       };
 
-      #tidalPkg = buildPkg pkgs [tidalConfig];
       nixPkg = buildPkg pkgs [nixConfig];
       maximalPkg = buildPkg pkgs [maximalConfig];
     in {
@@ -440,16 +419,6 @@
           };
           default = nix;
         };
-        #// (
-        #  if !(builtins.elem system ["aarch64-darwin" "x86_64-darwin"])
-        #  then {
-        #    #tidal = {
-        #    #  type = "app";
-        #    #  #program = nvimBin tidalPkg;
-        #    #};
-        #  }
-        #  else {}
-        #);
 
       devShells.default = pkgs.mkShell {nativeBuildInputs = [nixPkg];};
 
@@ -462,12 +431,5 @@
           nix = nixPkg;
           maximal = maximalPkg;
         };
-        #// (
-        #  if !(builtins.elem system ["aarch64-darwin" "x86_64-darwin"])
-        #  then {
-        #    #tidal = tidalPkg;
-        #  }
-        #  else {}
-        #);
     }));
 }
