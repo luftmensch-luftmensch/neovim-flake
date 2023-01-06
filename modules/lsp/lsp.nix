@@ -50,7 +50,7 @@ in {
       description = "Enable a diagnostics popup";
     };
 
-
+    diagnosticSignCustomization = mkEnableOption "Customize diagnostic signs";
 
     null-ls = {
       enable = mkOption {
@@ -76,6 +76,8 @@ in {
         ];
         description = "Enabled sources";
       };
+
+      
     };
 
     lang = {
@@ -157,6 +159,20 @@ in {
             sources = sources,
             on_attach = on_attach
         })
+
+        ${writeIf cfg.diagnosticSignCustomization ''
+        -- [diagnostic signs setup] --
+        vim.fn.sign_define('DiagnosticSignError', {text = 'ﮢ', texthl='DiagnosticSignError'})
+
+        vim.fn.sign_define('DiagnosticSignWarn',  {text = '', texthl='DiagnosticSignWarn'})
+
+        vim.fn.sign_define('DiagnosticSignInfo',   {text = '', texthl='DiagnosticSignInfo'})
+
+        vim.fn.sign_define('DiagnosticSignOther', {text = '', texthl='DiagnosticSignOther'})
+
+        vim.fn.sign_define('DiagnosticSignHint',   {text = '', texthl='DiagnosticSignHint'})
+        ''}
+
         -- [nvim-cmp setup] --
 
         local capabilities = vim.lsp.protocol.make_client_capabilities()

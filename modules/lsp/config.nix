@@ -12,6 +12,7 @@ with lib; {
       uiProgressInfo.enable = mkDefault false;
       lspLoading = mkDefault false;
       diagnosticsPopup = mkDefault false;
+      diagnosticSignCustomization = mkDefault false;
       null-ls = {
         enable = mkDefault false;
         sources = mkDefault [];

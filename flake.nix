@@ -297,6 +297,7 @@
           enable = true;
           signatures = true;
           uiProgressInfo = true;
+          diagnosticSignCustomization = true;
           lang = {
             clang.enable = true;
             nix.enable = true;
