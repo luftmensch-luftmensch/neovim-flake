@@ -60,6 +60,9 @@ with lib; let
     "nightfox"
     "onedark"
     "moonfly"
+    
+    # Dashboard
+    "dashboard-nvim"
 
     # TERMINAL
     "toggleterm"

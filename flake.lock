@@ -112,6 +112,22 @@
         "type": "github"
       }
     },
+    "dashboard-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1672457292,
+        "narHash": "sha256-bjf2E/HWZ1YnRPRGmzmd8DDJwNXGhcr88Cx602OLoeQ=",
+        "owner": "glepnir",
+        "repo": "dashboard-nvim",
+        "rev": "e517188dab55493fb9034b4d4f1a508ccacfcd45",
+        "type": "github"
+      },
+      "original": {
+        "owner": "glepnir",
+        "repo": "dashboard-nvim",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1667395993,
@@ -730,6 +746,7 @@
         "cmp-path": "cmp-path",
         "cmp-treesitter": "cmp-treesitter",
         "cmp-vsnip": "cmp-vsnip",
+        "dashboard-nvim": "dashboard-nvim",
         "flake-utils": "flake-utils",
         "gitsigns-nvim": "gitsigns-nvim",
         "glow-nvim": "glow-nvim",

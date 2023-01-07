@@ -122,6 +122,7 @@ in {
                     underline = ${toString cfg.highlight.cursorWord.hlUnderline}
                   }
                 }
+
               }
           ''
           else ""

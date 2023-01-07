@@ -219,6 +219,12 @@
       flake = false;
     };
 
+    # Dashboard
+    dashboard-nvim = {
+      url = "github:glepnir/dashboard-nvim";
+      flake = false;
+    };
+
     # Visuals
     nvim-cursorline = {
       url = "github:yamatsum/nvim-cursorline";
@@ -303,6 +309,11 @@
             nix.enable = true;
             nix.server = "nil";
           };
+        };
+
+        vim.dashboard = {
+          enable = true;
+          autoSaveOnExit = false;
         };
 
         vim.visuals = {

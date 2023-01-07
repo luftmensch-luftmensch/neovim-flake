@@ -8,6 +8,7 @@
     ./theme
     ./core
     ./basic
+    ./dashboard
     ./statusline
     ./tabline
     ./filetree
