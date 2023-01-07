@@ -241,8 +241,13 @@
     };
 
     # GIT
-    gitsigns-nvim = {
-      url = "github:lewis6991/gitsigns.nvim";
+    neogit = {
+      url = "github:TimUntersberger/neogit";
+      flake = false;
+    };
+
+    git-messenger = {
+      url = "github:rhysd/git-messenger.vim";
       flake = false;
     };
 
@@ -258,7 +263,7 @@
       flake = false;
     };
 
-    # Plenary (required by crates-nvim)
+    # Plenary (required by neogit)
     plenary-nvim = {
       url = "github:nvim-lua/plenary.nvim";
       flake = false;
@@ -302,6 +307,7 @@
         vim.lsp = {
           enable = true;
           signatures = true;
+          lightbulb = true;
           uiProgressInfo = true;
           diagnosticSignCustomization = true;
           lang = {
@@ -380,7 +386,8 @@
         };
         vim.git = {
           enable = true;
-          gitsigns.enable = true;
+          neogit = true;
+          git-messenger = true;
         };
       };
     };

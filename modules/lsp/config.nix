@@ -8,7 +8,7 @@ with lib; {
       onAttach = mkDefault "";
       
       lightbulb = mkDefault false;
-      signatures.enable = mkDefault false;
+      signatures = mkDefault false;
       uiProgressInfo.enable = mkDefault false;
       lspLoading = mkDefault false;
       diagnosticsPopup = mkDefault false;

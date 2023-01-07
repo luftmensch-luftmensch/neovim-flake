@@ -143,19 +143,19 @@
         "type": "github"
       }
     },
-    "gitsigns-nvim": {
+    "git-messenger": {
       "flake": false,
       "locked": {
-        "lastModified": 1666700386,
-        "narHash": "sha256-pSYXCENFw/z7xppenPehniX8+INkrl+l1LgKKGlfrjQ=",
-        "owner": "lewis6991",
-        "repo": "gitsigns.nvim",
-        "rev": "851cd32caaea84f303c4fdf51d72dfa5fcd795bb",
+        "lastModified": 1661833086,
+        "narHash": "sha256-SAnGSSjHbwlpkpyjlINr5rgL7M28W42bWGvQrkOQl1w=",
+        "owner": "rhysd",
+        "repo": "git-messenger.vim",
+        "rev": "8a61bdfa351d4df9a9118ee1d3f45edbed617072",
         "type": "github"
       },
       "original": {
-        "owner": "lewis6991",
-        "repo": "gitsigns.nvim",
+        "owner": "rhysd",
+        "repo": "git-messenger.vim",
         "type": "github"
       }
     },
@@ -321,6 +321,22 @@
       "original": {
         "owner": "nix-community",
         "repo": "naersk",
+        "type": "github"
+      }
+    },
+    "neogit": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1672928842,
+        "narHash": "sha256-TLbNMhGCZFB1Uf895pVX2xJi6sM6M+2urChCDZ5b3J8=",
+        "owner": "TimUntersberger",
+        "repo": "neogit",
+        "rev": "84cf7efba6e4daed11a1185ea09fa553a3ca3d4f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TimUntersberger",
+        "repo": "neogit",
         "type": "github"
       }
     },
@@ -748,7 +764,7 @@
         "cmp-vsnip": "cmp-vsnip",
         "dashboard-nvim": "dashboard-nvim",
         "flake-utils": "flake-utils",
-        "gitsigns-nvim": "gitsigns-nvim",
+        "git-messenger": "git-messenger",
         "glow-nvim": "glow-nvim",
         "inc-rename": "inc-rename",
         "indent-blankline": "indent-blankline",
@@ -758,6 +774,7 @@
         "lspsaga": "lspsaga",
         "lualine": "lualine",
         "moonfly": "moonfly",
+        "neogit": "neogit",
         "nightfox": "nightfox",
         "nil": "nil",
         "nixpkgs": "nixpkgs",

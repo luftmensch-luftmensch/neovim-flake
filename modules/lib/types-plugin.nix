@@ -3,7 +3,9 @@ with lib; let
   # Plugin must be same as input name
   availablePlugins = [
     # GIT
-    "gitsigns-nvim"
+    "git-messenger"
+    "neogit"
+
     "plenary-nvim"
 
     # LSP + TREESITTER

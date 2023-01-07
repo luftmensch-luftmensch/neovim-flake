@@ -7,8 +7,9 @@
 with lib; {
   config = {
     vim.git = {
-      enable = mkDefault false;
-      gitsigns.enable = mkDefault false;
+      enable        = mkDefault false;
+      neogit        = mkDefault false;
+      git-messenger = mkDefault false;
     };
   };
 }

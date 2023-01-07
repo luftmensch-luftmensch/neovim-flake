@@ -25,15 +25,7 @@ in {
 
     onAttach = mkEnableOption "On attach function (takes arguments client,buffer)";
 
-    #onAttach = mkOption {
-    #  type = types.lines;
-    #  description = "On attach function (takes arguments client,buffer)";
-    #};
-
-    lightbulb = mkOption {
-      type = types.bool;
-      description = "Enable nvim-lightbulb: show a lightbulb when a code action is availaible";
-    };
+    lightbulb = mkEnableOption "Enable nvim-lightbulb: show a lightbulb when a code action is availaible";
 
     signatures = mkEnableOption "Enable signature popus [lsp_signature]";
     uiProgressInfo = mkEnableOption "Standalone UI for nvim-lsp progress";
@@ -129,7 +121,7 @@ in {
         "null-ls"
 
         (if cfg.signatures then "lsp-signature" else null)
-        #(if cfg.lightbulb.enable then "lsp-signature" else null )
+        (if cfg.lightbulb  then "nvim-lightbulb" else null )
 
         (if cfg.lang.clang.enable then "clangd_extensions" else null)
 
@@ -139,12 +131,21 @@ in {
          else null)
       ];
 
+      vim.configRC.lightbulb = mkIf cfg.lightbulb (nvim.dag.entryAnywhere ''
+              autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+      '');
+
       vim.luaConfigRC.lsp = nvim.dag.entryAnywhere ''
         --- LSP SETUP ---
 
         ${writeIf cfg.signatures ''
         -- [lsp_signature setup] --
         require'lsp_signature'.setup()
+        ''}
+
+        ${writeIf cfg.lightbulb ''
+        -- [nvim-lightbulb setup] --
+        require'nvim-lightbulb'.setup()
         ''}
 
         -- [null-ls setup] --
