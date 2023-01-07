@@ -70,16 +70,20 @@ in {
         )
       ];
 
+
       # For some reason treesitter highlighting does not work on start if this is set before syntax on
       vim.configRC.treesitter = writeIf cfg.fold (nvim.dag.entryBefore ["basic"] ''
         " Tree-sitter based folding
+
         set foldmethod=expr
         set foldexpr=nvim_treesitter#foldexpr()
-        set nofoldenable
+        "set nofoldenable
+
       '');
 
       vim.luaConfigRC.treesitter = nvim.dag.entryAnywhere ''
-        -- Treesitter config
+        -- [treesitter config] --
+
         require'nvim-treesitter.configs'.setup {
           highlight = {
             enable = true,

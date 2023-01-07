@@ -11,7 +11,6 @@
 
     # LSP
     nvim-lspconfig = {
-      # url = "github:neovim/nvim-lspconfig?ref=v0.1.3";
       # Use master for nil_ls
       url = "github:neovim/nvim-lspconfig";
       flake = false;
@@ -319,7 +318,8 @@
 
         vim.dashboard = {
           enable = true;
-          autoSaveOnExit = false;
+          customHeader = true;
+          customFooter = true;
         };
 
         vim.visuals = {
@@ -349,7 +349,7 @@
           enable = true;
           name  = "nightfox";
           style = "carbonfox";
-          # Other possibile combination are [moonfly -> moonfly] & [onedark, [dark, darker, cool, deep, warm, warmer]]
+          # Other possibile combination are [moonfly -> moonfly] & [onedark -> [dark, darker, cool, deep, warm, warmer]]
         };
         vim.autopairs.enable = true;
         vim.autocomplete = {
