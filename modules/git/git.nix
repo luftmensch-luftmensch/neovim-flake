@@ -14,8 +14,16 @@ in {
       description = "Enable git plugins";
     };
 
-    neogit        = mkEnableOption "Enable neogit";
-    git-messenger = mkEnableOption "Enable git messenger";
+    neogit = {
+      enable = mkOption {
+        type = types.bool;
+        description = "Enable neogit";
+      };
+
+      disableCommitConfirmation = mkEnableOption "Enable/Disable commit confirmation";
+      
+    };
+    git-messenger      = mkEnableOption "Enable git messenger";
   };
 
   config =
@@ -31,7 +39,7 @@ in {
         vim.startPlugins =
           [
             (if cfg.git-messenger then "git-messenger" else null)
-            (if cfg.neogit then "neogit" else null)
+            (if cfg.neogit.enable then "neogit" else null)
           ];
 
         vim.nnoremap =  {
@@ -43,6 +51,9 @@ in {
         vim.luaConfigRC.gitsigns = nvim.dag.entryAnywhere ''
             -- [neogit setup] --
             local neogit = require('neogit')
+            neogit.setup {
+                disable_commit_confirmation = ${if cfg.neogit.disableCommitConfirmation then "true" else "false"},
+            }
         '';
       }
     );

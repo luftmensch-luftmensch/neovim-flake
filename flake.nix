@@ -386,8 +386,12 @@
         };
         vim.git = {
           enable = true;
-          neogit = true;
           git-messenger = true;
+          neogit = {
+            enable = true;
+            disableCommitConfirmation = true;
+            # TODO: Finalize configuration (https://github.com/TimUntersberger/neogit#configuration)
+          };
         };
       };
     };
