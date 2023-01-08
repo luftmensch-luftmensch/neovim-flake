@@ -21,9 +21,12 @@ with lib; let
 
     "clangd_extensions"
 
+    # Comments
+    "todo-comments"
+
     # BUFFERS + TREE
     "nvim-tree-lua"
-    "nvim-bufferline-lua"
+    "bufferline"
 
     # STATUSLINE
     "lualine"

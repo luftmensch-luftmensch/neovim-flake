@@ -98,13 +98,13 @@ in {
         {icon = ifmt:format(" "),
           desc = fmt:format("Find file"),
           action = 'Telescope find_files', shortcut =
-          sfmt:format('<Leader>.')},
+          sfmt:format('SPC .')},
 
         -- Spawn a terminal
-        {icon = ifmt:format(" "),
+        {icon = ifmt:format(""),
           desc = fmt:format("Spawn terminal"),
           action = 'ToggleTerm', shortcut =
-          sfmt:format('<Leader>.')},
+          sfmt:format('SPC s')},
 
         -- Open ~/.config/nvim
         --{ icon = ifmt:format(" "),

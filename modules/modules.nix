@@ -22,6 +22,7 @@
     ./telescope
     ./terminal
     ./git
+    ./todo-comments
   ];
 
   pkgsModule = {config, ...}: {

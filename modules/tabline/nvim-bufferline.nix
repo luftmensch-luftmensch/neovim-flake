@@ -24,7 +24,7 @@ in {
       };
     in {
       vim.startPlugins = [
-        (assert config.vim.visuals.nvimWebDevicons.enable == true; "nvim-bufferline-lua")
+        (assert config.vim.visuals.nvimWebDevicons.enable == true; "bufferline")
         "bufdelete-nvim"
       ];
 
@@ -49,11 +49,11 @@ in {
       };
 
       vim.luaConfigRC.nvimBufferline = nvim.dag.entryAnywhere ''
+        -- [buffferline setup] --
         require("bufferline").setup{
-           options = {
-              numbers = "both",
+          options = {
+              mode = "buffers",
               close_command = ${mouse.close},
-              right_mouse_command = ${mouse.right},
               indicator = {
                 indicator_icon = '▎',
                 style = 'icon',
@@ -63,13 +63,14 @@ in {
               close_icon = '',
               left_trunc_marker = '',
               right_trunc_marker = '',
+
               separator_style = "thin",
               max_name_length = 18,
               max_prefix_length = 15,
               tab_size = 18,
               show_buffer_icons = true,
               show_buffer_close_icons = true,
-              show_close_icon = true,
+
               show_tab_indicators = true,
               persist_buffer_sort = true,
               enforce_regular_tabs = false,
@@ -89,12 +90,10 @@ in {
                  end
                  return s
               end,
-              numbers = function(opts)
-                return string.format('%s·%s', opts.raise(opts.id), opts.lower(opts.ordinal))
-              end,
-           }
+          }
         }
-      '';
+     '';
+
     }
   );
 }

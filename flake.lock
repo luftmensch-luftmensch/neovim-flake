@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "bufferline": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671876022,
+        "narHash": "sha256-q8nwZRN97Sfrr7lHtNYwGdbS63obMOAxFFs/gSvqbqM=",
+        "owner": "akinsho",
+        "repo": "nvim-bufferline.lua",
+        "rev": "c7492a76ce8218e3335f027af44930576b561013",
+        "type": "github"
+      },
+      "original": {
+        "owner": "akinsho",
+        "repo": "nvim-bufferline.lua",
+        "type": "github"
+      }
+    },
     "clangd_extensions": {
       "flake": false,
       "locked": {
@@ -204,22 +220,6 @@
       "original": {
         "owner": "lukas-reineke",
         "repo": "indent-blankline.nvim",
-        "type": "github"
-      }
-    },
-    "kommentary": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1644888740,
-        "narHash": "sha256-6YNKYMxaKi02TLa+ebt97XGREnmTjdJAA3bSHFC4yX0=",
-        "owner": "b3nj5m1n",
-        "repo": "kommentary",
-        "rev": "12ecde4ed3ecb39964000a5fd034ae4c1d307388",
-        "type": "github"
-      },
-      "original": {
-        "owner": "b3nj5m1n",
-        "repo": "kommentary",
         "type": "github"
       }
     },
@@ -457,23 +457,6 @@
       "original": {
         "owner": "windwp",
         "repo": "nvim-autopairs",
-        "type": "github"
-      }
-    },
-    "nvim-bufferline-lua": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1666171880,
-        "narHash": "sha256-hueIGT7KOhca0kP0M1nUYzBrzMz+DpuZSOt5iyuEa40=",
-        "owner": "akinsho",
-        "repo": "nvim-bufferline.lua",
-        "rev": "e70be6232f632d16d2412b1faf85554285036278",
-        "type": "github"
-      },
-      "original": {
-        "owner": "akinsho",
-        "ref": "v3.0.1",
-        "repo": "nvim-bufferline.lua",
         "type": "github"
       }
     },
@@ -756,6 +739,7 @@
     "root": {
       "inputs": {
         "bufdelete-nvim": "bufdelete-nvim",
+        "bufferline": "bufferline",
         "clangd_extensions": "clangd_extensions",
         "cmp-buffer": "cmp-buffer",
         "cmp-nvim-lsp": "cmp-nvim-lsp",
@@ -768,7 +752,6 @@
         "glow-nvim": "glow-nvim",
         "inc-rename": "inc-rename",
         "indent-blankline": "indent-blankline",
-        "kommentary": "kommentary",
         "lsp-signature": "lsp-signature",
         "lspkind": "lspkind",
         "lspsaga": "lspsaga",
@@ -781,7 +764,6 @@
         "nmd": "nmd",
         "null-ls": "null-ls",
         "nvim-autopairs": "nvim-autopairs",
-        "nvim-bufferline-lua": "nvim-bufferline-lua",
         "nvim-cmp": "nvim-cmp",
         "nvim-code-action-menu": "nvim-code-action-menu",
         "nvim-compe": "nvim-compe",

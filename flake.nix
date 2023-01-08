@@ -129,10 +129,15 @@
     };
 
     # Tablines
-    nvim-bufferline-lua = {
-      url = "github:akinsho/nvim-bufferline.lua?ref=v3.0.1";
+    bufferline = {
+      url = "github:akinsho/nvim-bufferline.lua";
       flake = false;
     };
+
+    #nvim-bufferline-lua = {
+    #  url = "github:akinsho/nvim-bufferline.lua?ref=v3.0.1";
+    #  flake = false;
+    #};
 
     # Statuslines
     lualine = {
@@ -187,10 +192,6 @@
     };
 
     # Commenting
-    kommentary = {
-      url = "github:b3nj5m1n/kommentary";
-      flake = false;
-    };
     todo-comments = {
       url = "github:folke/todo-comments.nvim";
       flake = false;
@@ -392,6 +393,12 @@
             disableCommitConfirmation = true;
             # TODO: Finalize configuration (https://github.com/TimUntersberger/neogit#configuration)
           };
+        };
+
+        vim.todo-comments = {
+          enable = true;
+          customKeywords = true;
+          mergeKeyworks  = true;
         };
       };
     };
