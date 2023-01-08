@@ -10,6 +10,7 @@ with lib; {
       enable     = mkDefault false;
       lastStatus = mkDefault 2;
       showMode   = mkDefault true;
+      restoreCursorOnExit = mkDefault false;
     };
   };
 }

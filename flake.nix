@@ -308,6 +308,7 @@
           enable = true;
           lastStatus = 3;
           showMode = false;
+          restoreCursorOnExit = true;
         };
 
         vim.lsp = {
