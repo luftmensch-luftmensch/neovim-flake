@@ -4,6 +4,7 @@
   check ? true,
 }: let
   modules = [
+    ./options
     ./completion
     ./theme
     ./core

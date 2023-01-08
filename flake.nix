@@ -303,7 +303,13 @@
       config = {
         vim.viAlias = false;
         vim.vimAlias = true;
-        vim.lastStatus = 3;
+
+        vim.options = {
+          enable = true;
+          lastStatus = 3;
+          showMode = false;
+        };
+
         vim.lsp = {
           enable = true;
           signatures = true;

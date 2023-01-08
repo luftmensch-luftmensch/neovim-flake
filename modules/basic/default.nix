@@ -15,12 +15,6 @@ in {
       description = "Set terminal up for 256 colours";
     };
 
-    lastStatus = mkOption {
-      type = types.int;
-      default = 2;
-      description = "Current window status";
-    };
-
     disableArrows = mkOption {
       type = types.bool;
       default = false;
@@ -167,7 +161,6 @@ in {
       set updatetime=${toString cfg.updateTime}
       set shortmess+=c
       set tm=${toString cfg.mapTimeout}
-      set laststatus=${toString cfg.lastStatus}
       set hidden
       ${optionalString cfg.splitBelow ''
         set splitbelow
