@@ -368,6 +368,9 @@
         vim.terminal = {
           enable    = true;
           position = "float";
+          floatOptions = {
+            border = "curved";
+          };
         };
 
         vim.filetree = {

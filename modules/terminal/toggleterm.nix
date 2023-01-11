@@ -21,6 +21,17 @@ in {
       type = types.enum ["vertical" "horizontal" "tab" "float"];
     };
 
+    floatOptions = {
+      border = mkOption {
+        default = "curved";
+        description = "Border type";
+        type = types.enum ["curved" "single" "double" "shadow"];
+      };
+      
+    };
+
+
+
   };
 
   config = mkIf cfg.enable {
@@ -32,7 +43,22 @@ in {
 
     vim.luaConfigRC.nvimtoogletre = nvim.dag.entryAnywhere ''
       require("toggleterm").setup{
-        direction = ${"'" + cfg.position + "'"}
+        direction = ${"'" + cfg.position + "'"},
+
+        float_opts = {
+          -- The border key is *almost* the same as 'nvim_open_win'
+          -- see :h nvim_open_win for details on borders however
+          -- the 'curved' border is a custom border type
+          -- not natively supported but implemented in this plugin.
+          border = "${cfg.floatOptions.border}", -- other options supported by win open
+          --width = 80,
+          --height = 20,
+          winblend = 3,
+          highlights = {
+            border = "Normal",
+            background = "Normal",
+          },
+        },
       }
     '';
   };
