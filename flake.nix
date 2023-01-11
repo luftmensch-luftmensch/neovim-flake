@@ -113,7 +113,7 @@
     };
 
     # Langauge server (use master instead of nixpkgs)
-    rnix-lsp.url = "github:nix-community/rnix-lsp";
+    #rnix-lsp.url = "github:nix-community/rnix-lsp";
 
     # Language server for nix
     nil = {
@@ -433,7 +433,7 @@
         inherit system;
         overlays = [
           (final: prev: {
-            rnix-lsp = inputs.rnix-lsp.defaultPackage.${system};
+            #rnix-lsp = inputs.rnix-lsp.defaultPackage.${system};
             nil = inputs.nil.packages.${system}.default;
           })
         ];
