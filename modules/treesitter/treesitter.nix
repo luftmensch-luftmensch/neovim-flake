@@ -33,19 +33,20 @@ in {
         tree-sitter-c
         tree-sitter-cpp
         tree-sitter-nix
+        tree-sitter-org-nvim
         tree-sitter-python
         tree-sitter-rust
         tree-sitter-markdown
         tree-sitter-comment
         tree-sitter-toml
         tree-sitter-make
-        tree-sitter-tsx
+        #tree-sitter-tsx
         tree-sitter-html
         tree-sitter-javascript
         tree-sitter-css
-        tree-sitter-graphql
+        #tree-sitter-graphql
         tree-sitter-json
-        tree-sitter-zig
+        #tree-sitter-zig
       ];
       description = ''
         List of treesitter grammars to install.

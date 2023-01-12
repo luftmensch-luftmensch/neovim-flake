@@ -551,6 +551,22 @@
         "type": "github"
       }
     },
+    "nvim-org": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1670952644,
+        "narHash": "sha256-DgjzdoMQZC0uddZKJfIHhdxvEM/EDKU/FrE3KldNd6U=",
+        "owner": "nvim-orgmode",
+        "repo": "orgmode",
+        "rev": "dadf56334d2be7d9e8ad1e22c697a6e75f0164b7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-orgmode",
+        "repo": "orgmode",
+        "type": "github"
+      }
+    },
     "nvim-tree-lua": {
       "flake": false,
       "locked": {
@@ -715,6 +731,7 @@
         "nvim-lightbulb": "nvim-lightbulb",
         "nvim-lspconfig": "nvim-lspconfig",
         "nvim-neoclip": "nvim-neoclip",
+        "nvim-org": "nvim-org",
         "nvim-tree-lua": "nvim-tree-lua",
         "nvim-treesitter": "nvim-treesitter",
         "nvim-treesitter-context": "nvim-treesitter-context",

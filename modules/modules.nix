@@ -20,6 +20,7 @@
     ./snippets
     ./keys
     ./markdown
+    ./org
     ./telescope
     ./terminal
     ./git

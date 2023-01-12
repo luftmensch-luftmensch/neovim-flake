@@ -257,9 +257,14 @@
       flake = false;
     };
 
-    # Markdown
+    # Filetype
     glow-nvim = {
       url = "github:ellisonleao/glow.nvim";
+      flake = false;
+    };
+
+    nvim-org = {
+      url = "github:nvim-orgmode/orgmode";
       flake = false;
     };
 
@@ -395,6 +400,11 @@
           enable = true;
           glow.enable = true;
         };
+
+        vim.org = {
+          enable = true;
+        };
+
         vim.git = {
           enable = true;
           git-messenger = true;

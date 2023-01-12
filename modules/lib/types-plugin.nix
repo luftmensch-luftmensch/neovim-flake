@@ -55,7 +55,10 @@ with lib; let
     "which-key"
     "indent-blankline"
     "nvim-cursorline"
+
+    # Filetype
     "glow-nvim"
+    "nvim-org"
 
     # TELESCOPE
     "telescope"
