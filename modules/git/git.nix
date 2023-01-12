@@ -46,6 +46,7 @@ in {
           "<leader>g?" = ":GitMessenger<CR>";
           "<leader>gg" = ":Neogit cwd=~/config/<CR>";
           "<leader>gG" = ":Neogit cwd=~/Nixos/<CR>";
+          "<leader>g." = ":Neogit cwd=./<CR>";
         };
 
         vim.luaConfigRC.gitsigns = nvim.dag.entryAnywhere ''

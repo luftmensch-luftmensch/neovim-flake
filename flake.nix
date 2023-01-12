@@ -376,7 +376,7 @@
         vim.filetree = {
           nvimTreeLua = {
             enable = true;
-            openOnSetup = false;
+            autoReloadOnWrite = false;
           };
         };
         vim.tabline.nvimBufferline.enable = true;

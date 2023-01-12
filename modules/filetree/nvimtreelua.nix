@@ -15,6 +15,8 @@ in {
       description = "Enable nvim-tree-lua";
     };
 
+    autoReloadOnWrite = mkEnableOption "Auto reload on write";
+
     treeSide = mkOption {
       default = "left";
       description = "Side the tree will appear on left or right";
@@ -40,7 +42,7 @@ in {
     };
 
     openOnSetup = mkOption {
-      default = true;
+      default = false;
       description = "Open when vim is started on a directory";
       type = types.bool;
     };
@@ -87,7 +89,7 @@ in {
       type = types.bool;
     };
 
-    openTreeOnNewTab = mkOption {
+    openOnNewTab = mkOption {
       default = false;
       description = "Opens the tree view when opening a new tab";
       type = types.bool;
@@ -140,10 +142,12 @@ in {
     };
 
     vim.luaConfigRC.nvimtreelua = nvim.dag.entryAnywhere ''
-      require'nvim-tree'.setup({
+      -- [nvim-tree setup] --
+      require("nvim-tree").setup({
+        auto_reload_on_write = ${boolToString cfg.autoReloadOnWrite},
         disable_netrw = ${boolToString cfg.disableNetRW},
         hijack_netrw = ${boolToString cfg.hijackNetRW},
-        open_on_tab = ${boolToString cfg.openTreeOnNewTab},
+        open_on_tab = ${boolToString cfg.openOnNewTab},
         open_on_setup = ${boolToString cfg.openOnSetup},
         open_on_setup_file = ${boolToString cfg.openOnSetup},
         system_open = {
