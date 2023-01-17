@@ -3,11 +3,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    # For generating documentation website
-    nmd = {
-      url = "gitlab:rycee/nmd";
-      flake = false;
-    };
 
     # LSP
     nvim-lspconfig = {
@@ -101,11 +96,6 @@
       flake = false;
     };
 
-    telescope-ui-select = {
-      url = "github:nvim-telescope/telescope-ui-select.nvim";
-      flake = false;
-    };
-
     # Terminal
     toggleterm = {
       url = "github:akinsho/toggleterm.nvim";
@@ -133,11 +123,6 @@
       url = "github:akinsho/nvim-bufferline.lua";
       flake = false;
     };
-
-    #nvim-bufferline-lua = {
-    #  url = "github:akinsho/nvim-bufferline.lua?ref=v3.0.1";
-    #  flake = false;
-    #};
 
     # Statuslines
     lualine = {
@@ -209,16 +194,6 @@
       flake = false;
     };
 
-    moonfly = {
-      url = "github:bluz71/vim-moonfly-colors";
-      flake = false;
-    };
-
-    onedark = {
-      url = "github:navarasu/onedark.nvim";
-      flake = false;
-    };
-
     # Dashboard
     dashboard-nvim = {
       url = "github:glepnir/dashboard-nvim";
@@ -254,17 +229,6 @@
     # Key binding help
     which-key = {
       url = "github:folke/which-key.nvim";
-      flake = false;
-    };
-
-    # Filetype
-    glow-nvim = {
-      url = "github:ellisonleao/glow.nvim";
-      flake = false;
-    };
-
-    nvim-org = {
-      url = "github:nvim-orgmode/orgmode";
       flake = false;
     };
 
@@ -396,14 +360,6 @@
         vim.telescope = {
           enable = true;
         };
-        vim.markdown = {
-          enable = true;
-          glow.enable = true;
-        };
-
-        vim.org = {
-          enable = true;
-        };
 
         vim.git = {
           enable = true;
@@ -449,37 +405,27 @@
         ];
       };
 
-      docs = import ./docs {
-        inherit pkgs;
-        nmdSrc = inputs.nmd;
-      };
-
       nixPkg = buildPkg pkgs [nixConfig];
       maximalPkg = buildPkg pkgs [maximalConfig];
     in {
-      apps =
-        rec {
-          nix = {
-            type = "app";
-            program = nvimBin nixPkg;
-          };
-          maximal = {
-            type = "app";
-            program = nvimBin maximalPkg;
-          };
-          default = nix;
+      apps = rec {
+        nix = {
+          type = "app";
+          program = nvimBin nixPkg;
         };
+        maximal = {
+          type = "app";
+          program = nvimBin maximalPkg;
+        };
+        default = nix;
+      };
 
       devShells.default = pkgs.mkShell {nativeBuildInputs = [nixPkg];};
 
-      packages =
-        {
-          docs-html = docs.manual.html;
-          docs-manpages = docs.manPages;
-          docs-json = docs.options.json;
-          default = nixPkg;
-          nix = nixPkg;
-          maximal = maximalPkg;
-        };
+      packages = {
+        default = nixPkg;
+        nix = nixPkg;
+        maximal = maximalPkg;
+      };
     }));
 }

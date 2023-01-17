@@ -56,18 +56,13 @@ with lib; let
     "indent-blankline"
     "nvim-cursorline"
 
-    # Filetype
-    "glow-nvim"
-    "nvim-org"
-
     # TELESCOPE
     "telescope"
-    #"rust-tools"
 
     # THEMES
     "nightfox"
-    "onedark"
-    "moonfly"
+    #"onedark"
+    #"moonfly"
     
     # Dashboard
     "dashboard-nvim"

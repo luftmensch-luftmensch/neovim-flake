@@ -32,7 +32,7 @@ in {
         "<leader>fvs" = "<cmd> Telescope git_status<CR>";
         "<leader>fvx" = "<cmd> Telescope git_stash<CR>";
       }
-      /* // (
+      // (
         if config.vim.lsp.enable
         then {
           "<leader>flsb" = "<cmd> Telescope lsp_document_symbols<CR>";
@@ -46,7 +46,7 @@ in {
         }
         else {}
       )
-        */
+        
       // (
         if config.vim.treesitter.enable
         then {
