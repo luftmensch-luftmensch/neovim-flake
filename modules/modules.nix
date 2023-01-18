@@ -12,7 +12,7 @@
     ./dashboard
     ./statusline
     ./tabline
-    ./filetree
+    ./nvim-tree
     ./visuals
     ./lsp
     ./treesitter

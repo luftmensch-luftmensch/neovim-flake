@@ -6,9 +6,9 @@
 }:
 with lib;
 with builtins; let
-  cfg = config.vim.filetree.nvimTreeLua;
+  cfg = config.vim.nvimTreeLua;
 in {
-  options.vim.filetree.nvimTreeLua = {
+  options.vim.nvimTreeLua = {
     enable = mkOption {
       type = types.bool;
       default = false;
@@ -143,6 +143,8 @@ in {
 
     vim.luaConfigRC.nvimtreelua = nvim.dag.entryAnywhere ''
       -- [nvim-tree setup] --
+
+      vim.g.nvim_tree_disable_default_keybindings = 1
       require("nvim-tree").setup({
         auto_reload_on_write = ${boolToString cfg.autoReloadOnWrite},
         disable_netrw = ${boolToString cfg.disableNetRW},
@@ -159,6 +161,34 @@ in {
         view  = {
           width = ${toString cfg.treeWidth},
           side = ${"'" + cfg.treeSide + "'"},
+
+          mappings = {
+
+            -- Unset default keybindings
+            custom_only = true,
+
+            list = {
+              { key = "h", action = "dir_up" },
+              { key = "l", action = "cd" },
+              { key = "q", action = "close" },
+              { key = "g?", action = "toggle_help" },
+              { key = "<S-Tab>", action = "collapse_all" },
+              { key = "<C-k>", action = "toggle_file_info" },
+              { key = "y", action = "copy_name" },
+              { key = "Y", action = "copy_path" },
+              { key = "gy", action = "copy_absolute_path" },
+              { key = "s", action = "system_open" },
+              { key = "R", action = "refresh" },
+              { key = "a", action = "create" },
+              { key = "d", action = "remove" },
+              { key = "D", action = "trash" },
+              { key = "r", action = "rename" },
+              { key = "<C-r>", action = "full_rename" },
+              { key = "c", action = "copy" },
+              { key = "p", action = "paste" },
+              { key = "<Tab>", action = "preview" },
+            },
+        },
         },
         renderer = {
           indent_markers = {

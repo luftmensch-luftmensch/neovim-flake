@@ -342,21 +342,23 @@
           };
         };
 
-        vim.filetree = {
-          nvimTreeLua = {
-            enable = true;
-            autoReloadOnWrite = false;
-          };
+        vim.nvimTreeLua = {
+          enable = true;
+          autoReloadOnWrite = false;
         };
+
         vim.tabline.nvimBufferline.enable = true;
+
         vim.treesitter = {
           enable = true;
           context.enable = true;
         };
+
         vim.keys = {
           enable = true;
           whichKey.enable = true;
         };
+
         vim.telescope = {
           enable = true;
         };

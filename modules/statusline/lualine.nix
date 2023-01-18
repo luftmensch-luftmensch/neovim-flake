@@ -195,9 +195,7 @@ in {
           },
           tabline = {},
           extensions = {${
-          if config.vim.filetree.nvimTreeLua.enable
-          then "\"nvim-tree\""
-          else ""
+          if config.vim.nvimTreeLua.enable then "\"nvim-tree\"" else ""
         }},
         }
       '';
