@@ -41,7 +41,7 @@ in {
       "<leader>s" = ":ToggleTerm<CR>";
     };
 
-    vim.luaConfigRC.nvimtoogletre = nvim.dag.entryAnywhere ''
+    vim.luaConfigRC.nvimtoogleterm = nvim.dag.entryAnywhere ''
       require("toggleterm").setup{
         direction = ${"'" + cfg.position + "'"},
 
