@@ -1,0 +1,41 @@
+{
+  config,
+  lib,
+  pkgs,
+  helpers,
+  ...
+}:
+with lib; {
+  options.plugins.nightfox = {
+    enable = mkEnableOption "A highly customizable theme for vim";
+
+    package = mkOption {
+      type = types.package;
+      default = pkgs.vimPlugins.nightfox-nvim;
+      description = "Package to use for lsp_signature";
+    };
+  };
+
+  config = let
+    cfg = config.plugins.nightfox;
+
+  in
+    mkIf cfg.enable {
+      extraPlugins = [cfg.package];
+
+      extraConfigLua = ''
+        require('nightfox').setup({
+          options = {
+            styles = {
+              comments = "italic",
+              keywords = "bold",
+              types = "italic,bold",
+            }
+          }
+        })
+
+      -- setup must be called before loading
+      vim.cmd("colorscheme carbonfox")
+      '';
+    };
+}
