@@ -32,7 +32,7 @@
       /></a>
 </div>
 #+END_HTML
-
+* About
 This is a neovim configuration built on top of [[https://github.com/pta2002/nixvim][NixVim]].
 
 Most of the options are defined in [[file:config.nix][config.nix]].
