@@ -10,14 +10,19 @@
       enable = true;
     };
 
+    plugins.dash = {
+      enable = true;
+    };
+
     # colorschemes.tokyonight = {
     #   style = "night";
     #   enable = true;
     # };
 
-    # globals = {
+    globals = {
     #   neo_tree_remove_legacy_commands = 1;
-    # };
+      mapleader = " ";
+    };
 
     options = {
       termguicolors = true;
@@ -32,6 +37,9 @@
       colorcolumn = "100";
       spell = true;
       listchars = "tab:>-,lead:·,nbsp:␣,trail:•";
+
+      timeout = true;
+      timeoutlen = 300;
     };
 
     commands = {
@@ -48,15 +56,25 @@
     };
 
     maps.normal = helpers.mkModeMaps {silent = true;} {
-      "ft" = "<cmd>Neotree<CR>";
+      "ft" = "<cmd>NvimTreeToggle<CR>";
       "fG" = "<cmd>Neotree git_status<CR>";
-      "fR" = "<cmd>Neotree remote<CR>";
-      "fc" = "<cmd>Neotree close<CR>";
-      "bp" = "<cmd>Telescope buffers<CR>";
+      # "fR" = "<cmd>Neotree remote<CR>";
+      # "fc" = "<cmd>Neotree close<CR>";
+      "<leader><leader>" = "<cmd>Telescope buffers<CR>";
+      "<leader>."        = "<cmd> Telescope find_files<CR>";
+      "<leader>fg"       = "<cmd> Telescope live_grep<CR>";
+      "<leader>fh"       = "<cmd> Telescope help_tags<CR>";
+      "<leader>ft"       = "<cmd> Telescope<CR>";
 
-      "<C-s>" = "<cmd>Telescope spell_suggest<CR>";
+      "<leader>fvcw"     = "<cmd> Telescope git_commits<CR>";
+      "<leader>fvcb"     = "<cmd> Telescope git_bcommits<CR>";
+      "<leader>fvb"      = "<cmd> Telescope git_branches<CR>";
+      "<leader>fvs"      = "<cmd> Telescope git_status<CR>";
+      "<leader>fvx"      = "<cmd> Telescope git_stash<CR>";
+
+      # "<C-s>" = "<cmd>Telescope spell_suggest<CR>";
       "mk" = "<cmd>Telescope keymaps<CR>";
-      "fg" = "<cmd>Telescope git_files<CR>";
+      # "fg" = "<cmd>Telescope git_files<CR>";
 
       "gr" = "<cmd>Telescope lsp_references<CR>";
       "gI" = "<cmd>Telescope lsp_implementations<CR>";
@@ -75,14 +93,10 @@
         expr = true;
       };
 
-      "<leader>zn" = "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>";
-      "<leader>zo" = "<Cmd>ZkNotes { sort = { 'modified' } }<CR>";
-      "<leader>zt" = "<Cmd>ZkTags<CR>";
-      "<leader>zf" = "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>";
     };
 
     maps.visual = helpers.mkModeMaps {silent = true;} {
-      "<leader>zf" = "'<,'>ZkMatch<CR>";
+      # "<leader>zf" = "'<,'>ZkMatch<CR>";
     };
 
     plugins.null-ls = {
@@ -181,14 +195,31 @@
 
     plugins.telescope = {
       enable = true;
-      enabledExtensions = ["ui-select"];
+      enabledExtensions = [ "ui-select" ];
       extensionConfig = {
         ui-select = {
           __raw = ''
               require("telescope.themes").get_dropdown {
               -- even more opts
-            }
+              }
           '';
+        };
+
+      };
+      
+      extraOptions = {
+        defaults = {
+          layout_strategy = "horizontal";
+          prompt_prefix = "🔍 ";
+          selection_caret = " ";
+
+          mappings = {
+            i = {
+              # "<Esc>" = "require('telescope.actions).close";
+
+              # "K" = "actions.close";
+            };
+          };
         };
       };
     };
@@ -414,6 +445,8 @@
       enable = true;
       package = pkgs.vimPlugins.netman-nvim;
     };
+
+    plugins.which-key.enable = true;
 
     extraConfigLuaPost = ''
       require("luasnip.loaders.from_snipmate").lazy_load()

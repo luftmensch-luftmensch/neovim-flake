@@ -222,6 +222,12 @@
       url = "github:nvim-tree/nvim-web-devicons";
       flake = false;
     };
+    
+    # Dashboard
+    "plugin:dashboard-nvim" = {
+      url = "github:glepnir/dashboard-nvim";
+      flake = false;
+    };
 
     ### ------------------------- Miscellaneous ------------------------- ###
     # Network Resource Manager

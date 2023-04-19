@@ -12,7 +12,7 @@ with lib; {
     package = mkOption {
       type = types.package;
       default = pkgs.vimPlugins.nightfox-nvim;
-      description = "Package to use for lsp_signature";
+      description = "Package to use for nightfox theme";
     };
   };
 
