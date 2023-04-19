@@ -6,60 +6,78 @@
 }: {
   config = {
 
-    plugins.nightfox = {
-      enable = true;
-    };
-
-    plugins.dash = {
-      enable = true;
-    };
-
-    # colorschemes.tokyonight = {
-    #   style = "night";
-    #   enable = true;
-    # };
-
+    # Global values
     globals = {
-    #   neo_tree_remove_legacy_commands = 1;
       mapleader = " ";
     };
 
+    # Custom option
     options = {
+      # True color support
       termguicolors = true;
+
+      # Show numbers...
       number = true;
+      # ...in a relative mode
+      relativenumber = true;
+
+      # Number of spaces that a <Tab> in the file counts for.
       tabstop = 4;
       shiftwidth = 4;
+
+      # Minimal number of screen lines to keep above and below the cursor
       scrolloff = 7;
+      # When and how to draw the signcolumn. (yes to set to always)
       signcolumn = "yes";
+
+      # Number of screen lines to use for the command-line. (Disabled as we are going to use Noice folke plugin)
       cmdheight = 1;
+
+      # A comma-separated list of options for Insert mode completion |ins-completion|.  The supported values are:
+      # 
+      # menu	-> Use a popup menu to show the possible completions.  The
+      #         menu is only shown when there is more than one match and
+      #         sufficient colors are available.  |ins-completion-menu|
+      #
+      # menuone ->  Use the popup menu also when there is only one match.
+      #             Useful when there is additional information about the
+      #             match, e.g., what file it comes from.
+      #
+      # noselect -> Do not select a match in the menu, force the user to
+      #             select one from the menu. Only works in combination with
+      #             "menu" or "menuone".
       cot = ["menu" "menuone" "noselect"];
-      updatetime = 100;
-      colorcolumn = "100";
+      # If this many milliseconds nothing is typed the swap file will be written to disk
+      updatetime = 500;
+      # When on spell checking will be done. The languages are specified with 'spelllang'.
       spell = true;
+
+      # Comma-separated list of screen columns that are highlighted with ColorColumn |hl-ColorColumn|.
+      colorcolumn = "100";
+
+      # Strings to use in 'list' mode and for the |:list| command.  It is a comma-separated list of string settings.
       listchars = "tab:>-,lead:·,nbsp:␣,trail:•";
 
+      # Determine the behavior when part of a mapped key sequence has been received.
+      # For example, if <c-f> is pressed and 'timeout' is set, Nvim will wait 'timeoutlen' milliseconds
+      # for any key that can follow <c-f> in a mapping.
       timeout = true;
       timeoutlen = 300;
+
+      # Enable clipboard support
+      clipboard = "unnamedplus";
     };
 
     commands = {
       # "SpellFr" = "setlocal spelllang=fr";
     };
 
-    filetype = {
-      filename = {
-        Jenkinsfile = "groovy";
-      };
-      extension = {
-        lalrpop = "lalrpop";
-      };
-    };
+    ### MAPPINGS ###
 
+    ## Normal mode ##
     maps.normal = helpers.mkModeMaps {silent = true;} {
-      "ft" = "<cmd>NvimTreeToggle<CR>";
-      "fG" = "<cmd>Neotree git_status<CR>";
-      # "fR" = "<cmd>Neotree remote<CR>";
-      # "fc" = "<cmd>Neotree close<CR>";
+      "<leader>d" = "<cmd>NvimTreeToggle<CR>";
+
       "<leader><leader>" = "<cmd>Telescope buffers<CR>";
       "<leader>."        = "<cmd> Telescope find_files<CR>";
       "<leader>fg"       = "<cmd> Telescope live_grep<CR>";
@@ -72,7 +90,6 @@
       "<leader>fvs"      = "<cmd> Telescope git_status<CR>";
       "<leader>fvx"      = "<cmd> Telescope git_stash<CR>";
 
-      # "<C-s>" = "<cmd>Telescope spell_suggest<CR>";
       "mk" = "<cmd>Telescope keymaps<CR>";
       # "fg" = "<cmd>Telescope git_files<CR>";
 
@@ -86,7 +103,7 @@
       "<leader>rn" = {
         action = ''
           function()
-          	return ":IncRename " .. vim.fn.expand("<cword>")
+            return ":IncRename " .. vim.fn.expand("<cword>")
           end
         '';
         lua = true;
@@ -95,35 +112,70 @@
 
     };
 
+    ## Visual mode ##
     maps.visual = helpers.mkModeMaps {silent = true;} {
       # "<leader>zf" = "'<,'>ZkMatch<CR>";
     };
 
-    plugins.null-ls = {
-      enable = true;
-      sources = {
-        diagnostics = {
-          shellcheck.enable = true;
-          cppcheck.enable = true;
-          gitlint.enable = true;
-        };
-        code_actions = {
-          shellcheck.enable = true;
-          gitsigns.enable = true;
-        };
-        formatting = {
-          alejandra.enable = true;
-          black.enable = true;
-          stylua.enable = true;
-          cbfmt.enable = true;
-          shfmt.enable = true;
-          taplo.enable = true;
-          prettier.enable = true;
+    # colorschemes.tokyonight = {
+    #   style = "night";
+    #   enable = true;
+    # };
+
+    plugins = {
+
+      # Current favourite theme
+      nightfox = {
+        enable = true;
+      };
+
+      # Neovim dashboard
+      dash = {
+        enable = true;
+      };
+
+      # Neovim as language server to inject LSP diagnostics, code actions
+      null-ls = {
+        enable = true;
+        sources = {
+          diagnostics = {
+            shellcheck.enable = true;
+            cppcheck.enable = true;
+            gitlint.enable = true;
+          };
+          code_actions = {
+            shellcheck.enable = true;
+            gitsigns.enable = true;
+          };
+          formatting = {
+            alejandra.enable = true;
+            black.enable = true;
+            stylua.enable = true;
+            cbfmt.enable = true;
+            shfmt.enable = true;
+            taplo.enable = true;
+            prettier.enable = true;
+          };
         };
       };
+
+      ### Git ###
+      gitsigns.enable = true;
+      gitmessenger.enable = true;
+      
     };
-    plugins.gitsigns.enable = true;
-    plugins.gitmessenger.enable = true;
+
+
+    filetype = {
+      filename = {
+        Jenkinsfile = "groovy";
+      };
+      extension = {
+        lalrpop = "lalrpop";
+      };
+    };
+
+
 
     plugins.luasnip = {
       enable = true;

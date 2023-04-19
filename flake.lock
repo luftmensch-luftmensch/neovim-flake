@@ -427,6 +427,22 @@
         "type": "github"
       }
     },
+    "plugin:neogit": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1681388032,
+        "narHash": "sha256-uBrN4mV/ixdpFBRdymFtoyKbc4ZivGEaJguCUFKMreQ=",
+        "owner": "TimUntersberger",
+        "repo": "neogit",
+        "rev": "69a6ca7c41b023ebf9cad70778e227b3209b40c4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TimUntersberger",
+        "repo": "neogit",
+        "type": "github"
+      }
+    },
     "plugin:netman-nvim": {
       "flake": false,
       "locked": {
@@ -835,6 +851,7 @@
         "plugin:lualine-nvim": "plugin:lualine-nvim",
         "plugin:luasnip": "plugin:luasnip",
         "plugin:markdown-preview-nvim": "plugin:markdown-preview-nvim",
+        "plugin:neogit": "plugin:neogit",
         "plugin:netman-nvim": "plugin:netman-nvim",
         "plugin:nightfox": "plugin:nightfox",
         "plugin:noice-nvim": "plugin:noice-nvim",

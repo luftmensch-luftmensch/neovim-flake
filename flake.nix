@@ -193,6 +193,12 @@
       flake = false;
     };
 
+    # Magit port for neovim
+    "plugin:neogit" = {
+      url = "github:TimUntersberger/neogit";
+      flake = false;
+    };
+
     
     ### ------------------------- UI & Theming ------------------------- ###
     "plugin:nightfox" = {
