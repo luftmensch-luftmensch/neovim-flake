@@ -55,6 +55,8 @@
       # Comma-separated list of screen columns that are highlighted with ColorColumn |hl-ColorColumn|.
       colorcolumn = "100";
 
+      # statuscolumn = "%l     %r";
+
       # Strings to use in 'list' mode and for the |:list| command.  It is a comma-separated list of string settings.
       listchars = "tab:>-,lead:·,nbsp:␣,trail:•";
 
