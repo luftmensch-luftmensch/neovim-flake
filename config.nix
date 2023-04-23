@@ -93,7 +93,6 @@
       "<leader>fvx"      = "<cmd> Telescope git_stash<CR>";
 
       "mk" = "<cmd>Telescope keymaps<CR>";
-      # "fg" = "<cmd>Telescope git_files<CR>";
 
       "gr" = "<cmd>Telescope lsp_references<CR>";
       "gI" = "<cmd>Telescope lsp_implementations<CR>";
@@ -119,6 +118,30 @@
       # "<leader>zf" = "'<,'>ZkMatch<CR>";
     };
 
+    # Neovim Editor Config support
+    editorconfig = {
+      enable = true;
+    };
+
+    extraConfigLuaPre = ''
+      -- [options setup] --
+      local au = vim.api.nvim_create_augroup('restore_on_exit.augroup', { clear = true })
+      vim.api.nvim_create_autocmd({ 'VimLeave'}, {
+         group = au,
+         command = "set guicursor=a:ver25-Cursor"
+      })
+
+      local has_words_before = function()
+        unpack = unpack or table.unpack
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      end
+      local luasnip = require("luasnip")
+
+      -- [Web Dev Icons setup] --
+      require'nvim-web-devicons'.setup({})
+    '';
+
     # Plugins setup
     plugins = {
       ### Theming ###
@@ -133,20 +156,196 @@
         enable = true;
       };
 
+      # Ui replacement for messages, cmdline and the popupmenu
+      noice = {
+        enable = true;
+
+        messages = {
+          view = "mini";
+          viewError = "mini";
+          viewWarn = "mini";
+        };
+
+        lsp.override = {
+          "vim.lsp.util.convert_input_to_markdown_lines" = true;
+          "vim.lsp.util.stylize_markdown" = true;
+          "cmp.entry.get_documentation" = true;
+        };
+        presets = {
+          bottom_search = true;
+          command_palette = true;
+          long_message_to_split = true;
+          inc_rename = true;
+          lsp_doc_border = false;
+        };
+      };
+
       # Fuzzy finder w/ custom config
       telescope-with-config = {
         enable = true;
       };
 
       ### Code support ###
+      # Treesitter
+      treesitter = {
+        enable = true;
+        indent = true;
+
+        grammarPackages = with config.plugins.treesitter.package.passthru.builtGrammars; [
+          arduino
+          bash
+          c
+          cpp
+          cuda
+          dart
+          devicetree
+          diff
+          dockerfile
+          gitattributes
+          gitcommit
+          gitignore
+          git_rebase
+          html
+          ini
+          json
+          lalrpop
+          latex
+          lua
+          make
+          markdown
+          markdown_inline
+          meson
+          ninja
+          nix
+          python
+          regex
+          rst
+          rust
+          slint
+          sql
+          tlaplus
+          toml
+          vim
+          vimdoc
+          yaml
+        ];
+      };
+
+      treesitter-refactor = {
+        enable = true;
+        highlightDefinitions = {
+          enable = true;
+          clearOnCursorMove = true;
+        };
+        smartRename = {
+          enable = true;
+        };
+        navigation = {
+          enable = true;
+        };
+      };
+
+      treesitter-context = {
+        enable = true;
+      };
+
+      trouble = {
+        enable = true;
+      };
+
+      fidget = {
+        enable = true;
+        # sources.null-ls.ignore = true;
+      };
+      
+      # Vim matchup support for treesitter
+      vim-matchup = {
+        enable = true;
+        treesitterIntegration = {
+          enable = true;
+          includeMatchWords = true;
+        };
+      };
+
       # Autopairs
       nvim-autopairs = {
         enable = true;
       };
 
-      # Commenting
+      # Highlight TODO keywords
       todo-comments = {
         enable = true;
+      };
+
+      # Comments on steroid
+      comment-nvim = {
+        enable  = true;
+        # Add a space b/w comment and the line
+        padding = true;
+        # Whether the cursor should stay at its position
+        sticky  = true;
+      };
+
+      # File Tree
+      nvim-tree = {
+        enable = true;
+      };
+
+      
+      indent-blankline = {
+        enable = true;
+        useTreesitter = true;
+        showCurrentContext = true;
+        showCurrentContextStart = true;
+      };
+
+      ### Completion ###
+      nvim-cmp = {
+        enable = true;
+
+        snippet.expand = "luasnip";
+
+        mapping = {
+          "<CR>" = "cmp.mapping.confirm({select = true })";
+          "<C-d>" = "cmp.mapping.scroll_docs(-4)";
+          "<C-f>" = "cmp.mapping.scroll_docs(4)";
+          "<C-Space>" = "cmp.mapping.complete()";
+          "<Tab>" = ''
+          cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+            -- they way you will only jump inside the snippet region
+            elseif luasnip.expand_or_locally_jumpable() then
+              luasnip.expand_or_jump()
+            elseif has_words_before() then
+              cmp.complete()
+            else
+              fallback()
+            end
+          end, { "i", "s" })
+        '';
+          "<S-Tab>" = ''
+          cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, { "i", "s" })
+        '';
+          "<Down>" = "cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
+          "<Up>" = "cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
+        };
+
+        sources = [
+          { name = "luasnip"; }
+          { name = "nvim_lsp"; }
+          { name = "path"; }
+          { name = "buffer"; }
+        ];
       };
 
 
@@ -178,6 +377,11 @@
       ### Git ###
       gitsigns.enable = true;
       gitmessenger.enable = true;
+      neogit = {
+        enable = true;
+        disableCommitConfirmation = true;
+        useMagitKeybindings = true;
+      };
 
       ### Snippets ###
       luasnip = {
@@ -199,160 +403,6 @@
 
 
 
-    extraConfigLuaPre = ''
-      -- [options setup] --
-      local au = vim.api.nvim_create_augroup('restore_on_exit.augroup', { clear = true })
-      vim.api.nvim_create_autocmd({ 'VimLeave'}, {
-         group = au,
-         command = "set guicursor=a:ver25-Cursor"
-      })
-
-      local has_words_before = function()
-        unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-      end
-      local luasnip = require("luasnip")
-
-      -- [Web Dev Icons setup] --
-      require'nvim-web-devicons'.setup({})
-    '';
-
-    plugins.nvim-cmp = {
-      enable = true;
-
-      snippet.expand = "luasnip";
-
-      mapping = {
-        "<CR>" = "cmp.mapping.confirm({select = true })";
-        "<C-d>" = "cmp.mapping.scroll_docs(-4)";
-        "<C-f>" = "cmp.mapping.scroll_docs(4)";
-        "<C-Space>" = "cmp.mapping.complete()";
-        "<Tab>" = ''
-          cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-            -- they way you will only jump inside the snippet region
-            elseif luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
-            elseif has_words_before() then
-              cmp.complete()
-            else
-              fallback()
-            end
-          end, { "i", "s" })
-        '';
-        "<S-Tab>" = ''
-          cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { "i", "s" })
-        '';
-        "<Down>" = "cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
-        "<Up>" = "cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
-      };
-
-      sources = [
-        {name = "luasnip";}
-        {name = "nvim_lsp";}
-        {name = "path";}
-        {name = "buffer";}
-      ];
-    };
-
-
-    plugins.treesitter = {
-      enable = true;
-      indent = true;
-
-      grammarPackages = with config.plugins.treesitter.package.passthru.builtGrammars; [
-        arduino
-        bash
-        c
-        cpp
-        cuda
-        dart
-        devicetree
-        diff
-        dockerfile
-        gitattributes
-        gitcommit
-        gitignore
-        git_rebase
-        html
-        ini
-        json
-        lalrpop
-        latex
-        lua
-        make
-        markdown
-        markdown_inline
-        meson
-        ninja
-        nix
-        python
-        regex
-        rst
-        rust
-        slint
-        sql
-        tlaplus
-        toml
-        vim
-        vimdoc
-        yaml
-      ];
-    };
-
-    plugins.treesitter-refactor = {
-      enable = true;
-      highlightDefinitions = {
-        enable = true;
-        clearOnCursorMove = true;
-      };
-      smartRename = {
-        enable = true;
-      };
-      navigation = {
-        enable = true;
-      };
-    };
-
-    plugins.treesitter-context = {
-      enable = true;
-    };
-
-    plugins.vim-matchup = {
-      treesitterIntegration = {
-        enable = true;
-        includeMatchWords = true;
-      };
-      enable = true;
-    };
-
-    plugins.comment-nvim = {
-      enable = true;
-    };
-
-    plugins.nvim-tree = {
-      enable = true;
-    };
-
-    plugins.indent-blankline = {
-      enable = true;
-
-      useTreesitter = true;
-
-      showCurrentContext = true;
-      showCurrentContextStart = true;
-    };
 
     plugins.lsp = {
       enable = true;
@@ -448,38 +498,9 @@
       };
     };
 
-    plugins.fidget = {
-      enable = true;
-      # sources.null-ls.ignore = true;
-    };
 
 
-    plugins.trouble = {
-      enable = true;
-    };
 
-    plugins.noice = {
-      enable = true;
-
-      messages = {
-        view = "mini";
-        viewError = "mini";
-        viewWarn = "mini";
-      };
-
-      lsp.override = {
-        "vim.lsp.util.convert_input_to_markdown_lines" = true;
-        "vim.lsp.util.stylize_markdown" = true;
-        "cmp.entry.get_documentation" = true;
-      };
-      presets = {
-        bottom_search = true;
-        command_palette = true;
-        long_message_to_split = true;
-        inc_rename = true;
-        lsp_doc_border = false;
-      };
-    };
 
     plugins.netman = {
       enable = true;

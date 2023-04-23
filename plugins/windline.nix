@@ -7,8 +7,6 @@
 with lib; {
   options.plugins.windline = {
     enable = mkEnableOption "Enable windline";
-
-    useCppComment = mkEnableOption "Use c++-style comments instead of c-style";
   };
 
   config = let
@@ -17,9 +15,8 @@ with lib; {
     mkIf cfg.enable {
       extraPlugins = with pkgs.vimPlugins; [windline-nvim];
       extraConfigLua = ''
-      -- [windline setup] --
+      -- [windline status line setup] --
       require('wlsample.evil_line') -- Other pre-defined options to look into -> bubble, bubble2, airline
       '';
-
     };
 }
