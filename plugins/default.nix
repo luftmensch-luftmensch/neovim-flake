@@ -2,7 +2,8 @@
   imports = [
     ./fidget.nix
     ./lsp-signature.nix
-    ./dashboard.nix
+    ./windline.nix
     ./theme.nix
+    ./telescope-with-config.nix
   ];
 }

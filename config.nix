@@ -119,22 +119,36 @@
       # "<leader>zf" = "'<,'>ZkMatch<CR>";
     };
 
-    # colorschemes.tokyonight = {
-    #   style = "night";
-    #   enable = true;
-    # };
-
+    # Plugins setup
     plugins = {
+      ### Theming ###
 
       # Current favourite theme
       nightfox = {
         enable = true;
       };
 
-      # Neovim dashboard
-      dash = {
+      # Current favourite status line
+      windline = {
         enable = true;
       };
+
+      # Fuzzy finder w/ custom config
+      telescope-with-config = {
+        enable = true;
+      };
+
+      ### Code support ###
+      # Autopairs
+      nvim-autopairs = {
+        enable = true;
+      };
+
+      # Commenting
+      todo-comments = {
+        enable = true;
+      };
+
 
       # Neovim as language server to inject LSP diagnostics, code actions
       null-ls = {
@@ -164,6 +178,11 @@
       ### Git ###
       gitsigns.enable = true;
       gitmessenger.enable = true;
+
+      ### Snippets ###
+      luasnip = {
+        enable = true;
+      };
       
     };
 
@@ -179,9 +198,6 @@
 
 
 
-    plugins.luasnip = {
-      enable = true;
-    };
 
     extraConfigLuaPre = ''
       -- [options setup] --
@@ -197,6 +213,9 @@
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
       local luasnip = require("luasnip")
+
+      -- [Web Dev Icons setup] --
+      require'nvim-web-devicons'.setup({})
     '';
 
     plugins.nvim-cmp = {
@@ -247,36 +266,6 @@
       ];
     };
 
-    plugins.telescope = {
-      enable = true;
-      enabledExtensions = [ "ui-select" ];
-      extensionConfig = {
-        ui-select = {
-          __raw = ''
-              require("telescope.themes").get_dropdown {
-              -- even more opts
-              }
-          '';
-        };
-
-      };
-      
-      extraOptions = {
-        defaults = {
-          layout_strategy = "horizontal";
-          prompt_prefix = "🔍 ";
-          selection_caret = " ";
-
-          mappings = {
-            i = {
-              # "<Esc>" = "require('telescope.actions).close";
-
-              # "K" = "actions.close";
-            };
-          };
-        };
-      };
-    };
 
     plugins.treesitter = {
       enable = true;
@@ -464,9 +453,6 @@
       # sources.null-ls.ignore = true;
     };
 
-    plugins.lualine = {
-      enable = true;
-    };
 
     plugins.trouble = {
       enable = true;

@@ -109,6 +109,13 @@
     };
 
 
+    # Terminal inside neovim
+    "plugin:toggleterm" = {
+      url = "github:akinsho/toggleterm.nvim";
+      flake = false;
+    };
+
+
     ### ------------------------- Treesitter ------------------------- ###
 
     # Neovim Treesitter configurations and abstraction layer
@@ -223,18 +230,17 @@
       flake = false;
     };
 
+    "external-plugin:windline-nvim" = {
+      url = "github:windwp/windline.nvim";
+      flake = false;
+    };
+
     # Adds file type icons to neovim
     "plugin:nvim-web-devicons" = {
       url = "github:nvim-tree/nvim-web-devicons";
       flake = false;
     };
     
-    # Dashboard
-    "plugin:dashboard-nvim" = {
-      url = "github:glepnir/dashboard-nvim";
-      flake = false;
-    };
-
     ### ------------------------- Miscellaneous ------------------------- ###
     # Network Resource Manager
     "plugin:netman-nvim" = {
@@ -254,6 +260,24 @@
       flake = false;
     };
 
+    # Tablines
+    "plugin:bufferline" = {
+      url = "github:akinsho/nvim-bufferline.lua";
+      flake = false;
+    };
+
+    # Buffer tools
+    "plugin:bufdelete-nvim" = {
+      url = "github:famiu/bufdelete.nvim";
+      flake = false;
+    };
+
+    # Visuals
+    "plugin:nvim-cursorline" = {
+      url = "github:yamatsum/nvim-cursorline";
+      flake = false;
+    };
+
     ### ------------------------- File type related ------------------------- ###
     "plugin:markdown-preview-nvim" = {
       url = "github:iamcco/markdown-preview.nvim";
@@ -270,9 +294,6 @@
       module = {
         imports = [
           ./config.nix
-          # ./plugins/lsp-signature.nix
-          # ./plugins/fidget.nix
-          # ./plugins/theme.nix
           ./plugins
           ./modules
         ];
@@ -306,16 +327,16 @@
                   version = src.shortRev;
                   src = src;
                 })
-              ) (inputsMatching "plugin"));
-              # // (
-              #   pkgs.lib.mapAttrs (
-              #     pname: src:
-              #     prev.vimUtils.buildVimPluginFrom2Nix {
-              #       inherit pname src;
-              #       version = src.shortRev;
-              #     }
-              #   ) (inputsMatching "new-plugin")
-              # );
+              ) (inputsMatching "plugin"))
+              // (
+                pkgs.lib.mapAttrs (
+                  pname: src:
+                  prev.vimUtils.buildVimPluginFrom2Nix {
+                    inherit pname src;
+                    version = src.shortRev;
+                  }
+                ) (inputsMatching "external-plugin")
+              );
           })
 
           (final: prev: {

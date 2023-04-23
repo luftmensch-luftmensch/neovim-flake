@@ -23,6 +23,22 @@
         "type": "github"
       }
     },
+    "external-plugin:windline-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1681471519,
+        "narHash": "sha256-I5bg/lDREOdtSZnOeES++O725GSpadqOacdZO2mioRo=",
+        "owner": "windwp",
+        "repo": "windline.nvim",
+        "rev": "66badcb002c91f6d4bfc11726c988441a3aada6c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "windwp",
+        "repo": "windline.nvim",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -187,6 +203,38 @@
         "type": "github"
       }
     },
+    "plugin:bufdelete-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1676574502,
+        "narHash": "sha256-bh5PE0/QNK5et+E7cTz69wnZ9K09681nlQ+OI87ZU7g=",
+        "owner": "famiu",
+        "repo": "bufdelete.nvim",
+        "rev": "8933abc09df6c381d47dc271b1ee5d266541448e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "famiu",
+        "repo": "bufdelete.nvim",
+        "type": "github"
+      }
+    },
+    "plugin:bufferline": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1682097704,
+        "narHash": "sha256-+OQssSN3bWWONrUGDlHR5/8nsOtEu/kRiPwHLtqjhsQ=",
+        "owner": "akinsho",
+        "repo": "nvim-bufferline.lua",
+        "rev": "8b32447f1ba00f71ec2ebb413249d1d84228d9fb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "akinsho",
+        "repo": "nvim-bufferline.lua",
+        "type": "github"
+      }
+    },
     "plugin:clangd_extensions-nvim": {
       "flake": false,
       "locked": {
@@ -280,22 +328,6 @@
       "original": {
         "owner": "numtostr",
         "repo": "comment.nvim",
-        "type": "github"
-      }
-    },
-    "plugin:dashboard-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1681720765,
-        "narHash": "sha256-7RBjr3svkEYgmWeB3GwksoHS8Ps74YcqNYBfynUaXvM=",
-        "owner": "glepnir",
-        "repo": "dashboard-nvim",
-        "rev": "275e7c8579858c3ee06f32c16bdc687153ca7204",
-        "type": "github"
-      },
-      "original": {
-        "owner": "glepnir",
-        "repo": "dashboard-nvim",
         "type": "github"
       }
     },
@@ -539,6 +571,22 @@
         "type": "github"
       }
     },
+    "plugin:nvim-cursorline": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1650034925,
+        "narHash": "sha256-Uhw65p1KBjs8KsVOmTzuiu3XKclxBob8AVdWEt30C/8=",
+        "owner": "yamatsum",
+        "repo": "nvim-cursorline",
+        "rev": "804f0023692653b2b2368462d67d2a87056947f9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yamatsum",
+        "repo": "nvim-cursorline",
+        "type": "github"
+      }
+    },
     "plugin:nvim-lightbulb": {
       "flake": false,
       "locked": {
@@ -731,6 +779,22 @@
         "type": "github"
       }
     },
+    "plugin:toggleterm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1681296186,
+        "narHash": "sha256-y8CvzzW4ezqdnSzeon39KVN1JEU+9SSJ78n51A5XHVQ=",
+        "owner": "akinsho",
+        "repo": "toggleterm.nvim",
+        "rev": "1c5996ee3c30b54751093fe68d40676859e7778f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "akinsho",
+        "repo": "toggleterm.nvim",
+        "type": "github"
+      }
+    },
     "plugin:tokyonight-nvim": {
       "flake": false,
       "locked": {
@@ -833,16 +897,18 @@
     },
     "root": {
       "inputs": {
+        "external-plugin:windline-nvim": "external-plugin:windline-nvim",
         "neovim-flake": "neovim-flake",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
+        "plugin:bufdelete-nvim": "plugin:bufdelete-nvim",
+        "plugin:bufferline": "plugin:bufferline",
         "plugin:clangd_extensions-nvim": "plugin:clangd_extensions-nvim",
         "plugin:cmp-buffer": "plugin:cmp-buffer",
         "plugin:cmp-nvim-lsp": "plugin:cmp-nvim-lsp",
         "plugin:cmp-path": "plugin:cmp-path",
         "plugin:cmp_luasnip": "plugin:cmp_luasnip",
         "plugin:comment-nvim": "plugin:comment-nvim",
-        "plugin:dashboard-nvim": "plugin:dashboard-nvim",
         "plugin:git-messenger-vim": "plugin:git-messenger-vim",
         "plugin:gitsigns-nvim": "plugin:gitsigns-nvim",
         "plugin:inc-rename-nvim": "plugin:inc-rename-nvim",
@@ -858,6 +924,7 @@
         "plugin:nui-nvim": "plugin:nui-nvim",
         "plugin:null-ls-nvim": "plugin:null-ls-nvim",
         "plugin:nvim-cmp": "plugin:nvim-cmp",
+        "plugin:nvim-cursorline": "plugin:nvim-cursorline",
         "plugin:nvim-lightbulb": "plugin:nvim-lightbulb",
         "plugin:nvim-lspconfig": "plugin:nvim-lspconfig",
         "plugin:nvim-notify": "plugin:nvim-notify",
@@ -870,6 +937,7 @@
         "plugin:rust-tools-nvim": "plugin:rust-tools-nvim",
         "plugin:telescope-nvim": "plugin:telescope-nvim",
         "plugin:telescope-ui-select-nvim": "plugin:telescope-ui-select-nvim",
+        "plugin:toggleterm": "plugin:toggleterm",
         "plugin:tokyonight-nvim": "plugin:tokyonight-nvim",
         "plugin:trouble-nvim": "plugin:trouble-nvim",
         "plugin:vim-matchup": "plugin:vim-matchup"
