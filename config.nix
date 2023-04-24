@@ -81,6 +81,8 @@
     maps.normal = helpers.mkModeMaps {silent = true;} {
       # File Tree
       "<leader>d"        = "<cmd>NvimTreeToggle<CR>";
+      "<leader>tr"       = ":NvimTreeRefresh<CR>";
+      "<leader>tf"       = ":NvimTreeFocus<CR>";
 
       # Telescope
       "<leader><leader>" = "<cmd>Telescope buffers<CR>";
@@ -321,6 +323,66 @@
       # File Tree
       nvim-tree = {
         enable = true;
+        autoReloadOnWrite = true;
+        hijackNetrw = true;
+        # diagnostics = {
+        #   enable = true;
+        # };
+        actions = {
+          openFile = {
+            quitOnOpen = true;
+          };
+        };
+        git = {
+          enable = true;
+        };
+        renderer = {
+          addTrailing = true;
+          groupEmpty = true;
+          indentMarkers.enable = true;
+        };
+
+        view = {
+          width = 25;
+          side = "left";
+          mappings = {
+            # Unset default keybindings
+            customOnly = true;
+            # TODO: https://github.com/nvim-tree/nvim-tree.lua/wiki/Migrating-To-on_attach
+            list = [
+              { key = "h"; action = "dir_up"; }
+              { key = "q"; action = "close"; }
+              { key = "q"; action = "close"; }
+              { key = "g?"; action = "toggle_help"; }
+              { key = "<S-Tab>"; action = "collapse_all"; }
+              { key = "<C-k>"; action = "toggle_file_info"; }
+              { key = "y"; action = "copy_name"; }
+              { key = "Y"; action = "copy_path"; }
+              { key = "gy"; action = "copy_absolute_path"; }
+              { key = "s"; action = "system_open"; }
+              { key = "R"; action = "refresh"; }
+              { key = "a"; action = "create"; }
+              { key = "d"; action = "remove"; }
+              { key = "D"; action = "trash"; }
+              { key = "r"; action = "rename"; }
+              { key = "<C-r>"; action = "full_rename"; }
+              { key = "c"; action = "copy"; }
+              { key = "p"; action = "paste"; }
+              { key = "<Tab>"; action = "preview"; }
+            ];
+          };
+        };
+
+        filters = {
+          dotfiles = false;
+          custom = [
+            "node_modules" ".cache"
+          ];
+        };
+
+        systemOpen = {
+          cmd = "${pkgs.xdg-utils}/bin/xdg-open";
+        };
       };
 
       
