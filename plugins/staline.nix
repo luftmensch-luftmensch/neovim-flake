@@ -15,15 +15,6 @@ with lib; {
     mkIf cfg.enable {
       extraPlugins = with pkgs.vimPlugins; [staline-nvim];
       extraConfigLua = ''
-
-      -- [staline buffer line setup] --
-      require('stabline').setup {
-          style = "slant",
-          bg = "#986fec",
-          fg = "black",
-          stab_right = "",
-      }
-
       -- [staline status line setup] --
       require('staline').setup {
           defaults = {

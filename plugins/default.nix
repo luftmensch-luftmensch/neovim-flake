@@ -2,8 +2,9 @@
   imports = [
     ./fidget.nix
     ./lsp-signature.nix
-    ./theme.nix
-    ./telescope-with-config.nix
     ./staline.nix
+    ./telescope-with-config.nix
+    ./theme.nix
+    ./toggleterm.nix
   ];
 }

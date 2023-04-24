@@ -78,7 +78,7 @@
 
     ## Normal mode ##
     maps.normal = helpers.mkModeMaps {silent = true;} {
-      "<leader>d" = "<cmd>NvimTreeToggle<CR>";
+      "<leader>d"        = "<cmd>NvimTreeToggle<CR>";
 
       "<leader><leader>" = "<cmd>Telescope buffers<CR>";
       "<leader>."        = "<cmd> Telescope find_files<CR>";
@@ -91,6 +91,8 @@
       "<leader>fvb"      = "<cmd> Telescope git_branches<CR>";
       "<leader>fvs"      = "<cmd> Telescope git_status<CR>";
       "<leader>fvx"      = "<cmd> Telescope git_stash<CR>";
+
+      "<leader>s"        = ":ToggleTerm<CR>";
 
       "mk" = "<cmd>Telescope keymaps<CR>";
 
@@ -152,7 +154,6 @@
       };
 
       # Current favourite status line
-      #windline = {
       staline = {
         enable = true;
       };
@@ -257,6 +258,10 @@
       fidget = {
         enable = true;
         # sources.null-ls.ignore = true;
+      };
+
+      toggleterm = {
+        enable = true;
       };
       
       # Vim matchup support for treesitter
@@ -500,13 +505,10 @@
     };
 
 
-
-
-
-    plugins.netman = {
-      enable = true;
-      package = pkgs.vimPlugins.netman-nvim;
-    };
+    # plugins.netman = {
+    #   enable = true;
+    #   package = pkgs.vimPlugins.netman-nvim;
+    # };
 
     plugins.which-key.enable = true;
 
