@@ -93,6 +93,10 @@
       "<leader>fvx"      = "<cmd> Telescope git_stash<CR>";
 
       "<leader>s"        = ":ToggleTerm<CR>";
+      "<leader>gg"       = ":Neogit cwd=~/config/<CR>";
+      "<leader>gG"       = ":Neogit cwd=~/Nixos/<CR>";
+      "<leader>g."       = ":Neogit cwd=./<CR>";
+
 
       "mk" = "<cmd>Telescope keymaps<CR>";
 
