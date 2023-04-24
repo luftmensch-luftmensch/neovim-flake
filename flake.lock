@@ -23,6 +23,22 @@
         "type": "github"
       }
     },
+    "external-plugin:staline-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1674412458,
+        "narHash": "sha256-7w11DMhiBvbulfnYj8Luveb9KUVxPQgWEp6l2gp6+lc=",
+        "owner": "tamton-aquib",
+        "repo": "staline.nvim",
+        "rev": "8992f9a98df40160c8932fb3aacda46921c89485",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tamton-aquib",
+        "repo": "staline.nvim",
+        "type": "github"
+      }
+    },
     "external-plugin:windline-nvim": {
       "flake": false,
       "locked": {
@@ -897,6 +913,7 @@
     },
     "root": {
       "inputs": {
+        "external-plugin:staline-nvim": "external-plugin:staline-nvim",
         "external-plugin:windline-nvim": "external-plugin:windline-nvim",
         "neovim-flake": "neovim-flake",
         "nixpkgs": "nixpkgs",

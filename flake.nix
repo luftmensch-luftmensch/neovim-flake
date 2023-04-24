@@ -235,6 +235,11 @@
       flake = false;
     };
 
+    "external-plugin:staline-nvim" = {
+      url = "github:tamton-aquib/staline.nvim";
+      flake = false;
+    };
+
     # Adds file type icons to neovim
     "plugin:nvim-web-devicons" = {
       url = "github:nvim-tree/nvim-web-devicons";

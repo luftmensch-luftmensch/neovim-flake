@@ -152,7 +152,8 @@
       };
 
       # Current favourite status line
-      windline = {
+      #windline = {
+      staline = {
         enable = true;
       };
 
