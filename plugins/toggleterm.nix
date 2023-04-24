@@ -11,7 +11,7 @@ with lib; {
     package = mkOption {
       type = types.package;
       default = pkgs.vimPlugins.toggleterm-nvim;
-      description = "Package to use for telescope";
+      description = "Package to use for toggleterm";
     };
   };
 

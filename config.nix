@@ -9,6 +9,7 @@
     # Global values
     globals = {
       mapleader = " ";
+      nvim_tree_disable_default_keybindings = 1;
     };
 
     # Custom option
@@ -78,34 +79,51 @@
 
     ## Normal mode ##
     maps.normal = helpers.mkModeMaps {silent = true;} {
+      # File Tree
       "<leader>d"        = "<cmd>NvimTreeToggle<CR>";
 
+      # Telescope
       "<leader><leader>" = "<cmd>Telescope buffers<CR>";
       "<leader>."        = "<cmd> Telescope find_files<CR>";
       "<leader>fg"       = "<cmd> Telescope live_grep<CR>";
       "<leader>fh"       = "<cmd> Telescope help_tags<CR>";
       "<leader>ft"       = "<cmd> Telescope<CR>";
+      "<leader>fs"       = "<cmd> Telescope treesitter<CR>";
 
+      # Telescope w/ git
       "<leader>fvcw"     = "<cmd> Telescope git_commits<CR>";
       "<leader>fvcb"     = "<cmd> Telescope git_bcommits<CR>";
       "<leader>fvb"      = "<cmd> Telescope git_branches<CR>";
       "<leader>fvs"      = "<cmd> Telescope git_status<CR>";
       "<leader>fvx"      = "<cmd> Telescope git_stash<CR>";
 
-      "<leader>s"        = ":ToggleTerm<CR>";
+      # Git
       "<leader>gg"       = ":Neogit cwd=~/config/<CR>";
       "<leader>gG"       = ":Neogit cwd=~/Nixos/<CR>";
       "<leader>g."       = ":Neogit cwd=./<CR>";
 
+      # LSP
+      "<leader>flsb"     = "<cmd> Telescope lsp_document_symbols<CR>";
+      "<leader>flsw"     = "<cmd> Telescope lsp_workspace_symbols<CR>";
 
-      "mk" = "<cmd>Telescope keymaps<CR>";
+      "<leader>flr"      = "<cmd> Telescope lsp_references<CR>";
+      "<leader>fli"      = "<cmd> Telescope lsp_implementations<CR>";
+      "<leader>flD"      = "<cmd> Telescope lsp_definitions<CR>";
+      "<leader>flt"      = "<cmd> Telescope lsp_type_definitions<CR>";
+      "<leader>fld"      = "<cmd> Telescope diagnostics<CR>";
 
-      "gr" = "<cmd>Telescope lsp_references<CR>";
-      "gI" = "<cmd>Telescope lsp_implementations<CR>";
-      "gW" = "<cmd>Telescope lsp_workspace_symbols<CR>";
-      "gF" = "<cmd>Telescope lsp_document_symbols<CR>";
-      "ge" = "<cmd>Telescope diagnostics bufnr=0<CR>";
-      "gE" = "<cmd>Telescope diagnostics<CR>";
+      "gr"               = "<cmd>Telescope lsp_references<CR>";
+      "gI"               = "<cmd>Telescope lsp_implementations<CR>";
+      "gW"               = "<cmd>Telescope lsp_workspace_symbols<CR>";
+      "gF"               = "<cmd>Telescope lsp_document_symbols<CR>";
+      "ge"               = "<cmd>Telescope diagnostics bufnr=0<CR>";
+      "gE"               = "<cmd>Telescope diagnostics<CR>";
+
+      # Terminal
+      "<leader>s"        = ":ToggleTerm<CR>";
+
+
+      "mk"               = "<cmd>Telescope keymaps<CR>";
 
       "<leader>rn" = {
         action = ''
@@ -265,6 +283,10 @@
       };
 
       toggleterm = {
+        enable = true;
+      };
+
+      nvim-cursorline = {
         enable = true;
       };
       

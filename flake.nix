@@ -277,7 +277,7 @@
       flake = false;
     };
 
-    # Visuals
+    # Highlights cursor words and lines
     "plugin:nvim-cursorline" = {
       url = "github:yamatsum/nvim-cursorline";
       flake = false;

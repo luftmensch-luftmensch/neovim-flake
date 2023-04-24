@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./cursoline.nix
     ./fidget.nix
     ./lsp-signature.nix
     ./staline.nix
