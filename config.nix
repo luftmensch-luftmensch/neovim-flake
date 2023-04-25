@@ -69,6 +69,15 @@
 
       # Enable clipboard support
       clipboard = "unnamedplus";
+
+      # Prevent swapfile, backupfile from being created
+      swapfile    = false;
+      backup      = false;
+      writebackup = false;
+
+      # Open new splits respectoveòu to the right & to the bottom
+      splitright  = true;
+      splitbelow  = true;
     };
 
     commands = {
@@ -217,43 +226,41 @@
         enable = true;
         indent = true;
 
+        incrementalSelection = {
+          enable = true;
+          keymaps = {
+            initSelection    = "gnn";
+            nodeIncremental  = "grn";
+            scopeIncremental = "grc";
+            nodeDecremental  = "grm";
+          };
+        };
+
         grammarPackages = with config.plugins.treesitter.package.passthru.builtGrammars; [
-          arduino
-          bash
-          c
-          cpp
-          cuda
+          arduino c cpp tlaplus # Low level programming
+          rust lalrpop # Rust
+          bash regex # Scripting
           dart
           devicetree
-          diff
           dockerfile
-          gitattributes
-          gitcommit
-          gitignore
-          git_rebase
-          html
-          ini
-          json
-          lalrpop
+          gitattributes gitcommit gitignore git_rebase diff # Git related
+          # File type specific
+          ini json toml yaml
+
           latex
           lua
-          make
-          markdown
-          markdown_inline
-          meson
-          ninja
+          markdown markdown_inline rst # Markup Langs
+          make meson ninja # Building SW
           nix
           python
-          regex
-          rst
-          rust
           slint
           sql
-          tlaplus
-          toml
-          vim
-          vimdoc
-          yaml
+          
+          vim vimdoc
+          html javascript css
+
+          ### Disabled
+          # cuda
         ];
       };
 

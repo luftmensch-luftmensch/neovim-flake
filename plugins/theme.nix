@@ -23,15 +23,15 @@ with lib; {
       extraPlugins = [cfg.package];
 
       extraConfigLua = ''
-        require('nightfox').setup({
-          options = {
-            styles = {
-              comments = "italic",
-              keywords = "bold",
-              types = "italic,bold",
-            }
+      require('nightfox').setup({
+        options = {
+          styles = {
+            comments = "italic",
+            keywords = "bold",
+            types = "italic,bold",
           }
-        })
+        }
+      })
 
       -- setup must be called before loading
       vim.cmd("colorscheme carbonfox")
