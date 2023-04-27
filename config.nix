@@ -349,35 +349,40 @@
           indentMarkers.enable = true;
         };
 
+        onAttach = ''
+        local function on_attach(bufnr)
+          local api = require('nvim-tree.api')
+
+          local function opts(desc)
+            return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+          end
+
+          -- Mappings migrated from view.mappings.list
+          vim.keymap.set('n', 'h', api.tree.change_root_to_parent, opts('Up'))
+          vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
+          vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
+          vim.keymap.set('n', 'g?', api.tree.toggle_help, opts('Help'))
+          vim.keymap.set('n', '<S-Tab>', api.tree.collapse_all, opts('Collapse'))
+          vim.keymap.set('n', '<C-k>', api.node.show_info_popup, opts('Info'))
+          vim.keymap.set('n', 'y', api.fs.copy.filename, opts('Copy Name'))
+          vim.keymap.set('n', 'Y', api.fs.copy.relative_path, opts('Copy Relative Path'))
+          vim.keymap.set('n', 'gy', api.fs.copy.absolute_path, opts('Copy Absolute Path'))
+          vim.keymap.set('n', 's', api.node.run.system, opts('Run System'))
+          vim.keymap.set('n', 'R', api.tree.reload, opts('Refresh'))
+          vim.keymap.set('n', 'a', api.fs.create, opts('Create'))
+          vim.keymap.set('n', 'd', api.fs.remove, opts('Delete'))
+          vim.keymap.set('n', 'D', api.fs.trash, opts('Trash'))
+          vim.keymap.set('n', 'r', api.fs.rename, opts('Rename'))
+          vim.keymap.set('n', '<C-r>', api.fs.rename_sub, opts('Rename: Omit Filename'))
+          vim.keymap.set('n', 'c', api.fs.copy.node, opts('Copy'))
+          vim.keymap.set('n', 'p', api.fs.paste, opts('Paste'))
+          vim.keymap.set('n', '<Tab>', api.node.open.preview, opts('Open Preview'))
+        end
+        '';
+
         view = {
           width = 25;
           side = "left";
-          mappings = {
-            # Unset default keybindings
-            customOnly = true;
-            # TODO: https://github.com/nvim-tree/nvim-tree.lua/wiki/Migrating-To-on_attach
-            list = [
-              { key = "h"; action = "dir_up"; }
-              { key = "q"; action = "close"; }
-              { key = "q"; action = "close"; }
-              { key = "g?"; action = "toggle_help"; }
-              { key = "<S-Tab>"; action = "collapse_all"; }
-              { key = "<C-k>"; action = "toggle_file_info"; }
-              { key = "y"; action = "copy_name"; }
-              { key = "Y"; action = "copy_path"; }
-              { key = "gy"; action = "copy_absolute_path"; }
-              { key = "s"; action = "system_open"; }
-              { key = "R"; action = "refresh"; }
-              { key = "a"; action = "create"; }
-              { key = "d"; action = "remove"; }
-              { key = "D"; action = "trash"; }
-              { key = "r"; action = "rename"; }
-              { key = "<C-r>"; action = "full_rename"; }
-              { key = "c"; action = "copy"; }
-              { key = "p"; action = "paste"; }
-              { key = "<Tab>"; action = "preview"; }
-            ];
-          };
         };
 
         filters = {
