@@ -78,6 +78,11 @@
       # Open new splits respectoveòu to the right & to the bottom
       splitright  = true;
       splitbelow  = true;
+
+      # Statusline & winbar customization
+      # Global statusline at the bottom instead of one for each window
+      laststatus = 3;
+      winbar = "%=%m\ %f";
     };
 
     commands = {
