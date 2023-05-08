@@ -140,6 +140,10 @@
 
 
       "mk"               = "<cmd>Telescope keymaps<CR>";
+      # TODO: Enanch keybingind
+      "<C-c> ! l"        = "<cmd>TroubleToggle<CR>";
+      "<leader>gR"       = "<cmd>Trouble lsp_references<CR>";
+
 
       "<leader>rn" = {
         action = ''
