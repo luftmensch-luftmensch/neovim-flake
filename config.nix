@@ -586,7 +586,7 @@
     };
 
     plugins.lsp_signature = {
-      enable = true;
+      # enable = true;
     };
 
     plugins.inc-rename = {
