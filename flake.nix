@@ -1,16 +1,9 @@
 {
-  description = "A very basic flake";
+  description = "Neovim on steroid w/ flakes";
 
   inputs = {
     # Nixpkgs / NixOS version to use (Living on the edge)
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-
-    # TODO: Rewrite in order to use flake-utils goodies
-    # Pure Nix flake utility functions
-    # flake-utils = {
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   url = "github:numtide/flake-utils";
-    # };
 
     # Neovim bleeding edge version
     neovim-flake = {
@@ -303,15 +296,15 @@
           ./modules
         ];
 
-        # Use the latest version of neovim
-        # package = neovim-flake.packages."${system}".neovim;
-        package = neovim-flake.packages."${system}".neovim.overrideAttrs (oa: {
-          patches = builtins.filter (v:
-            if pkgs.lib.attrsets.isDerivation v
-              then v.name != "use-the-correct-replacement-args-for-gsub-directive.patch"
-            else true)
-            oa.patches;
-        });
+        # Bleeding edge neovim version
+        package = neovim-flake.packages."${system}".neovim;
+        # package = neovim-flake.packages."${system}".neovim.overrideAttrs (oa: {
+        #   patches = builtins.filter (v:
+        #     if pkgs.lib.attrsets.isDerivation v
+        #       then v.name != "use-the-correct-replacement-args-for-gsub-directive.patch"
+        #     else true)
+        #     oa.patches;
+        # });
       };
 
       
