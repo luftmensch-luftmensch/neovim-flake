@@ -75,7 +75,7 @@
       backup      = false;
       writebackup = false;
 
-      # Open new splits respectoveòu to the right & to the bottom
+      # Open new splits respectively to the right & to the bottom
       splitright  = true;
       splitbelow  = true;
 
@@ -115,7 +115,7 @@
 
       # Git
       "<leader>gg"       = ":Neogit cwd=~/config/<CR>";
-      "<leader>gG"       = ":Neogit cwd=~/Nixos/<CR>";
+      "<leader>gG"       = ":Neogit cwd=~/nix-config/<CR>";
       "<leader>g."       = ":Neogit cwd=./<CR>";
 
       # LSP
@@ -138,11 +138,20 @@
       # Terminal
       "<leader>s"        = ":ToggleTerm<CR>";
 
-
       "mk"               = "<cmd>Telescope keymaps<CR>";
+
       # TODO: Enanch keybingind
       "<C-c> ! l"        = "<cmd>TroubleToggle<CR>";
       "<leader>gR"       = "<cmd>Trouble lsp_references<CR>";
+      
+      # Buffers
+      "<M-[>"            = "<cmd>bprevious<CR>";
+      "<M-]>"            = "<cmd>bnext<CR>";
+
+      # Splitting & Window managment
+      "<leader>v"        = "<cmd>vsplit<CR>";
+      "<leader>h"        = "<cmd>split<CR>";
+      "<leader>x"        = "<cmd>only<CR>"; # close all but current window (in a single tab, aka close all other splits)
 
 
       "<leader>rn" = {
@@ -154,6 +163,8 @@
         lua = true;
         expr = true;
       };
+
+
 
     };
 
