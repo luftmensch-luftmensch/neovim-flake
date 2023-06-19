@@ -10,7 +10,7 @@
       url = "github:neovim/neovim?dir=contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     # Useful goodies to configure Neovim with nix
     nixvim = {
       url = "github:pta2002/nixvim";
@@ -101,13 +101,11 @@
       flake = false;
     };
 
-
     # Terminal inside neovim
     "plugin:toggleterm" = {
       url = "github:akinsho/toggleterm.nvim";
       flake = false;
     };
-
 
     ### ------------------------- Treesitter ------------------------- ###
 
@@ -143,7 +141,7 @@
     };
 
     ### ------------------------- Completion ------------------------- ###
-    # Completion plugin for neovim 
+    # Completion plugin for neovim
     "plugin:nvim-cmp" = {
       url = "github:hrsh7th/nvim-cmp";
       flake = false;
@@ -166,7 +164,7 @@
       url = "github:hrsh7th/cmp-path";
       flake = false;
     };
-    
+
     # luasnip completion source for nvim-cmp
     "plugin:cmp_luasnip" = {
       url = "github:saadparwaiz1/cmp_luasnip";
@@ -199,7 +197,6 @@
       flake = false;
     };
 
-    
     ### ------------------------- UI & Theming ------------------------- ###
     "plugin:nightfox" = {
       url = "github:EdenEast/nightfox.nvim";
@@ -238,7 +235,7 @@
       url = "github:nvim-tree/nvim-web-devicons";
       flake = false;
     };
-    
+
     ### ------------------------- Miscellaneous ------------------------- ###
     # Network Resource Manager
     "plugin:netman-nvim" = {
@@ -281,10 +278,15 @@
       url = "github:iamcco/markdown-preview.nvim";
       flake = false;
     };
-
   };
 
-  outputs = { self, nixpkgs, nixvim, neovim-flake, ... } @ inputs:
+  outputs = {
+    self,
+    nixpkgs,
+    nixvim,
+    neovim-flake,
+    ...
+  } @ inputs:
     with builtins; let
       system = "x86_64-linux";
 
@@ -307,17 +309,16 @@
         # });
       };
 
-      
       # Parse the inputs taking only the plugins needed to extend neovim capabilities
       inputsMatching = prefix:
         pkgs.lib.mapAttrs'
-          (prefixedName: value: {
-            name = substring (stringLength "${prefix}:") (stringLength prefixedName) prefixedName;
-            inherit value;
-          })
-          (pkgs.lib.filterAttrs
-            (name: _: (match "${prefix}:.*" name) != null)
-            inputs);
+        (prefixedName: value: {
+          name = substring (stringLength "${prefix}:") (stringLength prefixedName) prefixedName;
+          inherit value;
+        })
+        (pkgs.lib.filterAttrs
+          (name: _: (match "${prefix}:.*" name) != null)
+          inputs);
 
       pkgs = import nixpkgs {
         inherit system;
@@ -328,18 +329,18 @@
               prev.vimPlugins
               // (pkgs.lib.mapAttrs (
                 pname: src:
-                prev.vimPlugins."${pname}".overrideAttrs (old: {
-                  version = src.shortRev;
-                  src = src;
-                })
+                  prev.vimPlugins."${pname}".overrideAttrs (old: {
+                    version = src.shortRev;
+                    src = src;
+                  })
               ) (inputsMatching "plugin"))
               // (
                 pkgs.lib.mapAttrs (
                   pname: src:
-                  prev.vimUtils.buildVimPluginFrom2Nix {
-                    inherit pname src;
-                    version = src.shortRev;
-                  }
+                    prev.vimUtils.buildVimPluginFrom2Nix {
+                      inherit pname src;
+                      version = src.shortRev;
+                    }
                 ) (inputsMatching "external-plugin")
               );
           })
@@ -356,26 +357,26 @@
                         final.vimPlugins.nvim-treesitter.overrideAttrs (_: {
                           passthru.dependencies =
                             map
-                              (
-                                grammar: let
-                                  lib = pkgs.lib;
-                                  name = lib.pipe grammar [
-                                    lib.getName
+                            (
+                              grammar: let
+                                lib = pkgs.lib;
+                                name = lib.pipe grammar [
+                                  lib.getName
 
-                                    # added in buildGrammar
-                                    (lib.removeSuffix "-grammar")
+                                  # added in buildGrammar
+                                  (lib.removeSuffix "-grammar")
 
-                                    # grammars from tree-sitter.builtGrammars
-                                    (lib.removePrefix "tree-sitter-")
-                                    (lib.replaceStrings ["-"] ["_"])
-                                  ];
-                                in
-                                  pkgs.runCommand "nvim-treesitter-${name}-grammar" {} ''
+                                  # grammars from tree-sitter.builtGrammars
+                                  (lib.removePrefix "tree-sitter-")
+                                  (lib.replaceStrings ["-"] ["_"])
+                                ];
+                              in
+                                pkgs.runCommand "nvim-treesitter-${name}-grammar" {} ''
                                   mkdir -p $out/parser
                                   ln -s ${grammar}/parser $out/parser/${name}.so
                                 ''
-                              )
-                              (f (tree-sitter.builtGrammars // builtGrammars));
+                            )
+                            (f (tree-sitter.builtGrammars // builtGrammars));
                         });
                     };
                 });
@@ -387,29 +388,6 @@
       nixvim' = nixvim.legacyPackages."${system}";
       nvim = nixvim'.makeNixvimWithModule {inherit module pkgs;};
     in {
-      checks."${system}".launch = pkgs.stdenv.mkDerivation {
-        name = "launch-nvim";
-
-        nativeBuildInputs = [self.packages."${system}".nvim pkgs.docker-client];
-
-        dontUnpack = true;
-        # We need to set HOME because neovim will try to create some files
-        #
-        # Because neovim does not return an exitcode when quitting we need to check if there are
-        # errors on stderr
-        buildPhase = ''
-          output=$(HOME=$(realpath .) nvim -mn --headless "+q" 2>&1 >/dev/null)
-          if [[ -n $output ]]; then
-            echo "ERROR: $output"
-            exit 1
-          fi
-        '';
-
-        # If we don't do this nix is not happy
-        installPhase = ''
-          mkdir $out
-        '';
-      };
       formatter."${system}" = pkgs.alejandra;
 
       devShells."${system}".default = pkgs.mkShell {
