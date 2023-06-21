@@ -140,7 +140,6 @@
 
       "mk"               = "<cmd>Telescope keymaps<CR>";
 
-      # TODO: Enanch keybingind
       "<C-c> ! l"        = "<cmd>TroubleToggle<CR>";
       "<leader>gR"       = "<cmd>Trouble lsp_references<CR>";
       
@@ -152,7 +151,7 @@
       "<leader>v"        = "<cmd>vsplit<CR>";
       "<leader>h"        = "<cmd>split<CR>";
       "<leader>x"        = "<cmd>only<CR>"; # close all but current window (in a single tab, aka close all other splits)
-
+      "<C-M-k>"          = "<cmd>bufdo bwipeout<CR>"; # close all buffers opened
 
       "<leader>rn" = {
         action = ''
