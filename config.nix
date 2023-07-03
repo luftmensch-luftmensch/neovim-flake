@@ -152,6 +152,8 @@
       "<leader>h"        = "<cmd>split<CR>";
       "<leader>x"        = "<cmd>only<CR>"; # close all but current window (in a single tab, aka close all other splits)
       "<C-M-k>"          = "<cmd>bufdo bwipeout<CR>"; # close all buffers opened
+      "<leader>z"        = "<cmd>bdelete<CR>"; # close focused window/buffer
+
 
       "<leader>rn" = {
         action = ''
