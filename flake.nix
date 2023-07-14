@@ -39,6 +39,18 @@
       flake = false;
     };
 
+    # Easily install and manage LSP servers, DAP servers, linters, and formatters
+    "plugin:mason-nvim" = {
+      url = "github:williamboman/mason.nvim";
+      flake = false;
+    };
+
+    # Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
+    "plugin:mason-lspconfig-nvim" = {
+      url = "github:williamboman/mason-lspconfig.nvim";
+      flake = false;
+    };
+
     # VSCode-like pictograms for neovim lsp completion items
     "plugin:lspkind-nvim" = {
       url = "github:onsails/lspkind.nvim";
@@ -54,12 +66,6 @@
     # Diagnostics, references, telescope results, quickfix and location list
     "plugin:trouble-nvim" = {
       url = "github:folke/trouble.nvim";
-      flake = false;
-    };
-
-    # Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
-    "plugin:null-ls-nvim" = {
-      url = "github:jose-elias-alvarez/null-ls.nvim";
       flake = false;
     };
 

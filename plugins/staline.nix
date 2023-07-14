@@ -6,7 +6,7 @@
 }:
 with lib; {
   options.plugins.staline = {
-    enable = mkEnableOption "Enable windline";
+    enable = mkEnableOption "Enable staline";
   };
 
   config = let
@@ -18,7 +18,6 @@ with lib; {
       -- [staline status line setup] --
       require('staline').setup {
           defaults = {
-              expand_null_ls = false,  -- This expands out all the null-ls sources to be shown
               left_separator  = "",
               right_separator = "",
               full_path       = false,

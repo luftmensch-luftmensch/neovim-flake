@@ -481,6 +481,38 @@
         "type": "github"
       }
     },
+    "plugin:mason-lspconfig-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1689014747,
+        "narHash": "sha256-z6bjRRPubAHPZmBh6tkc55850GztZw608sZMQpucFtE=",
+        "owner": "williamboman",
+        "repo": "mason-lspconfig.nvim",
+        "rev": "796008869e67ef27a5aa5ac44c08ce2a60b89f55",
+        "type": "github"
+      },
+      "original": {
+        "owner": "williamboman",
+        "repo": "mason-lspconfig.nvim",
+        "type": "github"
+      }
+    },
+    "plugin:mason-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1688466661,
+        "narHash": "sha256-LIlV8dmHlKyLPsv/SZ9x6m5uvbjhDPi1GSH/rIhfC9c=",
+        "owner": "williamboman",
+        "repo": "mason.nvim",
+        "rev": "5ad3e113b0c3fde3caba8630599373046f6197e8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "williamboman",
+        "repo": "mason.nvim",
+        "type": "github"
+      }
+    },
     "plugin:neogit": {
       "flake": false,
       "locked": {
@@ -558,22 +590,6 @@
       "original": {
         "owner": "MunifTanjim",
         "repo": "nui.nvim",
-        "type": "github"
-      }
-    },
-    "plugin:null-ls-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1686871437,
-        "narHash": "sha256-MxIZqyRW8jStiDNXt7Bsw8peDLKpqxKEaUuIJsXkGMI=",
-        "owner": "jose-elias-alvarez",
-        "repo": "null-ls.nvim",
-        "rev": "bbaf5a96913aa92281f154b08732be2f57021c45",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jose-elias-alvarez",
-        "repo": "null-ls.nvim",
         "type": "github"
       }
     },
@@ -940,12 +956,13 @@
         "plugin:lualine-nvim": "plugin:lualine-nvim",
         "plugin:luasnip": "plugin:luasnip",
         "plugin:markdown-preview-nvim": "plugin:markdown-preview-nvim",
+        "plugin:mason-lspconfig-nvim": "plugin:mason-lspconfig-nvim",
+        "plugin:mason-nvim": "plugin:mason-nvim",
         "plugin:neogit": "plugin:neogit",
         "plugin:netman-nvim": "plugin:netman-nvim",
         "plugin:nightfox": "plugin:nightfox",
         "plugin:noice-nvim": "plugin:noice-nvim",
         "plugin:nui-nvim": "plugin:nui-nvim",
-        "plugin:null-ls-nvim": "plugin:null-ls-nvim",
         "plugin:nvim-cmp": "plugin:nvim-cmp",
         "plugin:nvim-cursorline": "plugin:nvim-cursorline",
         "plugin:nvim-lightbulb": "plugin:nvim-lightbulb",

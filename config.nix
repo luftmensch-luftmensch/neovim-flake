@@ -164,20 +164,13 @@
         lua = true;
         expr = true;
       };
-
-
-
     };
 
     ## Visual mode ##
-    maps.visual = helpers.mkModeMaps {silent = true;} {
-      # "<leader>zf" = "'<,'>ZkMatch<CR>";
-    };
+    maps.visual = helpers.mkModeMaps {silent = true;} { };
 
     # Neovim Editor Config support
-    editorconfig = {
-      enable = true;
-    };
+    editorconfig.enable = true;
 
     extraConfigLuaPre = ''
       -- [options setup] --
@@ -203,14 +196,10 @@
       ### Theming ###
 
       # Current favourite theme
-      nightfox = {
-        enable = true;
-      };
+      nightfox.enable = true;
 
       # Current favourite status line
-      staline = {
-        enable = true;
-      };
+      staline.enable = true;
 
       # Ui replacement for messages, cmdline and the popupmenu
       noice = {
@@ -237,8 +226,53 @@
       };
 
       # Fuzzy finder w/ custom config
-      telescope-with-config = {
+      # telescope-with-config.enable = true;
+      telescope = {
         enable = true;
+        defaults = {
+          layout_config = {
+            prompt_position = "bottom";
+            horizontal = {
+              width_padding = 0.9;
+              height_padding = 0.1;
+              preview_width = 0.6;
+            };
+            vertical = {
+              width_padding = 0.05;
+              height_padding = 1;
+              preview_height = 0.5;
+            };
+          };
+
+          mappings = {
+            i = {
+              "<Esc>"    = "close";
+              "<C-j>"    = "move_selection_next";
+              "<C-k>"    = "move_selection_previous";
+              "<C-Up>"   = "preview_scrolling_up";
+              "<C-Down>" = "preview_scrolling_down";
+
+              "<C-v>"    = "select_vertical";
+              "<C-x>"    = "select_horizontal";
+              "<C-h>"    = "which_key";
+            };
+          };
+          prompt_prefix = "🔍 "; # -- 
+          selection_caret = " ";
+          vimgrep_arguments = [
+            "${pkgs.ripgrep}/bin/rg"
+            "--color=never"
+            "--no-heading"
+            "--with-filename"
+            "--line-number"
+            "--column"
+            "--smart-case"
+          ];
+          pickers = {
+            find_command = "${pkgs.fd}/bin/fd";
+          };
+        };
+        
       };
 
       ### Code support ###
@@ -291,34 +325,19 @@
           enable = true;
           clearOnCursorMove = true;
         };
-        smartRename = {
-          enable = true;
-        };
-        navigation = {
-          enable = true;
-        };
+        smartRename.enable = true;
+        navigation.enable = true;
       };
 
-      treesitter-context = {
-        enable = true;
-      };
+      treesitter-context.enable = true;
 
-      trouble = {
-        enable = true;
-      };
+      trouble.enable = true;
 
-      fidget = {
-        enable = true;
-        # sources.null-ls.ignore = true;
-      };
+      fidget.enable = true;
 
-      toggleterm = {
-        enable = true;
-      };
+      toggleterm.enable = true;
 
-      nvim-cursorline = {
-        enable = true;
-      };
+      nvim-cursorline.enable = true;
       
       # Vim matchup support for treesitter
       vim-matchup = {
@@ -330,14 +349,10 @@
       };
 
       # Autopairs
-      nvim-autopairs = {
-        enable = true;
-      };
+      nvim-autopairs.enable = true;
 
       # Highlight TODO keywords
-      todo-comments = {
-        enable = true;
-      };
+      todo-comments.enable = true;
 
       # Comments on steroid
       comment-nvim = {
@@ -353,9 +368,6 @@
         enable = true;
         autoReloadOnWrite = true;
         hijackNetrw = true;
-        # diagnostics = {
-        #   enable = true;
-        # };
         actions = {
           openFile = {
             quitOnOpen = true;
@@ -480,31 +492,32 @@
         ];
       };
 
+      mason.enable = true;
 
       # Neovim as language server to inject LSP diagnostics, code actions
-      null-ls = {
-        enable = true;
-        sources = {
-          diagnostics = {
-            shellcheck.enable = true;
-            cppcheck.enable = true;
-            gitlint.enable = true;
-          };
-          code_actions = {
-            shellcheck.enable = true;
-            gitsigns.enable = true;
-          };
-          formatting = {
-            alejandra.enable = true;
-            black.enable = true;
-            stylua.enable = true;
-            cbfmt.enable = true;
-            shfmt.enable = true;
-            taplo.enable = true;
-            prettier.enable = true;
-          };
-        };
-      };
+      # null-ls = {
+      #   enable = true;
+      #   sources = {
+      #     diagnostics = {
+      #       shellcheck.enable = true;
+      #       cppcheck.enable = true;
+      #       gitlint.enable = true;
+      #     };
+      #     code_actions = {
+      #       shellcheck.enable = true;
+      #       gitsigns.enable = true;
+      #     };
+      #     formatting = {
+      #       alejandra.enable = true;
+      #       black.enable = true;
+      #       stylua.enable = true;
+      #       cbfmt.enable = true;
+      #       shfmt.enable = true;
+      #       taplo.enable = true;
+      #       prettier.enable = true;
+      #     };
+      #   };
+      # };
 
       ### Git ###
       gitsigns.enable = true;
@@ -516,9 +529,7 @@
       };
 
       ### Snippets ###
-      luasnip = {
-        enable = true;
-      };
+      luasnip.enable = true;
       
     };
 
@@ -561,6 +572,8 @@
       };
 
       servers = {
+        clangd.enable = true;
+
         nil_ls = {
           enable = true;
           settings = {
@@ -572,18 +585,18 @@
       };
     };
 
-    plugins.rust-tools = {
-      enable = true;
-      inlayHints = {
-        maxLenAlign = true;
-      };
+    # plugins.rust-tools = {
+    #   enable = true;
+    #   inlayHints = {
+    #     maxLenAlign = true;
+    #   };
 
-      server = {
-        cargo.features = "all";
-        checkOnSave = true;
-        check.command = "clippy";
-      };
-    };
+    #   server = {
+    #     cargo.features = "all";
+    #     checkOnSave = true;
+    #     check.command = "clippy";
+    #   };
+    # };
 
     plugins.lspkind = {
       enable = true;
@@ -631,18 +644,13 @@
     };
 
 
-    # plugins.netman = {
-    #   enable = true;
-    #   package = pkgs.vimPlugins.netman-nvim;
-    # };
-
     plugins.which-key.enable = true;
 
     extraConfigLuaPost = ''
       require("luasnip.loaders.from_snipmate").lazy_load()
 
-      local null_ls = require("null-ls")
-      local helpers = require("null-ls.helpers")
+      -- local null_ls = require("null-ls")
+      -- local helpers = require("null-ls.helpers")
     '';
 
     extraPlugins = with pkgs.vimPlugins; [
