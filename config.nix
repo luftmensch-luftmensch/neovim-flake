@@ -427,7 +427,14 @@
 
       fidget.enable = true;
 
-      toggleterm.enable = true;
+      toggleterm = {
+		  enable = true;
+		  direction = "horizontal";
+		  floatOpts = {
+			border = "curved"; # other options -> single, double, shadow
+			winblend = 3;
+		  };
+	  };
 
       nvim-cursorline.enable = true;
       

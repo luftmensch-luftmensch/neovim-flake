@@ -6,6 +6,5 @@
     ./mason.nix
     ./staline.nix
     ./theme.nix
-    ./toggleterm.nix
   ];
 }

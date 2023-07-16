@@ -107,12 +107,6 @@
       flake = false;
     };
 
-    # Terminal inside neovim
-    "plugin:toggleterm" = {
-      url = "github:akinsho/toggleterm.nvim";
-      flake = false;
-    };
-
     ### ------------------------- Treesitter ------------------------- ###
 
     # Neovim Treesitter configurations and abstraction layer
