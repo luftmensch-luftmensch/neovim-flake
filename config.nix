@@ -226,7 +226,6 @@
       };
 
       # Fuzzy finder w/ custom config
-      # telescope-with-config.enable = true;
       telescope = {
         enable = true;
         defaults = {
@@ -275,7 +274,100 @@
         
       };
 
+      which-key.enable = true;
+
       ### Code support ###
+      lsp = {
+        enable = true;
+        keymaps = {
+          silent = true;
+
+          lspBuf = {
+            "gd" = "definition";
+            "gD" = "declaration";
+            "ca" = "code_action";
+            "ff" = "format";
+            "K" = "hover";
+          };
+        };
+
+        servers = {
+          clangd.enable = true;
+          bashls.enable = true;
+          dartls.enable = true;
+          nil_ls = {
+            enable = true;
+            settings = {
+              formatting.command = ["alejandra" "--quiet"];
+            };
+          };
+        };
+      };
+
+      clangd-extensions = {
+        enable = true;
+        server = {
+          extraOptions = {
+            cmd = [
+              "clangd"
+              "-j=4"
+              "--background-index"
+              "--clang-tidy"
+              "--fallback-style=llvm"
+              "--all-scopes-completion"
+              "--completion-style=detailed"
+              "--header-insertion=iwyu"
+              "--header-insertion-decorators"
+              "--pch-storage=memory"
+            ];
+
+          };
+        };
+
+        extensions = {
+          autoSetHints = true;
+          inlayHints = {
+            highlight = "Comment";
+            priority = 100;
+            parameterHintsPrefix = "<- ";
+            otherHintsPrefix = "=> ";
+          };
+
+          ast = {
+            roleIcons = {
+              type = "";
+              declaration = "";
+              expression = "";
+              specifier = "";
+              statement = "";
+              templateArgument = "";
+            };
+            kindIcons = {
+              compound = "";
+              recovery = "";
+              translationUnit = "";
+              packExpansion = "";
+              templateTypeParm = "";
+              templateTemplateParm = "";
+              templateParamObject = "";
+            };
+          };
+        };
+      };
+
+      lspkind = {
+        enable = true;
+        cmp.enable = true;
+      };
+
+      nvim-lightbulb = {
+        enable = true;
+        autocmd.enabled = true;
+      };
+
+      inc-rename.enable = true;
+
+
       # Treesitter
       treesitter = {
         enable = true;
@@ -494,31 +586,6 @@
 
       mason.enable = true;
 
-      # Neovim as language server to inject LSP diagnostics, code actions
-      # null-ls = {
-      #   enable = true;
-      #   sources = {
-      #     diagnostics = {
-      #       shellcheck.enable = true;
-      #       cppcheck.enable = true;
-      #       gitlint.enable = true;
-      #     };
-      #     code_actions = {
-      #       shellcheck.enable = true;
-      #       gitsigns.enable = true;
-      #     };
-      #     formatting = {
-      #       alejandra.enable = true;
-      #       black.enable = true;
-      #       stylua.enable = true;
-      #       cbfmt.enable = true;
-      #       shfmt.enable = true;
-      #       taplo.enable = true;
-      #       prettier.enable = true;
-      #     };
-      #   };
-      # };
-
       ### Git ###
       gitsigns.enable = true;
       gitmessenger.enable = true;
@@ -544,113 +611,8 @@
     };
 
 
-
-
-
-    plugins.lsp = {
-      enable = true;
-
-      enabledServers = [
-        # {
-        #   name = "lemminx";
-        #   extraOptions = {
-        #     cmd = ["${pkgs.lemminx-bin}/bin/lemminx-bin"];
-        #   };
-        # }
-      ];
-
-      keymaps = {
-        silent = true;
-
-        lspBuf = {
-          "gd" = "definition";
-          "gD" = "declaration";
-          "ca" = "code_action";
-          "ff" = "format";
-          "K" = "hover";
-        };
-      };
-
-      servers = {
-        clangd.enable = true;
-
-        nil_ls = {
-          enable = true;
-          settings = {
-            formatting.command = ["alejandra" "--quiet"];
-          };
-        };
-        bashls.enable = true;
-        dartls.enable = true;
-      };
-    };
-
-    # plugins.rust-tools = {
-    #   enable = true;
-    #   inlayHints = {
-    #     maxLenAlign = true;
-    #   };
-
-    #   server = {
-    #     cargo.features = "all";
-    #     checkOnSave = true;
-    #     check.command = "clippy";
-    #   };
-    # };
-
-    plugins.lspkind = {
-      enable = true;
-      cmp = {
-        enable = true;
-      };
-    };
-
-    plugins.nvim-lightbulb = {
-      enable = true;
-      autocmd.enabled = true;
-    };
-
-    plugins.lsp_signature = {
-      # enable = true;
-    };
-
-    plugins.inc-rename = {
-      enable = true;
-    };
-
-    plugins.clangd-extensions = {
-      enable = true;
-      enableOffsetEncodingWorkaround = true;
-
-      extensions.ast = {
-        roleIcons = {
-          type = "";
-          declaration = "";
-          expression = "";
-          specifier = "";
-          statement = "";
-          templateArgument = "";
-        };
-        kindIcons = {
-          compound = "";
-          recovery = "";
-          translationUnit = "";
-          packExpansion = "";
-          templateTypeParm = "";
-          templateTemplateParm = "";
-          templateParamObject = "";
-        };
-      };
-    };
-
-
-    plugins.which-key.enable = true;
-
     extraConfigLuaPost = ''
       require("luasnip.loaders.from_snipmate").lazy_load()
-
-      -- local null_ls = require("null-ls")
-      -- local helpers = require("null-ls.helpers")
     '';
 
     extraPlugins = with pkgs.vimPlugins; [
