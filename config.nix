@@ -140,8 +140,19 @@
 
       "mk"               = "<cmd>Telescope keymaps<CR>";
 
+      # Lsp
       "<C-c> ! l"        = "<cmd>TroubleToggle<CR>";
-      "<leader>gR"       = "<cmd>Trouble lsp_references<CR>";
+      "<leader>gd"       = "<cmd>Trouble lsp_definitions<CR>";
+      "<leader>gr"       = "<cmd>Trouble lsp_references<CR>";
+      "<leader>gR" = {
+        action = ''
+          function()
+            return ":IncRename " .. vim.fn.expand("<cword>")
+          end
+        '';
+        lua = true;
+        expr = true;
+      };
       
       # Buffers
       "<M-[>"            = "<cmd>bprevious<CR>";
@@ -153,17 +164,6 @@
       "<leader>x"        = "<cmd>only<CR>"; # close all but current window (in a single tab, aka close all other splits)
       "<C-M-k>"          = "<cmd>bufdo bwipeout<CR>"; # close all buffers opened
       "<leader>z"        = "<cmd>bdelete<CR>"; # close focused window/buffer
-
-
-      "<leader>rn" = {
-        action = ''
-          function()
-            return ":IncRename " .. vim.fn.expand("<cword>")
-          end
-        '';
-        lua = true;
-        expr = true;
-      };
     };
 
     ## Visual mode ##
