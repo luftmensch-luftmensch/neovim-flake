@@ -1,9 +1,7 @@
 {...}: {
   imports = [
-    ./cursoline.nix
-    ./fidget.nix
+    ./efmls-configs.nix
     ./lsp-signature.nix
-    ./mason.nix
     ./staline.nix
     ./theme.nix
   ];

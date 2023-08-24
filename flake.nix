@@ -39,18 +39,6 @@
       flake = false;
     };
 
-    # Easily install and manage LSP servers, DAP servers, linters, and formatters
-    "plugin:mason-nvim" = {
-      url = "github:williamboman/mason.nvim";
-      flake = false;
-    };
-
-    # Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
-    "plugin:mason-lspconfig-nvim" = {
-      url = "github:williamboman/mason-lspconfig.nvim";
-      flake = false;
-    };
-
     # VSCode-like pictograms for neovim lsp completion items
     "plugin:lspkind-nvim" = {
       url = "github:onsails/lspkind.nvim";
@@ -104,6 +92,11 @@
     # Incremental LSP renaming based on Neovim's command-preview feature
     "plugin:inc-rename-nvim" = {
       url = "github:smjonas/inc-rename.nvim";
+      flake = false;
+    };
+
+    "external-plugin:efmls-configs-nvim" = {
+      url = "github:creativenull/efmls-configs-nvim";
       flake = false;
     };
 
@@ -300,13 +293,6 @@
 
         # Bleeding edge neovim version
         package = neovim-flake.packages."${system}".neovim;
-        # package = neovim-flake.packages."${system}".neovim.overrideAttrs (oa: {
-        #   patches = builtins.filter (v:
-        #     if pkgs.lib.attrsets.isDerivation v
-        #       then v.name != "use-the-correct-replacement-args-for-gsub-directive.patch"
-        #     else true)
-        #     oa.patches;
-        # });
       };
 
       # Parse the inputs taking only the plugins needed to extend neovim capabilities
@@ -324,62 +310,32 @@
         inherit system;
         overlays = [
           (final: prev: {
-            # inherit (inputs.nixfiles.packages."${system}") lemminx-bin;
             vimPlugins =
               prev.vimPlugins
               // (pkgs.lib.mapAttrs (
                 pname: src:
-                  prev.vimPlugins."${pname}".overrideAttrs (old: {
-                    version = src.shortRev;
-                    src = src;
-                  })
+                prev.vimPlugins."${pname}".overrideAttrs (old: {
+                  version = src.shortRev;
+                  src = src;
+                })
               ) (inputsMatching "plugin"))
               // (
                 pkgs.lib.mapAttrs (
                   pname: src:
-                    prev.vimUtils.buildVimPluginFrom2Nix {
-                      inherit pname src;
-                      version = src.shortRev;
-                    }
+                  prev.vimUtils.buildVimPluginFrom2Nix {
+                    inherit pname src;
+                    version = src.shortRev;
+                  }
                 ) (inputsMatching "external-plugin")
               );
           })
-
           (final: prev: {
             vimPlugins =
               prev.vimPlugins
               // {
-                nvim-treesitter = prev.vimPlugins.nvim-treesitter.overrideAttrs (old: {
-                  passthru =
-                    old.passthru
-                    // {
-                      withPlugins = f:
-                        final.vimPlugins.nvim-treesitter.overrideAttrs (_: {
-                          passthru.dependencies =
-                            map
-                            (
-                              grammar: let
-                                lib = pkgs.lib;
-                                name = lib.pipe grammar [
-                                  lib.getName
-
-                                  # added in buildGrammar
-                                  (lib.removeSuffix "-grammar")
-
-                                  # grammars from tree-sitter.builtGrammars
-                                  (lib.removePrefix "tree-sitter-")
-                                  (lib.replaceStrings ["-"] ["_"])
-                                ];
-                              in
-                                pkgs.runCommand "nvim-treesitter-${name}-grammar" {} ''
-                                  mkdir -p $out/parser
-                                  ln -s ${grammar}/parser $out/parser/${name}.so
-                                ''
-                            )
-                            (f (tree-sitter.builtGrammars // builtGrammars));
-                        });
-                    };
-                });
+                nvim-treesitter = prev.vimPlugins.nvim-treesitter.overrideAttrs (
+                  prev.callPackage ./nvim-treesitter/override.nix {} final.vimPlugins prev.vimPlugins
+                );
               };
           })
         ];
@@ -389,13 +345,19 @@
       nvim = nixvim'.makeNixvimWithModule {inherit module pkgs;};
     in {
       formatter."${system}" = pkgs.alejandra;
-
+      
       devShells."${system}".default = pkgs.mkShell {
         packages = [nvim];
       };
       packages."${system}" = {
         inherit nvim;
         default = nvim;
+      };
+
+      # Treesitter auto update
+      upstream = module.package;
+      update-nvim-treesitter = pkgs.callPackage ./nvim-treesitter {
+        inherit (self.packages."${system}") nvim-treesitter upstream;
       };
     };
 }

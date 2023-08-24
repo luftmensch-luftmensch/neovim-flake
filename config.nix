@@ -56,8 +56,6 @@
       # Comma-separated list of screen columns that are highlighted with ColorColumn |hl-ColorColumn|.
       colorcolumn = "100";
 
-      # statuscolumn = "%l     %r";
-
       # Strings to use in 'list' mode and for the |:list| command.  It is a comma-separated list of string settings.
       listchars = "tab:>-,lead:·,nbsp:␣,trail:•";
 
@@ -83,6 +81,7 @@
       # Global statusline at the bottom instead of one for each window
       laststatus = 3;
       winbar = "%=%m\ %f";
+      fsync = true;
     };
 
     commands = {
@@ -105,6 +104,7 @@
       "<leader>fh"       = "<cmd> Telescope help_tags<CR>";
       "<leader>ft"       = "<cmd> Telescope<CR>";
       "<leader>fs"       = "<cmd> Telescope treesitter<CR>";
+      "<C-s>"            = "<cmd>Telescope current_buffer_fuzzy_find<CR>";
 
       # Telescope w/ git
       "<leader>fvcw"     = "<cmd> Telescope git_commits<CR>";
@@ -144,15 +144,7 @@
       "<C-c> ! l"        = "<cmd>TroubleToggle<CR>";
       "<leader>gd"       = "<cmd>Trouble lsp_definitions<CR>";
       "<leader>gr"       = "<cmd>Trouble lsp_references<CR>";
-      "<leader>gR" = {
-        action = ''
-          function()
-            return ":IncRename " .. vim.fn.expand("<cword>")
-          end
-        '';
-        lua = true;
-        expr = true;
-      };
+
       
       # Buffers
       "<M-[>"            = "<cmd>bprevious<CR>";
@@ -164,6 +156,16 @@
       "<leader>x"        = "<cmd>only<CR>"; # close all but current window (in a single tab, aka close all other splits)
       "<C-M-k>"          = "<cmd>bufdo bwipeout<CR>"; # close all buffers opened
       "<leader>z"        = "<cmd>bdelete<CR>"; # close focused window/buffer
+
+      "<leader>gR" = {
+        action = ''
+          function()
+            return ":IncRename " .. vim.fn.expand("<cword>")
+          end
+        '';
+        lua = true;
+        expr = true;
+      };
     };
 
     ## Visual mode ##
@@ -180,12 +182,18 @@
          command = "set guicursor=a:ver25-Cursor"
       })
 
+      -- [nvim-cmp extra setup] --
       local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
+
+      -- [luasnip extra setup] --
       local luasnip = require("luasnip")
+
+      -- [efm extra setup] --
+      local efm_fs = require('efmls-configs.fs')
 
       -- [Web Dev Icons setup] --
       require'nvim-web-devicons'.setup({})
@@ -304,54 +312,59 @@
         };
       };
 
+      efmls-configs = {
+        enable = true;
+
+        setup = {
+          all.linter = "vale";
+          sh.formatter = "shfmt";
+          bash.formatter = "shfmt";
+          c.linter = "cppcheck";
+          markdown.formatter = "cbfmt";
+          python.formatter = "black";
+
+          nix.linter = "statix";
+          lua.formatter = "stylua";
+          json.formatter = "prettier";
+          css.formatter = "prettier";
+
+          # html = {
+          #   formatter = ["prettier" (helpers.mkRaw "djlint_fmt")];
+          # };
+          # htmldjango = {
+          #   formatter = [(helpers.mkRaw "djlint_fmt")];
+          #   linter = "djlint";
+          # };
+        };
+      };
+
       clangd-extensions = {
         enable = true;
-        server = {
-          extraOptions = {
-            cmd = [
-              "clangd"
-              "-j=4"
-              "--background-index"
-              "--clang-tidy"
-              "--fallback-style=llvm"
-              "--all-scopes-completion"
-              "--completion-style=detailed"
-              "--header-insertion=iwyu"
-              "--header-insertion-decorators"
-              "--pch-storage=memory"
-            ];
-
+        ast = {
+          roleIcons = {
+            type = "";
+            declaration = "";
+            expression = "";
+            specifier = "";
+            statement = "";
+            templateArgument = "";
+          };
+          kindIcons = {
+            compound = "";
+            recovery = "";
+            translationUnit = "";
+            packExpansion = "";
+            templateTypeParm = "";
+            templateTemplateParm = "";
+            templateParamObject = "";
           };
         };
 
-        extensions = {
-          autoSetHints = true;
-          inlayHints = {
-            highlight = "Comment";
-            priority = 100;
-            parameterHintsPrefix = "<- ";
-            otherHintsPrefix = "=> ";
-          };
-
-          ast = {
-            roleIcons = {
-              type = "";
-              declaration = "";
-              expression = "";
-              specifier = "";
-              statement = "";
-              templateArgument = "";
-            };
-            kindIcons = {
-              compound = "";
-              recovery = "";
-              translationUnit = "";
-              packExpansion = "";
-              templateTypeParm = "";
-              templateTemplateParm = "";
-              templateParamObject = "";
-            };
-          };
+        inlayHints = {
+          highlight = "Comment";
+          priority = 100;
+          parameterHintsPrefix = "<- ";
+          otherHintsPrefix = "=> ";
         };
       };
 
@@ -425,18 +438,28 @@
 
       trouble.enable = true;
 
+      # TODO: Complete fidget customization
       fidget.enable = true;
 
       toggleterm = {
-		  enable = true;
-		  direction = "horizontal";
-		  floatOpts = {
-			border = "curved"; # other options -> single, double, shadow
-			winblend = 3;
-		  };
-	  };
+        enable = true;
+        direction = "horizontal";
+        floatOpts = {
+          border = "curved"; # other options -> single, double, shadow
+          winblend = 3;
+        };
+      };
 
-      nvim-cursorline.enable = true;
+      cursorline = {
+        enable = true;
+        cursorword = {
+          enable = true;
+          minLength = 3;
+          hl = {
+            underline = true;
+          };
+        };
+      };
       
       # Vim matchup support for treesitter
       vim-matchup = {
@@ -590,8 +613,6 @@
           { name = "buffer"; }
         ];
       };
-
-      mason.enable = true;
 
       ### Git ###
       gitsigns.enable = true;
