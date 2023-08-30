@@ -214,9 +214,11 @@
         enable = true;
 
         messages = {
-          view = "mini";
-          viewError = "mini";
-          viewWarn = "mini";
+          view = "notify";
+          viewError = "notify";
+          viewWarn = "notify";
+		  viewHistory = "messages";
+		  viewSearch = "virtualtext";
         };
 
         lsp.override = {
@@ -225,13 +227,21 @@
           "cmp.entry.get_documentation" = true;
         };
         presets = {
-          bottom_search = true;
+          # bottom_search = true;
           command_palette = true;
           long_message_to_split = true;
           inc_rename = true;
           lsp_doc_border = false;
         };
+
+		notify = {
+			enabled = true;
+			view = "notify";
+		};
       };
+	  
+	  # Needed for noice
+	  notify.enable = true;
 
       # Fuzzy finder w/ custom config
       telescope = {
@@ -303,6 +313,7 @@
           clangd.enable = true;
           bashls.enable = true;
           dartls.enable = true;
+		  pyright.enable = true;
           nil_ls = {
             enable = true;
             settings = {
@@ -316,7 +327,7 @@
         enable = true;
 
         setup = {
-          all.linter = "vale";
+          # all.linter = "vale";
           sh.formatter = "shfmt";
           bash.formatter = "shfmt";
           c.linter = "cppcheck";
@@ -327,6 +338,9 @@
           lua.formatter = "stylua";
           json.formatter = "prettier";
           css.formatter = "prettier";
+		  gitcommit = {
+			  linter = "gitlint";
+		  };
 
           # html = {
           #   formatter = ["prettier" (helpers.mkRaw "djlint_fmt")];
