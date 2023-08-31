@@ -5,7 +5,6 @@
   ...
 }: {
   config = {
-
     # Global values
     globals = {
       mapleader = " ";
@@ -35,7 +34,7 @@
       cmdheight = 1;
 
       # A comma-separated list of options for Insert mode completion |ins-completion|.  The supported values are:
-      # 
+      #
       # menu	-> Use a popup menu to show the possible completions.  The
       #         menu is only shown when there is more than one match and
       #         sufficient colors are available.  |ins-completion-menu|
@@ -69,13 +68,13 @@
       clipboard = "unnamedplus";
 
       # Prevent swapfile, backupfile from being created
-      swapfile    = false;
-      backup      = false;
+      swapfile = false;
+      backup = false;
       writebackup = false;
 
       # Open new splits respectively to the right & to the bottom
-      splitright  = true;
-      splitbelow  = true;
+      splitright = true;
+      splitbelow = true;
 
       # Statusline & winbar customization
       # Global statusline at the bottom instead of one for each window
@@ -93,69 +92,68 @@
     ## Normal mode ##
     maps.normal = helpers.mkModeMaps {silent = true;} {
       # File Tree
-      "<leader>d"        = "<cmd>NvimTreeToggle<CR>";
-      "<leader>tr"       = ":NvimTreeRefresh<CR>";
-      "<leader>tf"       = ":NvimTreeFocus<CR>";
+      "<leader>d" = "<cmd>NvimTreeToggle<CR>";
+      "<leader>tr" = ":NvimTreeRefresh<CR>";
+      "<leader>tf" = ":NvimTreeFocus<CR>";
 
       # Telescope
       "<leader><leader>" = "<cmd>Telescope buffers<CR>";
-      "<leader>."        = "<cmd> Telescope find_files<CR>";
-      "<leader>fg"       = "<cmd> Telescope live_grep<CR>";
-      "<leader>fh"       = "<cmd> Telescope help_tags<CR>";
-      "<leader>ft"       = "<cmd> Telescope<CR>";
-      "<leader>fs"       = "<cmd> Telescope treesitter<CR>";
-      "<C-s>"            = "<cmd>Telescope current_buffer_fuzzy_find<CR>";
+      "<leader>." = "<cmd> Telescope find_files<CR>";
+      "<leader>fg" = "<cmd> Telescope live_grep<CR>";
+      "<leader>fh" = "<cmd> Telescope help_tags<CR>";
+      "<leader>ft" = "<cmd> Telescope<CR>";
+      "<leader>fs" = "<cmd> Telescope treesitter<CR>";
+      "<C-s>" = "<cmd>Telescope current_buffer_fuzzy_find<CR>";
 
       # Telescope w/ git
-      "<leader>fvcw"     = "<cmd> Telescope git_commits<CR>";
-      "<leader>fvcb"     = "<cmd> Telescope git_bcommits<CR>";
-      "<leader>fvb"      = "<cmd> Telescope git_branches<CR>";
-      "<leader>fvs"      = "<cmd> Telescope git_status<CR>";
-      "<leader>fvx"      = "<cmd> Telescope git_stash<CR>";
+      "<leader>fvcw" = "<cmd> Telescope git_commits<CR>";
+      "<leader>fvcb" = "<cmd> Telescope git_bcommits<CR>";
+      "<leader>fvb" = "<cmd> Telescope git_branches<CR>";
+      "<leader>fvs" = "<cmd> Telescope git_status<CR>";
+      "<leader>fvx" = "<cmd> Telescope git_stash<CR>";
 
       # Git
-      "<leader>gg"       = ":Neogit cwd=~/config/<CR>";
-      "<leader>gG"       = ":Neogit cwd=~/nix-config/<CR>";
-      "<leader>g."       = ":Neogit cwd=./<CR>";
+      "<leader>gg" = ":Neogit cwd=~/config/<CR>";
+      "<leader>gG" = ":Neogit cwd=~/nix-config/<CR>";
+      "<leader>g." = ":Neogit cwd=./<CR>";
 
       # LSP
-      "<leader>flsb"     = "<cmd> Telescope lsp_document_symbols<CR>";
-      "<leader>flsw"     = "<cmd> Telescope lsp_workspace_symbols<CR>";
+      "<leader>flsb" = "<cmd> Telescope lsp_document_symbols<CR>";
+      "<leader>flsw" = "<cmd> Telescope lsp_workspace_symbols<CR>";
 
-      "<leader>flr"      = "<cmd> Telescope lsp_references<CR>";
-      "<leader>fli"      = "<cmd> Telescope lsp_implementations<CR>";
-      "<leader>flD"      = "<cmd> Telescope lsp_definitions<CR>";
-      "<leader>flt"      = "<cmd> Telescope lsp_type_definitions<CR>";
-      "<leader>fld"      = "<cmd> Telescope diagnostics<CR>";
+      "<leader>flr" = "<cmd> Telescope lsp_references<CR>";
+      "<leader>fli" = "<cmd> Telescope lsp_implementations<CR>";
+      "<leader>flD" = "<cmd> Telescope lsp_definitions<CR>";
+      "<leader>flt" = "<cmd> Telescope lsp_type_definitions<CR>";
+      "<leader>fld" = "<cmd> Telescope diagnostics<CR>";
 
-      "gr"               = "<cmd>Telescope lsp_references<CR>";
-      "gI"               = "<cmd>Telescope lsp_implementations<CR>";
-      "gW"               = "<cmd>Telescope lsp_workspace_symbols<CR>";
-      "gF"               = "<cmd>Telescope lsp_document_symbols<CR>";
-      "ge"               = "<cmd>Telescope diagnostics bufnr=0<CR>";
-      "gE"               = "<cmd>Telescope diagnostics<CR>";
+      "gr" = "<cmd>Telescope lsp_references<CR>";
+      "gI" = "<cmd>Telescope lsp_implementations<CR>";
+      "gW" = "<cmd>Telescope lsp_workspace_symbols<CR>";
+      "gF" = "<cmd>Telescope lsp_document_symbols<CR>";
+      "ge" = "<cmd>Telescope diagnostics bufnr=0<CR>";
+      "gE" = "<cmd>Telescope diagnostics<CR>";
 
       # Terminal
-      "<leader>s"        = ":ToggleTerm<CR>";
+      "<leader>s" = ":ToggleTerm<CR>";
 
-      "mk"               = "<cmd>Telescope keymaps<CR>";
+      "mk" = "<cmd>Telescope keymaps<CR>";
 
       # Lsp
-      "<C-c> ! l"        = "<cmd>TroubleToggle<CR>";
-      "<leader>gd"       = "<cmd>Trouble lsp_definitions<CR>";
-      "<leader>gr"       = "<cmd>Trouble lsp_references<CR>";
+      "<C-c> ! l" = "<cmd>TroubleToggle<CR>";
+      "<leader>gd" = "<cmd>Trouble lsp_definitions<CR>";
+      "<leader>gr" = "<cmd>Trouble lsp_references<CR>";
 
-      
       # Buffers
-      "<M-[>"            = "<cmd>bprevious<CR>";
-      "<M-]>"            = "<cmd>bnext<CR>";
+      "<M-[>" = "<cmd>bprevious<CR>";
+      "<M-]>" = "<cmd>bnext<CR>";
 
       # Splitting & Window managment
-      "<leader>v"        = "<cmd>vsplit<CR>";
-      "<leader>h"        = "<cmd>split<CR>";
-      "<leader>x"        = "<cmd>only<CR>"; # close all but current window (in a single tab, aka close all other splits)
-      "<C-M-k>"          = "<cmd>bufdo bwipeout<CR>"; # close all buffers opened
-      "<leader>z"        = "<cmd>bdelete<CR>"; # close focused window/buffer
+      "<leader>v" = "<cmd>vsplit<CR>";
+      "<leader>h" = "<cmd>split<CR>";
+      "<leader>x" = "<cmd>only<CR>"; # close all but current window (in a single tab, aka close all other splits)
+      "<C-M-k>" = "<cmd>bufdo bwipeout<CR>"; # close all buffers opened
+      "<leader>z" = "<cmd>bdelete<CR>"; # close focused window/buffer
 
       "<leader>gR" = {
         action = ''
@@ -169,34 +167,38 @@
     };
 
     ## Visual mode ##
-    maps.visual = helpers.mkModeMaps {silent = true;} { };
+    maps.visual = helpers.mkModeMaps {silent = true;} {};
 
     # Neovim Editor Config support
     editorconfig.enable = true;
 
     extraConfigLuaPre = ''
-      -- [options setup] --
-      local au = vim.api.nvim_create_augroup('restore_on_exit.augroup', { clear = true })
-      vim.api.nvim_create_autocmd({ 'VimLeave'}, {
-         group = au,
-         command = "set guicursor=a:ver25-Cursor"
-      })
+         -- [options setup] --
+         local au = vim.api.nvim_create_augroup('restore_on_exit.augroup', { clear = true })
+         vim.api.nvim_create_autocmd({ 'VimLeave'}, {
+            group = au,
+            command = "set guicursor=a:ver25-Cursor"
+         })
 
-      -- [nvim-cmp extra setup] --
-      local has_words_before = function()
-        unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-      end
+         -- [nvim-cmp extra setup] --
+         local has_words_before = function()
+           unpack = unpack or table.unpack
+           local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+           return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+         end
 
-      -- [luasnip extra setup] --
-      local luasnip = require("luasnip")
+         -- [luasnip extra setup] --
+         local luasnip = require("luasnip")
 
-      -- [efm extra setup] --
-      local efm_fs = require('efmls-configs.fs')
+         -- [efm extra setup] --
+         local efm_fs = require('efmls-configs.fs')
 
-      -- [Web Dev Icons setup] --
-      require'nvim-web-devicons'.setup({})
+         -- [Web Dev Icons setup] --
+         require'nvim-web-devicons'.setup({})
+
+         -- [Lsp logging setup] --
+      -- Disable logging
+         vim.lsp.set_log_level("off") -- change to debug only for testing
     '';
 
     # Plugins setup
@@ -217,8 +219,8 @@
           view = "notify";
           viewError = "notify";
           viewWarn = "notify";
-		  viewHistory = "messages";
-		  viewSearch = "virtualtext";
+          viewHistory = "messages";
+          viewSearch = "virtualtext";
         };
 
         lsp.override = {
@@ -234,14 +236,14 @@
           lsp_doc_border = false;
         };
 
-		notify = {
-			enabled = true;
-			view = "notify";
-		};
+        notify = {
+          enabled = true;
+          view = "notify";
+        };
       };
-	  
-	  # Needed for noice
-	  notify.enable = true;
+
+      # Needed for noice
+      notify.enable = true;
 
       # Fuzzy finder w/ custom config
       telescope = {
@@ -263,15 +265,15 @@
 
           mappings = {
             i = {
-              "<Esc>"    = "close";
-              "<C-j>"    = "move_selection_next";
-              "<C-k>"    = "move_selection_previous";
-              "<C-Up>"   = "preview_scrolling_up";
+              "<Esc>" = "close";
+              "<C-j>" = "move_selection_next";
+              "<C-k>" = "move_selection_previous";
+              "<C-Up>" = "preview_scrolling_up";
               "<C-Down>" = "preview_scrolling_down";
 
-              "<C-v>"    = "select_vertical";
-              "<C-x>"    = "select_horizontal";
-              "<C-h>"    = "which_key";
+              "<C-v>" = "select_vertical";
+              "<C-x>" = "select_horizontal";
+              "<C-h>" = "which_key";
             };
           };
           prompt_prefix = "🔍 "; # -- 
@@ -289,7 +291,6 @@
             find_command = "${pkgs.fd}/bin/fd";
           };
         };
-        
       };
 
       which-key.enable = true;
@@ -313,7 +314,16 @@
           clangd.enable = true;
           bashls.enable = true;
           dartls.enable = true;
-		  pyright.enable = true;
+          pylsp = {
+            enable = true;
+            settings = {
+              configurationSources = "flake8";
+              plugins = {
+                flake8.enabled = true;
+                pylint.enabled = true;
+              };
+            };
+          };
           nil_ls = {
             enable = true;
             settings = {
@@ -338,16 +348,8 @@
           lua.formatter = "stylua";
           json.formatter = "prettier";
           css.formatter = "prettier";
-		  gitcommit = {
-			  linter = "gitlint";
-		  };
-
-          # html = {
-          #   formatter = ["prettier" (helpers.mkRaw "djlint_fmt")];
-          # };
-          # htmldjango = {
-          #   formatter = [(helpers.mkRaw "djlint_fmt")];
-          #   linter = "djlint";
+          # gitcommit = {
+          #   linter = "gitlint";
           # };
         };
       };
@@ -394,7 +396,6 @@
 
       inc-rename.enable = true;
 
-
       # Treesitter
       treesitter = {
         enable = true;
@@ -403,35 +404,54 @@
         incrementalSelection = {
           enable = true;
           keymaps = {
-            initSelection    = "gnn";
-            nodeIncremental  = "grn";
+            initSelection = "gnn";
+            nodeIncremental = "grn";
             scopeIncremental = "grc";
-            nodeDecremental  = "grm";
+            nodeDecremental = "grm";
           };
         };
 
         grammarPackages = with config.plugins.treesitter.package.passthru.builtGrammars; [
-          arduino c cpp tlaplus # Low level programming
-          rust lalrpop # Rust
-          bash regex # Scripting
+          arduino
+          c
+          cpp
+          tlaplus # Low level programming
+          rust
+          lalrpop # Rust
+          bash
+          regex # Scripting
           dart
           devicetree
           dockerfile
-          gitattributes gitcommit gitignore git_rebase diff # Git related
+          gitattributes
+          gitcommit
+          gitignore
+          git_rebase
+          diff # Git related
           # File type specific
-          ini json toml yaml
+          ini
+          json
+          toml
+          yaml
 
           latex
           lua
-          markdown markdown_inline rst # Markup Langs
-          make meson ninja # Building SW
+          markdown
+          markdown_inline
+          rst # Markup Langs
+          make
+          meson
+          ninja # Building SW
           nix
           python
           slint
           sql
-          
-          vim vimdoc
-          html javascript css
+
+          vim
+          vimdoc
+          html
+          javascript
+          css
 
           ### Disabled
           # cuda
@@ -474,7 +494,7 @@
           };
         };
       };
-      
+
       # Vim matchup support for treesitter
       vim-matchup = {
         enable = true;
@@ -492,11 +512,11 @@
 
       # Comments on steroid
       comment-nvim = {
-        enable  = true;
+        enable = true;
         # Add a space b/w comment and the line
         padding = true;
         # Whether the cursor should stay at its position
-        sticky  = true;
+        sticky = true;
       };
 
       # File Tree
@@ -520,38 +540,36 @@
 
         onAttach = {
           __raw = ''
-          function(bufnr)
-            local api = require("nvim-tree.api")
+            function(bufnr)
+              local api = require("nvim-tree.api")
 
-            local function opts(desc)
-              return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+              local function opts(desc)
+                return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+              end
+
+              -- Mappings migrated from view.mappings.list
+              vim.keymap.set('n', 'h', api.tree.change_root_to_parent, opts('Up'))
+              vim.keymap.set('n', 'h', api.tree.change_root_to_parent, opts('Up'))
+              vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
+              vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
+              vim.keymap.set('n', 'g?', api.tree.toggle_help, opts('Help'))
+              vim.keymap.set('n', '<S-Tab>', api.tree.collapse_all, opts('Collapse'))
+              vim.keymap.set('n', '<C-k>', api.node.show_info_popup, opts('Info'))
+              vim.keymap.set('n', 'y', api.fs.copy.filename, opts('Copy Name'))
+              vim.keymap.set('n', 'Y', api.fs.copy.relative_path, opts('Copy Relative Path'))
+              vim.keymap.set('n', 'gy', api.fs.copy.absolute_path, opts('Copy Absolute Path'))
+              vim.keymap.set('n', 's', api.node.run.system, opts('Run System'))
+              vim.keymap.set('n', 'R', api.tree.reload, opts('Refresh'))
+              vim.keymap.set('n', 'a', api.fs.create, opts('Create'))
+              vim.keymap.set('n', 'd', api.fs.remove, opts('Delete'))
+              vim.keymap.set('n', 'D', api.fs.trash, opts('Trash'))
+              vim.keymap.set('n', 'r', api.fs.rename, opts('Rename'))
+              vim.keymap.set('n', '<C-r>', api.fs.rename_sub, opts('Rename: Omit Filename'))
+              vim.keymap.set('n', 'c', api.fs.copy.node, opts('Copy'))
+              vim.keymap.set('n', 'p', api.fs.paste, opts('Paste'))
+              vim.keymap.set('n', '<Tab>', api.node.open.preview, opts('Open Preview'))
             end
-
-            -- Mappings migrated from view.mappings.list
-            vim.keymap.set('n', 'h', api.tree.change_root_to_parent, opts('Up'))
-            vim.keymap.set('n', 'h', api.tree.change_root_to_parent, opts('Up'))
-            vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
-            vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
-            vim.keymap.set('n', 'g?', api.tree.toggle_help, opts('Help'))
-            vim.keymap.set('n', '<S-Tab>', api.tree.collapse_all, opts('Collapse'))
-            vim.keymap.set('n', '<C-k>', api.node.show_info_popup, opts('Info'))
-            vim.keymap.set('n', 'y', api.fs.copy.filename, opts('Copy Name'))
-            vim.keymap.set('n', 'Y', api.fs.copy.relative_path, opts('Copy Relative Path'))
-            vim.keymap.set('n', 'gy', api.fs.copy.absolute_path, opts('Copy Absolute Path'))
-            vim.keymap.set('n', 's', api.node.run.system, opts('Run System'))
-            vim.keymap.set('n', 'R', api.tree.reload, opts('Refresh'))
-            vim.keymap.set('n', 'a', api.fs.create, opts('Create'))
-            vim.keymap.set('n', 'd', api.fs.remove, opts('Delete'))
-            vim.keymap.set('n', 'D', api.fs.trash, opts('Trash'))
-            vim.keymap.set('n', 'r', api.fs.rename, opts('Rename'))
-            vim.keymap.set('n', '<C-r>', api.fs.rename_sub, opts('Rename: Omit Filename'))
-            vim.keymap.set('n', 'c', api.fs.copy.node, opts('Copy'))
-            vim.keymap.set('n', 'p', api.fs.paste, opts('Paste'))
-            vim.keymap.set('n', '<Tab>', api.node.open.preview, opts('Open Preview'))
-          end
           '';
-          
-
         };
 
         view = {
@@ -562,7 +580,8 @@
         filters = {
           dotfiles = false;
           custom = [
-            "node_modules" ".cache"
+            "node_modules"
+            ".cache"
           ];
         };
 
@@ -571,7 +590,6 @@
         };
       };
 
-      
       indent-blankline = {
         enable = true;
         useTreesitter = true;
@@ -591,40 +609,40 @@
           "<C-f>" = "cmp.mapping.scroll_docs(4)";
           "<C-Space>" = "cmp.mapping.complete()";
           "<Tab>" = ''
-          cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-            -- they way you will only jump inside the snippet region
-            elseif luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
-            elseif has_words_before() then
-              cmp.complete()
-            else
-              fallback()
-            end
-          end, { "i", "s" })
-        '';
+            cmp.mapping(function(fallback)
+              if cmp.visible() then
+                cmp.select_next_item()
+              -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+              -- they way you will only jump inside the snippet region
+              elseif luasnip.expand_or_locally_jumpable() then
+                luasnip.expand_or_jump()
+              elseif has_words_before() then
+                cmp.complete()
+              else
+                fallback()
+              end
+            end, { "i", "s" })
+          '';
           "<S-Tab>" = ''
-          cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { "i", "s" })
-        '';
+            cmp.mapping(function(fallback)
+              if cmp.visible() then
+                cmp.select_prev_item()
+              elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+              else
+                fallback()
+              end
+            end, { "i", "s" })
+          '';
           "<Down>" = "cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
           "<Up>" = "cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
         };
 
         sources = [
-          { name = "luasnip"; }
-          { name = "nvim_lsp"; }
-          { name = "path"; }
-          { name = "buffer"; }
+          {name = "luasnip";}
+          {name = "nvim_lsp";}
+          {name = "path";}
+          {name = "buffer";}
         ];
       };
 
@@ -639,9 +657,7 @@
 
       ### Snippets ###
       luasnip.enable = true;
-      
     };
-
 
     filetype = {
       filename = {
@@ -651,7 +667,6 @@
         lalrpop = "lalrpop";
       };
     };
-
 
     extraConfigLuaPost = ''
       require("luasnip.loaders.from_snipmate").lazy_load()
