@@ -22,8 +22,17 @@
       relativenumber = true;
 
       # Number of spaces that a <Tab> in the file counts for.
-      tabstop = 4;
-      shiftwidth = 4;
+      tabstop = 2;
+      shiftwidth = 2;
+      softtabstop = 2;
+      # Tab as spaces
+      expandtab = false;
+      # Adaptive (Tab or spaces)
+      smarttab = false;
+      # Even number of shift
+      shiftround = true;
+      autoindent = true;
+      # smartindent = false;
 
       # Minimal number of screen lines to keep above and below the cursor
       scrolloff = 7;
