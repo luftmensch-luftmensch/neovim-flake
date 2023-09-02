@@ -249,10 +249,10 @@
     };
 
     # Tablines
-    "plugin:bufferline" = {
-      url = "github:akinsho/nvim-bufferline.lua";
-      flake = false;
-    };
+    # "plugin:bufferline" = {
+    #   url = "github:akinsho/nvim-bufferline.lua";
+    #   flake = false;
+    # };
 
     # Buffer tools
     "plugin:bufdelete-nvim" = {

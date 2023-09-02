@@ -257,22 +257,6 @@
         "type": "github"
       }
     },
-    "plugin:bufferline": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1691746754,
-        "narHash": "sha256-jsjT56YWsFb9Qr/mjmwpOm9thYkScnSCOZ+MPzaz1DM=",
-        "owner": "akinsho",
-        "repo": "nvim-bufferline.lua",
-        "rev": "417b303328118b6d836ae330142e88771c48a8a3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "akinsho",
-        "repo": "nvim-bufferline.lua",
-        "type": "github"
-      }
-    },
     "plugin:clangd_extensions-nvim": {
       "flake": false,
       "locked": {
@@ -910,7 +894,6 @@
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "plugin:bufdelete-nvim": "plugin:bufdelete-nvim",
-        "plugin:bufferline": "plugin:bufferline",
         "plugin:clangd_extensions-nvim": "plugin:clangd_extensions-nvim",
         "plugin:cmp-buffer": "plugin:cmp-buffer",
         "plugin:cmp-nvim-lsp": "plugin:cmp-nvim-lsp",

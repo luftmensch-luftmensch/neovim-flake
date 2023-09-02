@@ -30,7 +30,7 @@ with lib; {
               true_colors     = false,      -- true lsp colors.
               font_active     = "none",     -- "bold", "italic", "bold,italic", etc
 
-              mod_symbol      = "  ",
+              mod_symbol      = "  ",
               lsp_client_symbol = " ",
               branch_symbol   = " ",
               cool_symbol     = " ",       -- Change this to override default OS icon.
