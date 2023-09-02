@@ -88,7 +88,7 @@
       # Statusline & winbar customization
       # Global statusline at the bottom instead of one for each window
       laststatus = 3;
-      winbar = "%=%m\ %f";
+      winbar = "%=%m\ %f"; # " %m %=%l:%v ";
       fsync = true;
     };
 
@@ -206,7 +206,7 @@
          require'nvim-web-devicons'.setup({})
 
          -- [Lsp logging setup] --
-      -- Disable logging
+		 -- Disable logging
          vim.lsp.set_log_level("off") -- change to debug only for testing
     '';
 
@@ -252,7 +252,10 @@
       };
 
       # Needed for noice
-      notify.enable = true;
+      notify = {
+		enable = true;
+		timeout = 500;
+	  };
 
       # Fuzzy finder w/ custom config
       telescope = {
