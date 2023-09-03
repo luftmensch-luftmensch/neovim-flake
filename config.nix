@@ -254,7 +254,8 @@
       # Needed for noice
       notify = {
 		enable = true;
-		timeout = 500;
+		timeout = 1000;
+		stages = "static"; # slide, fade, fade_in_slide_out (default)
 	  };
 
       # Fuzzy finder w/ custom config
