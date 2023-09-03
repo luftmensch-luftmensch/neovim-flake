@@ -1,7 +1,6 @@
 {...}: {
   imports = [
-    ./efmls-configs.nix
-    ./lsp-signature.nix
+	./neodev.nix
     ./staline.nix
     ./theme.nix
   ];

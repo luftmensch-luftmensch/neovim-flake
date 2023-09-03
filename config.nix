@@ -149,7 +149,7 @@
       "mk" = "<cmd>Telescope keymaps<CR>";
 
       # Lsp
-      "<C-c> ! l" = "<cmd>TroubleToggle<CR>";
+      "<C-c>!l" = "<cmd>TroubleToggle<CR>";
       "<leader>gd" = "<cmd>Trouble lsp_definitions<CR>";
       "<leader>gr" = "<cmd>Trouble lsp_references<CR>";
 
@@ -199,8 +199,7 @@
          -- [luasnip extra setup] --
          local luasnip = require("luasnip")
 
-         -- [efm extra setup] --
-         local efm_fs = require('efmls-configs.fs')
+         require'neodev'.setup({})
 
          -- [Web Dev Icons setup] --
          require'nvim-web-devicons'.setup({})
@@ -309,6 +308,7 @@
       which-key.enable = true;
 
       ### Code support ###
+	  neodev.enable = true;
       lsp = {
         enable = true;
         keymaps = {
@@ -326,7 +326,7 @@
         servers = {
           clangd.enable = true;
           bashls.enable = true;
-          dartls.enable = true;
+          # dartls.enable = true;
           pylsp = {
             enable = true;
             settings = {
@@ -402,10 +402,11 @@
         cmp.enable = true;
       };
 
-      nvim-lightbulb = {
-        enable = true;
-        autocmd.enabled = true;
-      };
+      # VSCode bulb for neovim's built-in LSP.
+      # nvim-lightbulb = {
+      #   enable = true;
+      #   autocmd.enabled = true;
+      # };
 
       inc-rename.enable = true;
 
@@ -483,9 +484,21 @@
 
       treesitter-context.enable = true;
 
-      trouble.enable = true;
+	  # Diagnostics, references, telescope results, quickfix and location list
+      trouble = {
+		enable = true;
+		icons = true;
+		position = "bottom";
+		# icons / text used for a diagnostic
+		signs = {
+		  error = "";
+		  warning = "";
+		  hint = "";
+		  information = "";
+		  other = "";
+		};
+	  };
 
-      # TODO: Complete fidget customization
       fidget.enable = true;
 
       toggleterm = {
@@ -662,6 +675,8 @@
       ### Git ###
       gitsigns.enable = true;
       gitmessenger.enable = true;
+
+	  # Magit port for neovim
       neogit = {
         enable = true;
         disableCommitConfirmation = true;

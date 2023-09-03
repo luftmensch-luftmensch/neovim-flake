@@ -45,18 +45,6 @@
       flake = false;
     };
 
-    # VSCode bulb for neovim's built-in LSP.
-    "plugin:nvim-lightbulb" = {
-      url = "github:kosayoda/nvim-lightbulb";
-      flake = false;
-    };
-
-    # Diagnostics, references, telescope results, quickfix and location list
-    "plugin:trouble-nvim" = {
-      url = "github:folke/trouble.nvim";
-      flake = false;
-    };
-
     ## Language support for C/C++ using Clang ##
     "plugin:clangd_extensions-nvim" = {
       url = "github:p00f/clangd_extensions.nvim";
@@ -95,8 +83,9 @@
       flake = false;
     };
 
-    "external-plugin:efmls-configs-nvim" = {
-      url = "github:creativenull/efmls-configs-nvim";
+    # Signature helper
+    "plugin:neodev" = {
+      url = "github:folke/neodev.nvim";
       flake = false;
     };
 
@@ -184,40 +173,13 @@
       flake = false;
     };
 
-    # Magit port for neovim
-    "plugin:neogit" = {
-      url = "github:TimUntersberger/neogit";
-      flake = false;
-    };
-
     ### ------------------------- UI & Theming ------------------------- ###
     "plugin:nightfox" = {
       url = "github:EdenEast/nightfox.nvim";
       flake = false;
     };
 
-    "plugin:tokyonight-nvim" = {
-      url = "github:folke/tokyonight.nvim";
-      flake = false;
-    };
-
-    # UI replacement for messages, cmdline and the popupmenu
-    "plugin:noice-nvim" = {
-      url = "github:folke/noice.nvim";
-      flake = false;
-    };
-
-    # Statusline
-    "plugin:lualine-nvim" = {
-      url = "github:nvim-lualine/lualine.nvim";
-      flake = false;
-    };
-
-    "external-plugin:windline-nvim" = {
-      url = "github:windwp/windline.nvim";
-      flake = false;
-    };
-
+    # Statusline status line
     "external-plugin:staline-nvim" = {
       url = "github:tamton-aquib/staline.nvim";
       flake = false;
@@ -248,21 +210,9 @@
       flake = false;
     };
 
-    # Tablines
-    # "plugin:bufferline" = {
-    #   url = "github:akinsho/nvim-bufferline.lua";
-    #   flake = false;
-    # };
-
     # Buffer tools
     "plugin:bufdelete-nvim" = {
       url = "github:famiu/bufdelete.nvim";
-      flake = false;
-    };
-
-    # Highlights cursor words and lines
-    "plugin:nvim-cursorline" = {
-      url = "github:yamatsum/nvim-cursorline";
       flake = false;
     };
 
@@ -316,7 +266,7 @@
                 pname: src:
                 prev.vimPlugins."${pname}".overrideAttrs (old: {
                   version = src.shortRev;
-                  src = src;
+				  inherit src;
                 })
               ) (inputsMatching "plugin"))
               // (
@@ -349,15 +299,18 @@
       devShells."${system}".default = pkgs.mkShell {
         packages = [nvim];
       };
-      packages."${system}" = {
-        inherit nvim;
-        default = nvim;
-      };
+	  packages."${system}" = {
+		inherit nvim;
+		inherit (pkgs.vimPlugins) nvim-treesitter;
 
-      # Treesitter auto update
-      upstream = module.package;
-      update-nvim-treesitter = pkgs.callPackage ./nvim-treesitter {
-        inherit (self.packages."${system}") nvim-treesitter upstream;
-      };
+		# Treesitter auto update
+		upstream = module.package;
+		update-nvim-treesitter = pkgs.callPackage ./nvim-treesitter {
+			inherit (self.packages."${system}") nvim-treesitter upstream;
+		};
+
+		default = nvim;
+	  };
+
     };
 }
