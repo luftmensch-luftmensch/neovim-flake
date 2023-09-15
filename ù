@@ -355,7 +355,6 @@
           bash.formatter = "shfmt";
           c.linter = "cppcheck";
 					go.formatter = "gofmt";
-					go.linter = "golint";
           markdown.formatter = "cbfmt";
           python.formatter = "black";
 
@@ -363,6 +362,9 @@
           lua.formatter = "stylua";
           json.formatter = "prettier";
           css.formatter = "prettier";
+          # gitcommit = {
+          #   linter = "gitlint";
+          # };
         };
       };
 
