@@ -182,31 +182,31 @@
     editorconfig.enable = true;
 
     extraConfigLuaPre = ''
-         -- [options setup] --
-         local au = vim.api.nvim_create_augroup('restore_on_exit.augroup', { clear = true })
-         vim.api.nvim_create_autocmd({ 'VimLeave'}, {
-            group = au,
-            command = "set guicursor=a:ver25-Cursor"
-         })
+            -- [options setup] --
+            local au = vim.api.nvim_create_augroup('restore_on_exit.augroup', { clear = true })
+            vim.api.nvim_create_autocmd({ 'VimLeave'}, {
+               group = au,
+               command = "set guicursor=a:ver25-Cursor"
+            })
 
-         -- [nvim-cmp extra setup] --
-         local has_words_before = function()
-           unpack = unpack or table.unpack
-           local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-           return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-         end
+            -- [nvim-cmp extra setup] --
+            local has_words_before = function()
+              unpack = unpack or table.unpack
+              local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+              return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+            end
 
-         -- [luasnip extra setup] --
-         local luasnip = require("luasnip")
+            -- [luasnip extra setup] --
+            local luasnip = require("luasnip")
 
-         require'neodev'.setup({})
+            require'neodev'.setup({})
 
-         -- [Web Dev Icons setup] --
-         require'nvim-web-devicons'.setup({})
+            -- [Web Dev Icons setup] --
+            require'nvim-web-devicons'.setup({})
 
-         -- [Lsp logging setup] --
-		 -- Disable logging
-         vim.lsp.set_log_level("off") -- change to debug only for testing
+            -- [Lsp logging setup] --
+      -- Disable logging
+            vim.lsp.set_log_level("off") -- change to debug only for testing
     '';
 
     # Plugins setup
@@ -252,10 +252,10 @@
 
       # Needed for noice
       notify = {
-		enable = true;
-		timeout = 1000;
-		stages = "static"; # slide, fade, fade_in_slide_out (default)
-	  };
+        enable = true;
+        timeout = 1000;
+        stages = "static"; # slide, fade, fade_in_slide_out (default)
+      };
 
       # Fuzzy finder w/ custom config
       telescope = {
@@ -308,7 +308,7 @@
       which-key.enable = true;
 
       ### Code support ###
-	  neodev.enable = true;
+      neodev.enable = true;
       lsp = {
         enable = true;
         keymaps = {
@@ -326,7 +326,7 @@
         servers = {
           clangd.enable = true;
           bashls.enable = true;
-					gopls.enable = true;
+          gopls.enable = true;
           pylsp = {
             enable = true;
             settings = {
@@ -354,8 +354,8 @@
           sh.formatter = "shfmt";
           bash.formatter = "shfmt";
           c.linter = "cppcheck";
-					go.formatter = "gofmt";
-					go.linter = "golint";
+          go.formatter = "gofmt";
+          go.linter = "golint";
           markdown.formatter = "cbfmt";
           python.formatter = "black";
 
@@ -483,20 +483,20 @@
 
       treesitter-context.enable = true;
 
-	  # Diagnostics, references, telescope results, quickfix and location list
+      # Diagnostics, references, telescope results, quickfix and location list
       trouble = {
-		enable = true;
-		icons = true;
-		position = "bottom";
-		# icons / text used for a diagnostic
-		signs = {
-		  error = "";
-		  warning = "";
-		  hint = "";
-		  information = "";
-		  other = "";
-		};
-	  };
+        enable = true;
+        icons = true;
+        position = "bottom";
+        # icons / text used for a diagnostic
+        signs = {
+          error = "";
+          warning = "";
+          hint = "";
+          information = "";
+          other = "";
+        };
+      };
 
       fidget.enable = true;
 
@@ -675,7 +675,7 @@
       gitsigns.enable = true;
       gitmessenger.enable = true;
 
-	  # Magit port for neovim
+      # Magit port for neovim
       neogit = {
         enable = true;
         disableCommitConfirmation = true;
