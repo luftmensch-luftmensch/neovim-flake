@@ -218,7 +218,7 @@
 
     ### ------------------------- File type related ------------------------- ###
     "plugin:markdown-preview-nvim" = {
-      url = "github:iamcco/markdown-preview.nvim";
+      url = "github:iamcco/markdown-preview.nvim?rev=02cc3874738bc0f86e4b91f09b8a0ac88aef8e96";
       flake = false;
     };
   };
@@ -264,18 +264,18 @@
               prev.vimPlugins
               // (pkgs.lib.mapAttrs (
                 pname: src:
-                prev.vimPlugins."${pname}".overrideAttrs (old: {
-                  version = src.shortRev;
-				  inherit src;
-                })
+                  prev.vimPlugins."${pname}".overrideAttrs (old: {
+                    version = src.shortRev;
+                    inherit src;
+                  })
               ) (inputsMatching "plugin"))
               // (
                 pkgs.lib.mapAttrs (
                   pname: src:
-                  prev.vimUtils.buildVimPluginFrom2Nix {
-                    inherit pname src;
-                    version = src.shortRev;
-                  }
+                    prev.vimUtils.buildVimPlugin {
+                      inherit pname src;
+                      version = src.shortRev;
+                    }
                 ) (inputsMatching "external-plugin")
               );
           })
@@ -295,22 +295,21 @@
       nvim = nixvim'.makeNixvimWithModule {inherit module pkgs;};
     in {
       formatter."${system}" = pkgs.alejandra;
-      
+
       devShells."${system}".default = pkgs.mkShell {
         packages = [nvim];
       };
-	  packages."${system}" = {
-		inherit nvim;
-		inherit (pkgs.vimPlugins) nvim-treesitter;
+      packages."${system}" = {
+        inherit nvim;
+        inherit (pkgs.vimPlugins) nvim-treesitter;
 
-		# Treesitter auto update
-		upstream = module.package;
-		update-nvim-treesitter = pkgs.callPackage ./nvim-treesitter {
-			inherit (self.packages."${system}") nvim-treesitter upstream;
-		};
+        # Treesitter auto update
+        upstream = module.package;
+        update-nvim-treesitter = pkgs.callPackage ./nvim-treesitter {
+          inherit (self.packages."${system}") nvim-treesitter upstream;
+        };
 
-		default = nvim;
-	  };
-
+        default = nvim;
+      };
     };
 }

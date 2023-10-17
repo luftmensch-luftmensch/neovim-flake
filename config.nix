@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   config,
   helpers,
@@ -97,116 +98,125 @@
     };
 
     ### MAPPINGS ###
+    keymaps = let
+      modeKeys = mode:
+        lib.attrsets.mapAttrsToList (key: action: {
+          inherit key action mode;
+        });
+      nm = modeKeys ["n"];
+      vs = modeKeys ["v"];
+    in
+      helpers.keymaps.mkKeymaps {options.silent = true;} (nm {
+        # File Tree
+        "<leader>d" = "<cmd>NvimTreeToggle<CR>";
+        "<leader>tr" = ":NvimTreeRefresh<CR>";
+        "<leader>tf" = ":NvimTreeFocus<CR>";
 
-    ## Normal mode ##
-    maps.normal = helpers.mkModeMaps {silent = true;} {
-      # File Tree
-      "<leader>d" = "<cmd>NvimTreeToggle<CR>";
-      "<leader>tr" = ":NvimTreeRefresh<CR>";
-      "<leader>tf" = ":NvimTreeFocus<CR>";
+        # Telescope
+        "<leader><leader>" = "<cmd>Telescope buffers<CR>";
+        "<leader>." = "<cmd> Telescope find_files<CR>";
+        "<leader>fg" = "<cmd> Telescope live_grep<CR>";
+        "<leader>fh" = "<cmd> Telescope help_tags<CR>";
+        "<leader>ft" = "<cmd> Telescope<CR>";
+        "<leader>fs" = "<cmd> Telescope treesitter<CR>";
+        "<C-s>" = "<cmd>Telescope current_buffer_fuzzy_find<CR>";
 
-      # Telescope
-      "<leader><leader>" = "<cmd>Telescope buffers<CR>";
-      "<leader>." = "<cmd> Telescope find_files<CR>";
-      "<leader>fg" = "<cmd> Telescope live_grep<CR>";
-      "<leader>fh" = "<cmd> Telescope help_tags<CR>";
-      "<leader>ft" = "<cmd> Telescope<CR>";
-      "<leader>fs" = "<cmd> Telescope treesitter<CR>";
-      "<C-s>" = "<cmd>Telescope current_buffer_fuzzy_find<CR>";
+        # Telescope w/ git
+        "<leader>fvcw" = "<cmd> Telescope git_commits<CR>";
+        "<leader>fvcb" = "<cmd> Telescope git_bcommits<CR>";
+        "<leader>fvb" = "<cmd> Telescope git_branches<CR>";
+        "<leader>fvs" = "<cmd> Telescope git_status<CR>";
+        "<leader>fvx" = "<cmd> Telescope git_stash<CR>";
 
-      # Telescope w/ git
-      "<leader>fvcw" = "<cmd> Telescope git_commits<CR>";
-      "<leader>fvcb" = "<cmd> Telescope git_bcommits<CR>";
-      "<leader>fvb" = "<cmd> Telescope git_branches<CR>";
-      "<leader>fvs" = "<cmd> Telescope git_status<CR>";
-      "<leader>fvx" = "<cmd> Telescope git_stash<CR>";
+        # Git
+        "<leader>gg" = ":Neogit cwd=~/config/<CR>";
+        "<leader>gG" = ":Neogit cwd=~/nix-config/<CR>";
+        "<leader>g." = ":Neogit cwd=./<CR>";
 
-      # Git
-      "<leader>gg" = ":Neogit cwd=~/config/<CR>";
-      "<leader>gG" = ":Neogit cwd=~/nix-config/<CR>";
-      "<leader>g." = ":Neogit cwd=./<CR>";
+        # LSP
+        "<leader>flsb" = "<cmd> Telescope lsp_document_symbols<CR>";
+        "<leader>flsw" = "<cmd> Telescope lsp_workspace_symbols<CR>";
 
-      # LSP
-      "<leader>flsb" = "<cmd> Telescope lsp_document_symbols<CR>";
-      "<leader>flsw" = "<cmd> Telescope lsp_workspace_symbols<CR>";
+        "<leader>flr" = "<cmd> Telescope lsp_references<CR>";
+        "<leader>fli" = "<cmd> Telescope lsp_implementations<CR>";
+        "<leader>flD" = "<cmd> Telescope lsp_definitions<CR>";
+        "<leader>flt" = "<cmd> Telescope lsp_type_definitions<CR>";
+        "<leader>fld" = "<cmd> Telescope diagnostics<CR>";
 
-      "<leader>flr" = "<cmd> Telescope lsp_references<CR>";
-      "<leader>fli" = "<cmd> Telescope lsp_implementations<CR>";
-      "<leader>flD" = "<cmd> Telescope lsp_definitions<CR>";
-      "<leader>flt" = "<cmd> Telescope lsp_type_definitions<CR>";
-      "<leader>fld" = "<cmd> Telescope diagnostics<CR>";
+        "gr" = "<cmd>Telescope lsp_references<CR>";
+        "gI" = "<cmd>Telescope lsp_implementations<CR>";
+        "gW" = "<cmd>Telescope lsp_workspace_symbols<CR>";
+        "gF" = "<cmd>Telescope lsp_document_symbols<CR>";
+        "ge" = "<cmd>Telescope diagnostics bufnr=0<CR>";
+        "gE" = "<cmd>Telescope diagnostics<CR>";
 
-      "gr" = "<cmd>Telescope lsp_references<CR>";
-      "gI" = "<cmd>Telescope lsp_implementations<CR>";
-      "gW" = "<cmd>Telescope lsp_workspace_symbols<CR>";
-      "gF" = "<cmd>Telescope lsp_document_symbols<CR>";
-      "ge" = "<cmd>Telescope diagnostics bufnr=0<CR>";
-      "gE" = "<cmd>Telescope diagnostics<CR>";
+        # Terminal
+        "<leader>s" = ":ToggleTerm<CR>";
 
-      # Terminal
-      "<leader>s" = ":ToggleTerm<CR>";
+        "mk" = "<cmd>Telescope keymaps<CR>";
 
-      "mk" = "<cmd>Telescope keymaps<CR>";
+        # Lsp
+        "<C-c>!l" = "<cmd>TroubleToggle<CR>";
+        "<leader>gd" = "<cmd>Trouble lsp_definitions<CR>";
+        "<leader>gr" = "<cmd>Trouble lsp_references<CR>";
 
-      # Lsp
-      "<C-c>!l" = "<cmd>TroubleToggle<CR>";
-      "<leader>gd" = "<cmd>Trouble lsp_definitions<CR>";
-      "<leader>gr" = "<cmd>Trouble lsp_references<CR>";
+        # Buffers
+        "<M-[>" = "<cmd>bprevious<CR>";
+        "<M-]>" = "<cmd>bnext<CR>";
 
-      # Buffers
-      "<M-[>" = "<cmd>bprevious<CR>";
-      "<M-]>" = "<cmd>bnext<CR>";
-
-      # Splitting & Window managment
-      "<leader>v" = "<cmd>vsplit<CR>";
-      "<leader>h" = "<cmd>split<CR>";
-      "<leader>x" = "<cmd>only<CR>"; # close all but current window (in a single tab, aka close all other splits)
-      "<C-M-k>" = "<cmd>bufdo bwipeout<CR>"; # close all buffers opened
-      "<leader>z" = "<cmd>bdelete<CR>"; # close focused window/buffer
-
-      "<leader>gR" = {
-        action = ''
-          function()
-            return ":IncRename " .. vim.fn.expand("<cword>")
-          end
-        '';
-        lua = true;
-        expr = true;
-      };
-    };
-
-    ## Visual mode ##
-    maps.visual = helpers.mkModeMaps {silent = true;} {};
+        # Splitting & Window managment
+        "<leader>v" = "<cmd>vsplit<CR>";
+        "<leader>h" = "<cmd>split<CR>";
+        "<leader>x" = "<cmd>only<CR>"; # close all but current window (in a single tab, aka close all other splits)
+        "<C-M-k>" = "<cmd>bufdo bwipeout<CR>"; # close all buffers opened
+        "<leader>z" = "<cmd>bdelete<CR>"; # close focused window/buffer
+      })
+      ++ (vs {
+        "<leader>zf" = "'<,'>ZkMatch<CR>";
+      })
+      ++ [
+        {
+          key = "<leader>rn";
+          mode = ["n"];
+          action = ''
+            function()
+            	return ":IncRename " .. vim.fn.expand("<cword>")
+            end
+          '';
+          lua = true;
+          options.expr = true;
+        }
+      ];
 
     # Neovim Editor Config support
     editorconfig.enable = true;
 
     extraConfigLuaPre = ''
-            -- [options setup] --
-            local au = vim.api.nvim_create_augroup('restore_on_exit.augroup', { clear = true })
-            vim.api.nvim_create_autocmd({ 'VimLeave'}, {
-               group = au,
-               command = "set guicursor=a:ver25-Cursor"
-            })
+		-- [options setup] --
+		local au = vim.api.nvim_create_augroup('restore_on_exit.augroup', { clear = true })
+		vim.api.nvim_create_autocmd({ 'VimLeave'}, {
+				group = au,
+				command = "set guicursor=a:ver25-Cursor"
+		})
 
-            -- [nvim-cmp extra setup] --
-            local has_words_before = function()
-              unpack = unpack or table.unpack
-              local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-              return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-            end
+		-- [nvim-cmp extra setup] --
+		local has_words_before = function()
+			unpack = unpack or table.unpack
+			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+			return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+		end
 
-            -- [luasnip extra setup] --
-            local luasnip = require("luasnip")
+		-- [luasnip extra setup] --
+		local luasnip = require("luasnip")
 
-            require'neodev'.setup({})
+		require'neodev'.setup({})
 
-            -- [Web Dev Icons setup] --
-            require'nvim-web-devicons'.setup({})
+		-- [Web Dev Icons setup] --
+		require'nvim-web-devicons'.setup({})
 
-            -- [Lsp logging setup] --
-      -- Disable logging
-            vim.lsp.set_log_level("off") -- change to debug only for testing
+		-- [Lsp logging setup] --
+		-- Disable logging
+		vim.lsp.set_log_level("off") -- change to debug only for testing
     '';
 
     # Plugins setup

@@ -4,7 +4,7 @@ import json
 import subprocess
 from concurrent.futures import ThreadPoolExecutor
 from os import environ
-from os.path import dirname, join
+from os.path import join
 import sys
 
 lockfile = json.load(open(join(environ["NVIM_TREESITTER"], "lockfile.json")))
