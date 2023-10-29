@@ -192,31 +192,31 @@
     editorconfig.enable = true;
 
     extraConfigLuaPre = ''
-		-- [options setup] --
-		local au = vim.api.nvim_create_augroup('restore_on_exit.augroup', { clear = true })
-		vim.api.nvim_create_autocmd({ 'VimLeave'}, {
-				group = au,
-				command = "set guicursor=a:ver25-Cursor"
-		})
+      -- [options setup] --
+      local au = vim.api.nvim_create_augroup('restore_on_exit.augroup', { clear = true })
+      vim.api.nvim_create_autocmd({ 'VimLeave'}, {
+      		group = au,
+      		command = "set guicursor=a:ver25-Cursor"
+      })
 
-		-- [nvim-cmp extra setup] --
-		local has_words_before = function()
-			unpack = unpack or table.unpack
-			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-			return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-		end
+      -- [nvim-cmp extra setup] --
+      local has_words_before = function()
+				unpack = unpack or table.unpack
+				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+				return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      end
 
-		-- [luasnip extra setup] --
-		local luasnip = require("luasnip")
+      -- [luasnip extra setup] --
+      local luasnip = require("luasnip")
 
-		require'neodev'.setup({})
+      require'neodev'.setup({})
 
-		-- [Web Dev Icons setup] --
-		require'nvim-web-devicons'.setup({})
+      -- [Web Dev Icons setup] --
+      require'nvim-web-devicons'.setup({})
 
-		-- [Lsp logging setup] --
-		-- Disable logging
-		vim.lsp.set_log_level("off") -- change to debug only for testing
+      -- [Lsp logging setup] --
+      -- Disable logging
+      vim.lsp.set_log_level("off") -- change to debug only for testing
     '';
 
     # Plugins setup
@@ -563,14 +563,48 @@
           openFile = {
             quitOnOpen = true;
           };
+          changeDir = {
+            enable = true;
+            global = true;
+          };
         };
+
         git = {
           enable = true;
+					ignore = false;
         };
+
+				liveFilter = {
+					prefix = " ";
+					alwaysShowFolders = true;
+				};
+
         renderer = {
           addTrailing = true;
+          highlightOpenedFiles = "name";
+          indentWidth = 2;
           groupEmpty = true;
           indentMarkers.enable = true;
+          icons = {
+            webdevColors = false;
+            gitPlacement = "after";
+            padding = "  ";
+            glyphs = {
+              git = {
+                staged = "";
+                unstaged = "δ";
+                untracked = "α";
+                deleted = "D";
+                renamed = "R";
+              };
+              folder = {
+                arrowOpen = "»";
+                arrowClosed = "›";
+                default = "'";
+                open = " ";
+              };
+            };
+          };
         };
 
         onAttach = {
@@ -584,8 +618,7 @@
 
               -- Mappings migrated from view.mappings.list
               vim.keymap.set('n', 'h', api.tree.change_root_to_parent, opts('Up'))
-              vim.keymap.set('n', 'h', api.tree.change_root_to_parent, opts('Up'))
-              vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
+              vim.keymap.set('n', 'l', api.tree.change_root_to_node, opts('Down'))
               vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
               vim.keymap.set('n', 'g?', api.tree.toggle_help, opts('Help'))
               vim.keymap.set('n', '<S-Tab>', api.tree.collapse_all, opts('Collapse'))
@@ -610,11 +643,13 @@
         view = {
           width = 25;
           side = "left";
+          signcolumn = "yes";
         };
 
         filters = {
           dotfiles = false;
           custom = [
+            "^.git$"
             "node_modules"
             ".cache"
           ];
@@ -623,6 +658,16 @@
         systemOpen = {
           cmd = "${pkgs.xdg-utils}/bin/xdg-open";
         };
+
+        diagnostics = {
+          enable = true;
+          showOnDirs = true;
+          debounceDelay = 100;
+          severity = {
+            min = "warn";
+          };
+        };
+        selectPrompts = true;
       };
 
       indent-blankline = {
