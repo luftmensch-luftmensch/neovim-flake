@@ -222,9 +222,14 @@
     # Plugins setup
     plugins = {
       ### Theming ###
-
-      # Current favourite theme
-      nightfox.enable = true;
+      colorscheme = {
+        # Current favourite theme
+        modus-theme = {
+          enable = true;
+          flavour = "modus_vivendi";
+        };
+        # nightfox.enable = true;
+      };
 
       # Current favourite status line
       staline.enable = true;

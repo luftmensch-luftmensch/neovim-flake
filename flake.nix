@@ -179,6 +179,11 @@
       flake = false;
     };
 
+    "external-plugin:modus-theme" = {
+      url = "github:miikanissi/modus-themes.nvim";
+      flake = false;
+    };
+
     # Statusline status line
     "external-plugin:staline-nvim" = {
       url = "github:tamton-aquib/staline.nvim";

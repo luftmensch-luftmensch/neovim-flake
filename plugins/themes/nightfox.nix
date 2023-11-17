@@ -5,7 +5,7 @@
   ...
 }:
 with lib; {
-  options.plugins.nightfox = {
+  options.plugins.colorscheme.nightfox = {
     enable = mkEnableOption "A highly customizable theme for vim";
 
     package = mkOption {
@@ -16,7 +16,7 @@ with lib; {
   };
 
   config = let
-    cfg = config.plugins.nightfox;
+    cfg = config.plugins.colorscheme.nightfox;
 
   in
     mkIf cfg.enable {

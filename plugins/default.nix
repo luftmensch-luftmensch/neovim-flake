@@ -1,7 +1,7 @@
 {...}: {
   imports = [
-	./neodev.nix
+    ./neodev.nix
     ./staline.nix
-    ./theme.nix
+    ./themes
   ];
 }

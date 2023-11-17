@@ -23,6 +23,22 @@
         "type": "github"
       }
     },
+    "external-plugin:modus-theme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1699330763,
+        "narHash": "sha256-BGnGHxWkLpFBOg/JjWZVUOLaWfVZu/gZCiZZ+FZIpvY=",
+        "owner": "miikanissi",
+        "repo": "modus-themes.nvim",
+        "rev": "bd5c541f13ee77c6df5d6a5d5c321ab907aa5e11",
+        "type": "github"
+      },
+      "original": {
+        "owner": "miikanissi",
+        "repo": "modus-themes.nvim",
+        "type": "github"
+      }
+    },
     "external-plugin:staline-nvim": {
       "flake": false,
       "locked": {
@@ -760,6 +776,7 @@
     },
     "root": {
       "inputs": {
+        "external-plugin:modus-theme": "external-plugin:modus-theme",
         "external-plugin:staline-nvim": "external-plugin:staline-nvim",
         "neovim-flake": "neovim-flake",
         "nixpkgs": "nixpkgs",
