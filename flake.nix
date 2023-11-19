@@ -223,7 +223,7 @@
 
     ### ------------------------- File type related ------------------------- ###
     "plugin:markdown-preview-nvim" = {
-      url = "github:iamcco/markdown-preview.nvim?rev=02cc3874738bc0f86e4b91f09b8a0ac88aef8e96";
+      url = "github:iamcco/markdown-preview.nvim";
       flake = false;
     };
   };

@@ -172,11 +172,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1697379843,
-        "narHash": "sha256-RcnGuJgC2K/UpTy+d32piEoBXq2M+nVFzM3ah/ZdJzg=",
+        "lastModified": 1700355335,
+        "narHash": "sha256-JYuXbNzwAlQyiImqelV+pQ+Jer+zQv9fSrK98/NbSgA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "12bdeb01ff9e2d3917e6a44037ed7df6e6c3df9d",
+        "rev": "9ea24fc7e02b65c150c88e1412400b70087bd382",
         "type": "github"
       },
       "original": {
@@ -436,17 +436,16 @@
     "plugin:markdown-preview-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1652448059,
-        "narHash": "sha256-e1Buvu/lkEt9V5LVDFKWTasnSX6EdtRgWyVDZA8LpUE=",
+        "lastModified": 1697511247,
+        "narHash": "sha256-TBXdG/Ih5DusAYZJyn37zVqHcMD85VkjrCoLyTo/KBg=",
         "owner": "iamcco",
         "repo": "markdown-preview.nvim",
-        "rev": "02cc3874738bc0f86e4b91f09b8a0ac88aef8e96",
+        "rev": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
         "type": "github"
       },
       "original": {
         "owner": "iamcco",
         "repo": "markdown-preview.nvim",
-        "rev": "02cc3874738bc0f86e4b91f09b8a0ac88aef8e96",
         "type": "github"
       }
     },
