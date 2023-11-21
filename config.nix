@@ -677,9 +677,11 @@
 
       indent-blankline = {
         enable = true;
-        useTreesitter = true;
-        showCurrentContext = true;
-        showCurrentContextStart = true;
+        # useTreesitter = true;
+				scope = {
+					enabled = true;
+					showStart = true;
+				};
       };
 
       ### Completion ###
