@@ -16,9 +16,9 @@ with lib; {
       extraPlugins = with pkgs.vimPlugins; [neodev-nvim];
       extraConfigLua = ''
       -- [Neodev setup] --
-	  require("neodev").setup({
-		  -- add any options here, or leave empty to use the default settings
-	  })
+      require("neodev").setup({
+        -- add any options here, or leave empty to use the default settings
+      })
       '';
     };
 }

@@ -740,8 +740,10 @@
       # Magit port for neovim
       neogit = {
         enable = true;
+        autoRefresh = true;
         disableCommitConfirmation = true;
         useMagitKeybindings = true;
+        commitPopup.kind = "split";
       };
 
       ### Snippets ###
