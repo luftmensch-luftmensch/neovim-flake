@@ -219,18 +219,14 @@
           vim.lsp.set_log_level("off") -- change to debug only for testing
     '';
 
+    colorschemes = {
+			base16 = {
+				enable = true;
+				colorscheme = "black-metal"; # default-dark
+			};
+		};
     # Plugins setup
     plugins = {
-      ### Theming ###
-      colorscheme = {
-        # Current favourite theme
-        modus-theme = {
-          enable = true;
-          flavour = "modus_vivendi";
-        };
-        # nightfox.enable = true;
-      };
-
       # Current favourite status line
       staline.enable = true;
 
