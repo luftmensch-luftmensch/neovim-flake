@@ -55,6 +55,22 @@
         "type": "github"
       }
     },
+    "external-plugin:vim-moonfly-colors": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1698830565,
+        "narHash": "sha256-EhcTAhvjMbLYt7wi75TlU2Jc5nG3quuDPjlq+A80hjw=",
+        "owner": "bluz71",
+        "repo": "vim-moonfly-colors",
+        "rev": "5f121c0e8103181a16aa86e9f80e99204eef6c39",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bluz71",
+        "repo": "vim-moonfly-colors",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -222,6 +238,22 @@
       "original": {
         "owner": "pta2002",
         "repo": "nixvim",
+        "type": "github"
+      }
+    },
+    "plugin:adwaita-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1687400838,
+        "narHash": "sha256-Y8DzAIMH8Hp+Qfu+sxer0UKmnix2wKHnBsRF/N+ah7s=",
+        "owner": "Mofiqul",
+        "repo": "adwaita.nvim",
+        "rev": "bb421a3439a515862ecb57970f10722cdcc4d089",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mofiqul",
+        "repo": "adwaita.nvim",
         "type": "github"
       }
     },
@@ -777,9 +809,11 @@
       "inputs": {
         "external-plugin:modus-theme": "external-plugin:modus-theme",
         "external-plugin:staline-nvim": "external-plugin:staline-nvim",
+        "external-plugin:vim-moonfly-colors": "external-plugin:vim-moonfly-colors",
         "neovim-flake": "neovim-flake",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
+        "plugin:adwaita-nvim": "plugin:adwaita-nvim",
         "plugin:bufdelete-nvim": "plugin:bufdelete-nvim",
         "plugin:clangd_extensions-nvim": "plugin:clangd_extensions-nvim",
         "plugin:cmp-buffer": "plugin:cmp-buffer",

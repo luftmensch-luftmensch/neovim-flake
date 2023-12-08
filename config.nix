@@ -222,8 +222,9 @@
     colorschemes = {
 			base16 = {
 				enable = true;
-				colorscheme = "black-metal"; # default-dark
+				colorscheme = "irblack"; # dark-metal 
 			};
+			# moonfly.enable = true;
 		};
     # Plugins setup
     plugins = {
