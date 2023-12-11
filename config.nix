@@ -192,40 +192,35 @@
     editorconfig.enable = true;
 
     extraConfigLuaPre = ''
-          -- [options setup] --
-          local au = vim.api.nvim_create_augroup('restore_on_exit.augroup', { clear = true })
-          vim.api.nvim_create_autocmd({ 'VimLeave'}, {
-						group = au,
-						command = "set guicursor=a:ver25-Cursor"
-          })
+			-- [options setup] --
+			local au = vim.api.nvim_create_augroup('restore_on_exit.augroup', { clear = true })
+			vim.api.nvim_create_autocmd({ 'VimLeave'}, { group = au, command = "set guicursor=a:ver25-Cursor" })
+      -- [nvim-cmp extra setup] --
+			local has_words_before = function()
+			unpack = unpack or table.unpack
+			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+				return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+			end
 
-          -- [nvim-cmp extra setup] --
-          local has_words_before = function()
-					unpack = unpack or table.unpack
-					local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-						return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-					end
+			-- [luasnip extra setup] --
+			local luasnip = require("luasnip")
+			require'neodev'.setup({})
+			-- [Web Dev Icons setup] --
+			require'nvim-web-devicons'.setup({})
 
-          -- [luasnip extra setup] --
-          local luasnip = require("luasnip")
-
-          require'neodev'.setup({})
-
-          -- [Web Dev Icons setup] --
-          require'nvim-web-devicons'.setup({})
-
-          -- [Lsp logging setup] --
-          -- Disable logging
-          vim.lsp.set_log_level("off") -- change to debug only for testing
+			-- [Lsp logging setup] --
+			-- Disable logging
+			vim.lsp.set_log_level("off") -- change to debug only for testing
     '';
 
     colorschemes = {
-			base16 = {
-				enable = true;
-				colorscheme = "irblack"; # dark-metal 
-			};
-			# moonfly.enable = true;
-		};
+      # base16 = {
+      # 	enable = true;
+      # 	colorscheme = "irblack"; # dark-metal
+      # };
+      moonfly.enable = true;
+      # citruszest.enable = true;
+    };
     # Plugins setup
     plugins = {
       # Current favourite status line

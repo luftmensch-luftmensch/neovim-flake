@@ -23,6 +23,22 @@
         "type": "github"
       }
     },
+    "external-plugin:citruszest-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1701869674,
+        "narHash": "sha256-nomrXITy+2BWvDdXgIJki/ZcEWONpoEN0fDNzbhiMTY=",
+        "owner": "zootedb0t",
+        "repo": "citruszest.nvim",
+        "rev": "2f647299c2cceb4a6ac09f0f2e343d70437995fa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zootedb0t",
+        "repo": "citruszest.nvim",
+        "type": "github"
+      }
+    },
     "external-plugin:modus-theme": {
       "flake": false,
       "locked": {
@@ -807,6 +823,7 @@
     },
     "root": {
       "inputs": {
+        "external-plugin:citruszest-nvim": "external-plugin:citruszest-nvim",
         "external-plugin:modus-theme": "external-plugin:modus-theme",
         "external-plugin:staline-nvim": "external-plugin:staline-nvim",
         "external-plugin:vim-moonfly-colors": "external-plugin:vim-moonfly-colors",

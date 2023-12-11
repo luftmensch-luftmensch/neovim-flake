@@ -194,6 +194,11 @@
       flake = false;
     };
 
+		"external-plugin:citruszest-nvim" = {
+      url = "github:zootedb0t/citruszest.nvim";
+      flake = false;
+		};
+
     # Statusline status line
     "external-plugin:staline-nvim" = {
       url = "github:tamton-aquib/staline.nvim";
