@@ -89,6 +89,12 @@
       flake = false;
     };
 
+    # Signature helper
+    "external-plugin:flutter-tools" = {
+      url = "github:akinsho/flutter-tools.nvim";
+      flake = false;
+    };
+
     ### ------------------------- Treesitter ------------------------- ###
 
     # Neovim Treesitter configurations and abstraction layer

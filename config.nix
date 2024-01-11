@@ -357,6 +357,8 @@
         };
       };
 
+			code.flutter-tools.enable = true;
+
       efmls-configs = {
         enable = true;
 

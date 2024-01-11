@@ -39,6 +39,22 @@
         "type": "github"
       }
     },
+    "external-plugin:flutter-tools": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1704287382,
+        "narHash": "sha256-Asf0RUgKhiCq6sec+kVAVhibU8NQQhlxEGpdleiMP/0=",
+        "owner": "akinsho",
+        "repo": "flutter-tools.nvim",
+        "rev": "b65ad58462116785423d81aeb2ee6c8c16f78679",
+        "type": "github"
+      },
+      "original": {
+        "owner": "akinsho",
+        "repo": "flutter-tools.nvim",
+        "type": "github"
+      }
+    },
     "external-plugin:modus-theme": {
       "flake": false,
       "locked": {
@@ -824,6 +840,7 @@
     "root": {
       "inputs": {
         "external-plugin:citruszest-nvim": "external-plugin:citruszest-nvim",
+        "external-plugin:flutter-tools": "external-plugin:flutter-tools",
         "external-plugin:modus-theme": "external-plugin:modus-theme",
         "external-plugin:staline-nvim": "external-plugin:staline-nvim",
         "external-plugin:vim-moonfly-colors": "external-plugin:vim-moonfly-colors",
