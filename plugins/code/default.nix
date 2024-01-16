@@ -1,5 +1,0 @@
-{...}: {
-  imports = [
-    ./flutter-tools.nix
-  ];
-}

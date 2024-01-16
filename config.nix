@@ -338,6 +338,7 @@
           clangd.enable = true;
           bashls.enable = true;
           gopls.enable = true;
+          dartls.enable = true;
           pylsp = {
             enable = true;
             settings = {
@@ -356,8 +357,6 @@
           };
         };
       };
-
-			code.flutter-tools.enable = true;
 
       efmls-configs = {
         enable = true;
