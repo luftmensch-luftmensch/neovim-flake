@@ -11,6 +11,7 @@
 		    event = "VimLeave";
         command = "set guicursor=a:ver25-Cursor";
 		  }
+
 		];
     # Global values
     globals = {
@@ -339,6 +340,11 @@
           bashls.enable = true;
           gopls.enable = true;
           dartls.enable = true;
+					efm.extraOptions = {
+						init_options = {
+							documentFormatting = true;
+						};
+					};
           pylsp = {
             enable = true;
             settings = {
@@ -421,6 +427,7 @@
       treesitter = {
         enable = true;
         indent = true;
+				nixvimInjections = true;
 
         incrementalSelection = {
           enable = true;
@@ -431,6 +438,9 @@
             nodeDecremental = "grm";
           };
         };
+				# TODO: Investigate -> https://github.com/nix-community/nixvim/issues/39
+				nixGrammars = false;
+				ensureInstalled = [];
 
         grammarPackages = with config.plugins.treesitter.package.passthru.builtGrammars; [
           arduino
@@ -487,7 +497,7 @@
       };
 
 			# Disabled it as I found it pretty annoying
-      # treesitter-context.enable = true;
+      treesitter-context.enable = true;
 
       # Diagnostics, references, telescope results, quickfix and location list
       trouble = {
