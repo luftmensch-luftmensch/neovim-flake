@@ -13,7 +13,7 @@
 
     # Useful goodies to configure Neovim with nix
     nixvim = {
-      url = "github:pta2002/nixvim";
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -57,17 +57,16 @@
       flake = false;
     };
 
-		"external-plugin:citruszest-nvim" = {
+    "external-plugin:citruszest-nvim" = {
       url = "github:zootedb0t/citruszest.nvim";
       flake = false;
-		};
+    };
 
     # Statusline
     "external-plugin:staline-nvim" = {
       url = "github:tamton-aquib/staline.nvim";
       flake = false;
     };
-
   };
 
   outputs = {
