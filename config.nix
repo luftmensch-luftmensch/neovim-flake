@@ -262,14 +262,14 @@
         };
       };
 
-      # Needed for noice
+      # Notification manager for NeoVim
       notify = {
         enable = true;
         timeout = 1000;
         stages = "static"; # slide, fade, fade_in_slide_out (default)
       };
 
-      # Fuzzy finder w/ custom config
+      # Find, Filter, Preview, Pick. All lua, all the time
       telescope = {
         enable = true;
         defaults = {
@@ -386,6 +386,7 @@
         };
       };
 
+			# Language support for C/C++ using Clang
       clangd-extensions = {
         enable = true;
         ast = {
@@ -416,11 +417,40 @@
         };
       };
 
+			# VSCode-like pictograms for neovim lsp completion items
       lspkind = {
         enable = true;
         cmp.enable = true;
+				symbolMap = {
+					Text = "󰉿";
+					Method = "󰆧";
+					Function = "󰊕";
+					Constructor = "";
+					Field = "󰜢";
+					Variable = "󰀫";
+					Class = "󰠱";
+					Interface = "";
+					Module = "";
+					Property = "󰜢";
+					Unit = "󰑭";
+					Value = "󰎠";
+					Enum = "";
+					Keyword = "󰌋";
+					Snippet = "";
+					Color = "󰏘";
+					File = "󰈙";
+					Reference = "󰈇";
+					Folder = "󰉋";
+					EnumMember = "";
+					Constant = "󰏿";
+					Struct = "󰙅";
+					Event = "";
+					Operator = "󰆕";
+					TypeParameter = "";
+				};
       };
 
+			# Incremental LSP renaming based on Neovim's command-preview feature
       inc-rename.enable = true;
 
       # Treesitter
@@ -536,7 +566,7 @@
         };
       };
 
-      # Vim matchup support for treesitter
+      # Boost neovim % (Modern matchit and matchparen)
       vim-matchup = {
         enable = true;
         treesitterIntegration = {
@@ -560,7 +590,7 @@
         sticky = true;
       };
 
-      # File Tree
+      # File Explorer Tree
       nvim-tree = {
         enable = true;
         autoReloadOnWrite = true;
@@ -676,6 +706,7 @@
         selectPrompts = true;
       };
 
+			# Indent guides for Neovim
       indent-blankline = {
         enable = true;
         scope = {
@@ -733,8 +764,9 @@
         ];
       };
 
-      ### Git ###
+			# Git integration for buffers
       gitsigns.enable = true;
+			# Reveal the commit messages under the cursor
       gitmessenger.enable = true;
 
       # Magit port for neovim
