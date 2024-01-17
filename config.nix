@@ -199,7 +199,6 @@
     editorconfig.enable = true;
 
     extraConfigLuaPre = ''
-			-- [options setup] --
       -- [nvim-cmp extra setup] --
 			local has_words_before = function()
         unpack = unpack or table.unpack
@@ -218,14 +217,8 @@
 			vim.lsp.set_log_level("off") -- change to debug only for testing
     '';
 
-    colorschemes = {
-      # base16 = {
-      # 	enable = true;
-      # 	colorscheme = "irblack"; # dark-metal
-      # };
-      moonfly.enable = true;
-      # citruszest.enable = true;
-    };
+    colorschemes.moonfly.enable = true;
+
     # Plugins setup
     plugins = {
       # Current favourite status line
@@ -249,7 +242,6 @@
           "cmp.entry.get_documentation" = true;
         };
         presets = {
-          # bottom_search = true;
           command_palette = true;
           long_message_to_split = true;
           inc_rename = true;

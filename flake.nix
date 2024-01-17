@@ -47,18 +47,8 @@
       flake = false;
     };
 
-    "plugin:adwaita-nvim" = {
-      url = "github:Mofiqul/adwaita.nvim";
-      flake = false;
-    };
-
     "external-plugin:vim-moonfly-colors" = {
       url = "github:bluz71/vim-moonfly-colors";
-      flake = false;
-    };
-
-    "external-plugin:citruszest-nvim" = {
-      url = "github:zootedb0t/citruszest.nvim";
       flake = false;
     };
 

@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "external-plugin:citruszest-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1705079397,
-        "narHash": "sha256-CoFWoKNfphHFUnViAUURWCfNS465ZyyKuxJmfUkzbaM=",
-        "owner": "zootedb0t",
-        "repo": "citruszest.nvim",
-        "rev": "6fda28cb188271dd9498c5e2486013bb4966d468",
-        "type": "github"
-      },
-      "original": {
-        "owner": "zootedb0t",
-        "repo": "citruszest.nvim",
-        "type": "github"
-      }
-    },
     "external-plugin:staline-nvim": {
       "flake": false,
       "locked": {
@@ -248,22 +232,6 @@
         "type": "github"
       }
     },
-    "plugin:adwaita-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1702658572,
-        "narHash": "sha256-oQiVL/rTeeI+rE0gnnn3FgxZ7FPShm5GIk1VcYK2PdM=",
-        "owner": "Mofiqul",
-        "repo": "adwaita.nvim",
-        "rev": "981bce791959d79cd1316e59e23906e3c05efb44",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Mofiqul",
-        "repo": "adwaita.nvim",
-        "type": "github"
-      }
-    },
     "plugin:neodev": {
       "flake": false,
       "locked": {
@@ -374,13 +342,11 @@
     },
     "root": {
       "inputs": {
-        "external-plugin:citruszest-nvim": "external-plugin:citruszest-nvim",
         "external-plugin:staline-nvim": "external-plugin:staline-nvim",
         "external-plugin:vim-moonfly-colors": "external-plugin:vim-moonfly-colors",
         "neovim-flake": "neovim-flake",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
-        "plugin:adwaita-nvim": "plugin:adwaita-nvim",
         "plugin:neodev": "plugin:neodev",
         "plugin:nightfox": "plugin:nightfox",
         "plugin:nui-nvim": "plugin:nui-nvim",
