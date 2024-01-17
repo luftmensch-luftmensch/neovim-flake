@@ -105,12 +105,12 @@
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
-          (final: prev: {
+          (_final: prev: {
             vimPlugins =
               prev.vimPlugins
               // (pkgs.lib.mapAttrs (
                 pname: src:
-                  prev.vimPlugins."${pname}".overrideAttrs (old: {
+                  prev.vimPlugins."${pname}".overrideAttrs (_old: {
                     version = src.shortRev;
                     inherit src;
                   })
