@@ -19,11 +19,11 @@
     "external-plugin:vim-moonfly-colors": {
       "flake": false,
       "locked": {
-        "lastModified": 1705907418,
-        "narHash": "sha256-hDOt1hq0XAq3qt6uiF4iGa6+Xt6+DqRlN7EgByrlzkQ=",
+        "lastModified": 1706082265,
+        "narHash": "sha256-hY7abaxwk1ORk4qNzKRfen3c8jLEfCl+mQUPP47MA1o=",
         "owner": "bluz71",
         "repo": "vim-moonfly-colors",
-        "rev": "7a96c43dc7d45c89038aaf62e42ed397bb6a27b2",
+        "rev": "426b5c0b21c31e07c805dc22956509ac75684560",
         "type": "github"
       },
       "original": {
@@ -157,11 +157,11 @@
       },
       "locked": {
         "dir": "contrib",
-        "lastModified": 1705923507,
-        "narHash": "sha256-Ld0ZLJuF+4vwJRKnjnJh6bCqKLWF66WljPpQzLfYNa0=",
+        "lastModified": 1706070458,
+        "narHash": "sha256-VFdgA2EM5HqJ9ld6Ay9Qa12wKz6q/xGEjTjstZcCYD8=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "b4da4783f98837efb7192a3e5a40dd491aeb1491",
+        "rev": "c8a27bae3faeaca137e5f67b1b052ce0f0225b36",
         "type": "github"
       },
       "original": {
@@ -219,11 +219,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1705927744,
-        "narHash": "sha256-ESHLUjPRApElOJuyXidapwredduuUmJlJ7EAmlFePSY=",
+        "lastModified": 1706079562,
+        "narHash": "sha256-AUtlc/5oJl+gKWwdIbA/kUJyELYRsuFY24Oe/19ahWU=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "86d6ce5029c99362c96ccead428b366f81d5b8f0",
+        "rev": "a6b541a3aaca35a056582bc2c152073970775b69",
         "type": "github"
       },
       "original": {
@@ -235,11 +235,11 @@
     "plugin:neodev": {
       "flake": false,
       "locked": {
-        "lastModified": 1705878340,
-        "narHash": "sha256-WUxZDabbsiM2PETwtqO0fhb5yOfxz+zd8KjQt04e9mM=",
+        "lastModified": 1706040138,
+        "narHash": "sha256-8MBmUkj2IbrCtBx8xHAOUVWMJ3kwwducTnuMSRZdT6s=",
         "owner": "folke",
         "repo": "neodev.nvim",
-        "rev": "5bbbeda6a9c672f314c95ca47a8b495cf6de17f9",
+        "rev": "e7ca4a2ea0da5e39a639c08c3edb352b9355f09e",
         "type": "github"
       },
       "original": {
@@ -251,11 +251,11 @@
     "plugin:nightfox": {
       "flake": false,
       "locked": {
-        "lastModified": 1704982694,
-        "narHash": "sha256-H9S0r2evXGMRDOmoFU98+sbEmXkozinMQyiRqFy0oLg=",
+        "lastModified": 1706063094,
+        "narHash": "sha256-C4b7rAUGC6qAwXgHPldkTNWp1T4xllvYn3icGG01hH0=",
         "owner": "EdenEast",
         "repo": "nightfox.nvim",
-        "rev": "a4bc2bd3d7ff1770ae104068458d3b0b8f8ec00d",
+        "rev": "fe73b52614f0e2b8efa3e23810f7e4c1ec52564a",
         "type": "github"
       },
       "original": {
@@ -283,11 +283,11 @@
     "plugin:nvim-web-devicons": {
       "flake": false,
       "locked": {
-        "lastModified": 1705292513,
-        "narHash": "sha256-xuHIdvezGH04X+B+x4MjaUFOAZkR2Qc19ErZaeUJ7W0=",
+        "lastModified": 1706072160,
+        "narHash": "sha256-w038PU9i1onEBo3x4bo1kDz9Fo46Whd8ZJhyIqxz3I8=",
         "owner": "nvim-tree",
         "repo": "nvim-web-devicons",
-        "rev": "140edfcf25093e8b321d13e154cbce89ee868ca0",
+        "rev": "b427ac5f9dff494f839e81441fb3f04a58cbcfbc",
         "type": "github"
       },
       "original": {
