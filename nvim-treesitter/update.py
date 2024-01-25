@@ -8,6 +8,8 @@ from os.path import join
 import sys
 
 lockfile = json.load(open(join(environ["NVIM_TREESITTER"], "lockfile.json")))
+default_directory = 'nvim-treesitter' if (len(sys.argv) == 1) else sys.argv[1]
+print(f"Using {default_directory}\n\n\n")
 
 configs = json.loads(
     subprocess.check_output(
@@ -74,4 +76,4 @@ for generated in ThreadPoolExecutor().map(generate_grammar, lockfile.items()):
 
 generated_file += "}\n"
 
-open(join(sys.argv[1], "generated.nix"), "w").write(generated_file)
+open(join(default_directory, "generated.nix"), "w").write(generated_file)

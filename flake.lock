@@ -157,11 +157,11 @@
       },
       "locked": {
         "dir": "contrib",
-        "lastModified": 1706070458,
-        "narHash": "sha256-VFdgA2EM5HqJ9ld6Ay9Qa12wKz6q/xGEjTjstZcCYD8=",
+        "lastModified": 1706140641,
+        "narHash": "sha256-H1qHhkf7sF7yrG2rb9Ks1Y4EtLY3cXGp16KCGveJWY4=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "c8a27bae3faeaca137e5f67b1b052ce0f0225b36",
+        "rev": "4e59422e1d4950a3042bad41a7b81c8db4f8b648",
         "type": "github"
       },
       "original": {
@@ -194,11 +194,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1705883077,
-        "narHash": "sha256-ByzHHX3KxpU1+V0erFy8jpujTufimh6KaS/Iv3AciHk=",
+        "lastModified": 1706006310,
+        "narHash": "sha256-nDPz0fj0IFcDhSTlXBU2aixcnGs2Jm4Zcuoj0QtmiXQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5f5210aa20e343b7e35f40c033000db0ef80d7b9",
+        "rev": "b43bb235efeab5324c5e486882ef46749188eee2",
         "type": "github"
       },
       "original": {
@@ -219,11 +219,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1706079562,
-        "narHash": "sha256-AUtlc/5oJl+gKWwdIbA/kUJyELYRsuFY24Oe/19ahWU=",
+        "lastModified": 1706197139,
+        "narHash": "sha256-9BzlBeIbGLa+q/+1uk6sxf/v9akCovcrxgMi44D6GRg=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "a6b541a3aaca35a056582bc2c152073970775b69",
+        "rev": "98dbe8a89becafc31b2caebe24f453bb82843647",
         "type": "github"
       },
       "original": {
@@ -235,11 +235,11 @@
     "plugin:neodev": {
       "flake": false,
       "locked": {
-        "lastModified": 1706040138,
-        "narHash": "sha256-8MBmUkj2IbrCtBx8xHAOUVWMJ3kwwducTnuMSRZdT6s=",
+        "lastModified": 1706162762,
+        "narHash": "sha256-BnrIvG4sHgDGmbJLGQk637Zm5IMzZ6kMKsx7TqXgL6M=",
         "owner": "folke",
         "repo": "neodev.nvim",
-        "rev": "e7ca4a2ea0da5e39a639c08c3edb352b9355f09e",
+        "rev": "3408a4daeca5ff8f41cb2c668b6d8fcc665f793a",
         "type": "github"
       },
       "original": {
@@ -251,11 +251,11 @@
     "plugin:nightfox": {
       "flake": false,
       "locked": {
-        "lastModified": 1706063094,
-        "narHash": "sha256-C4b7rAUGC6qAwXgHPldkTNWp1T4xllvYn3icGG01hH0=",
+        "lastModified": 1706105883,
+        "narHash": "sha256-ejiGN4jcXjKRsBFeiLoB3gLd1lFMz8Soh2fgN2tJ/Xs=",
         "owner": "EdenEast",
         "repo": "nightfox.nvim",
-        "rev": "fe73b52614f0e2b8efa3e23810f7e4c1ec52564a",
+        "rev": "7e9487875dc5f69a2fd6f60d3a3ef4fb457b57c1",
         "type": "github"
       },
       "original": {
