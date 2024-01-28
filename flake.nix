@@ -130,8 +130,6 @@
       nixvim' = nixvim.legacyPackages."${system}";
       nvim = nixvim'.makeNixvimWithModule {inherit module pkgs;};
     in {
-      formatter."${system}" = pkgs.alejandra;
-
       devShells."${system}".default = pkgs.mkShell {
         packages = [nvim];
       };
