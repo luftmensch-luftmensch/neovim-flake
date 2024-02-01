@@ -21,17 +21,17 @@
   builtGrammars =
     generatedGrammars
     // lib.concatMapAttrs
-      (k: v: let
-        replaced = lib.replaceStrings ["_"] ["-"] k;
-      in
-        {
-          "tree-sitter-${k}" = v;
-        }
-        // lib.optionalAttrs (k != replaced) {
-          ${replaced} = v;
-          "tree-sitter-${replaced}" = v;
-        })
-      generatedDerivations;
+    (k: v: let
+      replaced = lib.replaceStrings ["_"] ["-"] k;
+    in
+      {
+        "tree-sitter-${k}" = v;
+      }
+      // lib.optionalAttrs (k != replaced) {
+        ${replaced} = v;
+        "tree-sitter-${replaced}" = v;
+      })
+    generatedDerivations;
 
   allGrammars = lib.attrValues generatedDerivations;
 
@@ -43,7 +43,7 @@
     self.nvim-treesitter.overrideAttrs {
       passthru.dependencies =
         map grammarToPlugin
-          (f (tree-sitter.builtGrammars // builtGrammars));
+        (f (tree-sitter.builtGrammars // builtGrammars));
     };
 
   withAllGrammars = withPlugins (_: allGrammars);
@@ -63,11 +63,11 @@ in {
       };
     in
       runCommand "nvim-treesitter-check-queries"
-        {
-          nativeBuildInputs = [nvimWithAllGrammars];
-          CI = true;
-        }
-        ''
+      {
+        nativeBuildInputs = [nvimWithAllGrammars];
+        CI = true;
+      }
+      ''
         touch $out
         export HOME=$(mktemp -d)
         ln -s ${withAllGrammars}/CONTRIBUTING.md .

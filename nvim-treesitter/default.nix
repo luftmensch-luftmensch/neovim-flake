@@ -13,9 +13,9 @@
     (neovimUtils.override {
       neovim-unwrapped = upstream;
     })
-      .makeNeovimConfig {
-        plugins = [nvim-treesitter];
-      };
+    .makeNeovimConfig {
+      plugins = [nvim-treesitter];
+    };
 in
   stdenv.mkDerivation {
     name = "update-nvim-treesitter";
@@ -37,4 +37,4 @@ in
         ]
       }
     '';
-}
+  }
