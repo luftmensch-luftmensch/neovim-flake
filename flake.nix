@@ -5,11 +5,16 @@
     # Nixpkgs / NixOS version to use (Living on the edge)
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    # Neovim bleeding edge version
-    neovim-flake = {
-      url = "github:neovim/neovim?dir=contrib";
+    # Neovim bleeding edge version provided by nix-community
+		neovim-flake = {
+      url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # neovim-flake = {
+    #   url = "github:neovim/neovim?dir=contrib";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # Useful goodies to configure Neovim with nix
     nixvim = {
