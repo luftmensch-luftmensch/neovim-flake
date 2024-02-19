@@ -58,10 +58,10 @@
     };
 
     # Statusline
-    "external-plugin:staline-nvim" = {
-      url = "github:tamton-aquib/staline.nvim";
-      flake = false;
-    };
+    # "external-plugin:staline-nvim" = {
+    #   url = "github:tamton-aquib/staline.nvim";
+    #   flake = false;
+    # };
   };
 
   outputs = {

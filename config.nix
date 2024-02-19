@@ -222,7 +222,19 @@
     # Plugins setup
     plugins = {
       # Current favourite status line
-      staline.enable = true;
+			lualine = {
+				enable = true;
+				iconsEnabled = true;
+				alwaysDivideMiddle = true;
+				globalstatus = true;
+				extensions = lib.optionals config.plugins.nvim-tree.enable ["nvim-tree"];
+				ignoreFocus = lib.optionals config.plugins.nvim-tree.enable ["NvimTree"];
+				refresh = {
+					statusline = 1000;
+					tabline = 1000;
+					winbar = 1000;
+				};
+			};
 
       # Ui replacement for messages, cmdline and the popupmenu
       noice = {

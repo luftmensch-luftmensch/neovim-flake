@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "external-plugin:staline-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1700645417,
-        "narHash": "sha256-GDMKzxFDtQk5LL+rMsxTGTyLv69w5NUd+u19noeO5ws=",
-        "owner": "tamton-aquib",
-        "repo": "staline.nvim",
-        "rev": "a53f869278b8b186a5afd6f21680cd103c381599",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tamton-aquib",
-        "repo": "staline.nvim",
-        "type": "github"
-      }
-    },
     "external-plugin:vim-moonfly-colors": {
       "flake": false,
       "locked": {
@@ -447,7 +431,6 @@
     },
     "root": {
       "inputs": {
-        "external-plugin:staline-nvim": "external-plugin:staline-nvim",
         "external-plugin:vim-moonfly-colors": "external-plugin:vim-moonfly-colors",
         "neovim-flake": "neovim-flake",
         "nixpkgs": "nixpkgs",
