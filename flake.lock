@@ -337,22 +337,6 @@
         "type": "github"
       }
     },
-    "plugin:nightfox": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1706673890,
-        "narHash": "sha256-QdIAP5IAfxrpOVfpzEucnmF2U9EoeXS4zF8SQCBnLUE=",
-        "owner": "EdenEast",
-        "repo": "nightfox.nvim",
-        "rev": "a408e6bb101066952b81de9c11be367114bd561f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "EdenEast",
-        "repo": "nightfox.nvim",
-        "type": "github"
-      }
-    },
     "plugin:nui-nvim": {
       "flake": false,
       "locked": {
@@ -436,7 +420,6 @@
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "plugin:neodev": "plugin:neodev",
-        "plugin:nightfox": "plugin:nightfox",
         "plugin:nui-nvim": "plugin:nui-nvim",
         "plugin:nvim-web-devicons": "plugin:nvim-web-devicons",
         "plugin:plenary-nvim": "plugin:plenary-nvim"

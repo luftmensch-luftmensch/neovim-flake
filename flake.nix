@@ -7,14 +7,9 @@
 
     # Neovim bleeding edge version provided by nix-community
 		neovim-flake = {
-      url = "github:nix-community/neovim-nightly-overlay";
+      url = "github:nix-community/neovim-nightly-overlay"; # "github:neovim/neovim?dir=contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # neovim-flake = {
-    #   url = "github:neovim/neovim?dir=contrib";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
 
     # Useful goodies to configure Neovim with nix
     nixvim = {
@@ -47,21 +42,10 @@
     };
 
     ### ------------------------- Colorschemes ------------------------- ###
-    "plugin:nightfox" = {
-      url = "github:EdenEast/nightfox.nvim";
-      flake = false;
-    };
-
     "external-plugin:vim-moonfly-colors" = {
       url = "github:bluz71/vim-moonfly-colors";
       flake = false;
     };
-
-    # Statusline
-    # "external-plugin:staline-nvim" = {
-    #   url = "github:tamton-aquib/staline.nvim";
-    #   flake = false;
-    # };
   };
 
   outputs = {
