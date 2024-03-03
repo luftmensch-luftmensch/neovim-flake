@@ -6,7 +6,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     # Neovim bleeding edge version provided by nix-community
-		neovim-flake = {
+    neovim-flake = {
       url = "github:nix-community/neovim-nightly-overlay"; # "github:neovim/neovim?dir=contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };

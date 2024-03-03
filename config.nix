@@ -5,17 +5,27 @@
   helpers,
   ...
 }: {
+  # TODO: Try out echasnovski/mini.nvim
   config = {
+    autoGroups.nvim-highlight-yank.clear = true;
     autoCmd = [
       {
-		    event = "VimLeave";
+        event = "VimLeave";
         command = "set guicursor=a:ver25-Cursor";
-		  }
+      }
 
-		];
+      # Stolen from kickstarter.nvim
+      {
+        event = "TextYankPost";
+        desc = "Highlight when yanking text";
+        callback.__raw = "function() vim.highlight.on_yank() end";
+        group = "nvim-highlight-yank";
+      }
+    ];
     # Global values
     globals = {
       mapleader = " ";
+      maplocalleader = " ";
       nvim_tree_disable_default_keybindings = 1;
     };
 
@@ -24,15 +34,14 @@
       # True color support
       termguicolors = true;
 
-      # Show numbers...
       number = true;
-      # ...in a relative mode
       relativenumber = true;
+      showmode = false;
+      breakindent = true;
 
-      # Number of spaces that a <Tab> in the file counts for.
-      tabstop = 2;
-      shiftwidth = 2;
-      softtabstop = 2;
+      # tabstop = 2;
+      # shiftwidth = 2;
+      # softtabstop = 2;
       # Tab as spaces
       expandtab = false;
       # Adaptive (Tab or spaces)
@@ -44,76 +53,46 @@
 
       # Minimal number of screen lines to keep above and below the cursor
       scrolloff = 7;
+      hlsearch = true;
       # When and how to draw the signcolumn. (yes to set to always)
       signcolumn = "yes";
 
       # Number of screen lines to use for the command-line. (Disabled as we are going to use Noice folke plugin)
       cmdheight = 1;
 
-      # A comma-separated list of options for Insert mode completion |ins-completion|.  The supported values are:
-      #
-      # menu	-> Use a popup menu to show the possible completions.  The
-      #         menu is only shown when there is more than one match and
-      #         sufficient colors are available.  |ins-completion-menu|
-      #
-      # menuone ->  Use the popup menu also when there is only one match.
-      #             Useful when there is additional information about the
-      #             match, e.g., what file it comes from.
-      #
-      # noselect -> Do not select a match in the menu, force the user to
-      #             select one from the menu. Only works in combination with
-      #             "menu" or "menuone".
       cot = ["menu" "menuone" "noselect"];
-      # If this many milliseconds nothing is typed the swap file will be written to disk
       updatetime = 500;
-      # When on spell checking will be done. The languages are specified with 'spelllang'.
       spell = true;
-
-      # Comma-separated list of screen columns that are highlighted with ColorColumn |hl-ColorColumn|.
       colorcolumn = "100";
-
-      # Strings to use in 'list' mode and for the |:list| command.  It is a comma-separated list of string settings.
-      listchars = "tab:>-,lead:·,nbsp:␣,trail:•";
-
-      # Determine the behavior when part of a mapped key sequence has been received.
-      # For example, if <c-f> is pressed and 'timeout' is set, Nvim will wait 'timeoutlen' milliseconds
-      # for any key that can follow <c-f> in a mapping.
+      list = true;
+      listchars = {
+        tab = "» ";
+        trail = "·";
+        nbsp = "␣";
+      };
       timeout = true;
       timeoutlen = 300;
-
-      # Enable clipboard support
       clipboard = "unnamedplus";
+      mouse = "a";
 
-      # Prevent swapfile, backupfile from being created
       swapfile = false;
       backup = false;
       writebackup = false;
-
-      # Open new splits respectively to the right & to the bottom
       splitright = true;
       splitbelow = true;
-
-      # Statusline & winbar customization
-      # Global statusline at the bottom instead of one for each window
       laststatus = 3;
       winbar = "%=%m\ %f"; # " %m %=%l:%v ";
       fsync = true;
     };
 
-    commands = {
-      # "SpellFr" = "setlocal spelllang=fr";
-    };
-
     ### MAPPINGS ###
     keymaps = let
-      modeKeys = mode:
-        lib.attrsets.mapAttrsToList (key: action: {
-          inherit key action mode;
-        });
+      modeKeys = mode: lib.attrsets.mapAttrsToList (key: action: {inherit key action mode;});
       nm = modeKeys ["n"];
       vs = modeKeys ["v"];
     in
       helpers.keymaps.mkKeymaps {options.silent = true;} (nm {
+        "<Esc>" = "<cmd>nohlsearch<CR>";
         # File Tree
         "<leader>d" = "<cmd>NvimTreeToggle<CR>";
         "<leader>tr" = ":NvimTreeRefresh<CR>";
@@ -160,12 +139,10 @@
         # Terminal
         "<leader>s" = ":ToggleTerm<CR>";
 
-        "mk" = "<cmd>Telescope keymaps<CR>";
-
         # Lsp
-        "<C-c>!l" = "<cmd>TroubleToggle<CR>";
         "<leader>gd" = "<cmd>Trouble lsp_definitions<CR>";
         "<leader>gr" = "<cmd>Trouble lsp_references<CR>";
+        "<leader>gI" = "<cmd>Trouble lsp_implementations<CR>";
 
         # Buffers
         "<M-[>" = "<cmd>bprevious<CR>";
@@ -177,6 +154,11 @@
         "<leader>x" = "<cmd>only<CR>"; # close all but current window (in a single tab, aka close all other splits)
         "<C-M-k>" = "<cmd>bufdo bwipeout<CR>"; # close all buffers opened
         "<leader>z" = "<cmd>bdelete<CR>"; # close focused window/buffer
+        # Keybinds to make split navigation easier
+        "<C-h>" = "<C-w><C-h>";
+        "<C-j>" = "<C-w><C-j>";
+        "<C-k>" = "<C-w><C-k>";
+        "<C-l>" = "<C-w><C-l>";
       })
       ++ (vs {
         "<leader>zf" = "'<,'>ZkMatch<CR>";
@@ -200,21 +182,21 @@
 
     extraConfigLuaPre = ''
       -- [nvim-cmp extra setup] --
-			local has_words_before = function()
+      local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-				return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-			end
+      	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      end
 
-			-- [luasnip extra setup] --
-			local luasnip = require("luasnip")
-			require'neodev'.setup({})
-			-- [Web Dev Icons setup] --
-			require'nvim-web-devicons'.setup({})
+      -- [luasnip extra setup] --
+      local luasnip = require("luasnip")
+      require'neodev'.setup({})
+      -- [Web Dev Icons setup] --
+      require'nvim-web-devicons'.setup({})
 
-			-- [Lsp logging setup] --
-			-- Disable logging
-			vim.lsp.set_log_level("off") -- change to debug only for testing
+      -- [Lsp logging setup] --
+      -- Disable logging
+      vim.lsp.set_log_level("off") -- change to debug only for testing
     '';
 
     colorschemes.moonfly.enable = true;
@@ -222,19 +204,19 @@
     # Plugins setup
     plugins = {
       # Current favourite status line
-			lualine = {
-				enable = true;
-				iconsEnabled = true;
-				alwaysDivideMiddle = true;
-				globalstatus = true;
-				extensions = lib.optionals config.plugins.nvim-tree.enable ["nvim-tree"];
-				ignoreFocus = lib.optionals config.plugins.nvim-tree.enable ["NvimTree"];
-				refresh = {
-					statusline = 1000;
-					tabline = 1000;
-					winbar = 1000;
-				};
-			};
+      lualine = {
+        enable = true;
+        iconsEnabled = true;
+        alwaysDivideMiddle = true;
+        globalstatus = true;
+        extensions = lib.optionals config.plugins.nvim-tree.enable ["nvim-tree"];
+        ignoreFocus = lib.optionals config.plugins.nvim-tree.enable ["NvimTree"];
+        refresh = {
+          statusline = 1000;
+          tabline = 1000;
+          winbar = 1000;
+        };
+      };
 
       # Ui replacement for messages, cmdline and the popupmenu
       noice = {
@@ -344,11 +326,11 @@
           bashls.enable = true;
           gopls.enable = true;
           dartls.enable = true;
-					efm.extraOptions = {
-						init_options = {
-							documentFormatting = true;
-						};
-					};
+          efm.extraOptions = {
+            init_options = {
+              documentFormatting = true;
+            };
+          };
           pylsp = {
             enable = true;
             settings = {
@@ -390,7 +372,7 @@
         };
       };
 
-			# Language support for C/C++ using Clang
+      # Language support for C/C++ using Clang
       clangd-extensions = {
         enable = true;
         ast = {
@@ -421,47 +403,47 @@
         };
       };
 
-			# VSCode-like pictograms for neovim lsp completion items
+      # VSCode-like pictograms for neovim lsp completion items
       lspkind = {
         enable = true;
         cmp.enable = true;
-				symbolMap = {
-					Text = "󰉿";
-					Method = "󰆧";
-					Function = "󰊕";
-					Constructor = "";
-					Field = "󰜢";
-					Variable = "󰀫";
-					Class = "󰠱";
-					Interface = "";
-					Module = "";
-					Property = "󰜢";
-					Unit = "󰑭";
-					Value = "󰎠";
-					Enum = "";
-					Keyword = "󰌋";
-					Snippet = "";
-					Color = "󰏘";
-					File = "󰈙";
-					Reference = "󰈇";
-					Folder = "󰉋";
-					EnumMember = "";
-					Constant = "󰏿";
-					Struct = "󰙅";
-					Event = "";
-					Operator = "󰆕";
-					TypeParameter = "";
-				};
+        symbolMap = {
+          Text = "󰉿";
+          Method = "󰆧";
+          Function = "󰊕";
+          Constructor = "";
+          Field = "󰜢";
+          Variable = "󰀫";
+          Class = "󰠱";
+          Interface = "";
+          Module = "";
+          Property = "󰜢";
+          Unit = "󰑭";
+          Value = "󰎠";
+          Enum = "";
+          Keyword = "󰌋";
+          Snippet = "";
+          Color = "󰏘";
+          File = "󰈙";
+          Reference = "󰈇";
+          Folder = "󰉋";
+          EnumMember = "";
+          Constant = "󰏿";
+          Struct = "󰙅";
+          Event = "";
+          Operator = "󰆕";
+          TypeParameter = "";
+        };
       };
 
-			# Incremental LSP renaming based on Neovim's command-preview feature
+      # Incremental LSP renaming based on Neovim's command-preview feature
       inc-rename.enable = true;
 
       # Treesitter
       treesitter = {
         enable = true;
         indent = true;
-				nixvimInjections = true;
+        nixvimInjections = true;
 
         incrementalSelection = {
           enable = true;
@@ -472,52 +454,19 @@
             nodeDecremental = "grm";
           };
         };
-				# TODO: Investigate -> https://github.com/nix-community/nixvim/issues/39
-				nixGrammars = false;
-				ensureInstalled = [];
+        # TODO: Investigate -> https://github.com/nix-community/nixvim/issues/39
+        nixGrammars = false;
+        ensureInstalled = [];
 
-        grammarPackages = with config.plugins.treesitter.package.passthru.builtGrammars; [
-          arduino
-          c
-          cpp
-          tlaplus # Low level programming
-          rust
-          lalrpop # Rust
-          bash
-          regex # Scripting
-          dart
-          devicetree
-          dockerfile
-          gitattributes
-          gitcommit
-          gitignore
-          git_rebase
-          diff # Git related
-          # File type specific
-          ini
-          json
-          toml
-          yaml
-
-          latex
-          lua
-          markdown
-          markdown_inline
-          rst # Markup Langs
-          make
-          meson
-          ninja # Building SW
-          nix
-          python
-          slint
-          sql
-
-          vim
-          vimdoc
-          html
-          javascript
-          css
-        ];
+        grammarPackages = with config.plugins.treesitter.package.passthru.builtGrammars;
+          [c cpp dart lua nix python sql]
+          ++ [vim vimdoc]
+          ++ [gitattributes gitcommit gitignore git_rebase]
+          ++ [bash regex dockerfile diff latex]
+          ++ [make meson ninja]
+          ++ [markdown markdown_inline rst]
+          ++ [ini json toml yaml]
+          ++ [html javascript css];
       };
 
       treesitter-refactor = {
@@ -530,7 +479,7 @@
         navigation.enable = true;
       };
 
-			# Disabled it as I found it pretty annoying
+      # Disabled it as I found it pretty annoying
       treesitter-context.enable = true;
 
       # Diagnostics, references, telescope results, quickfix and location list
@@ -564,9 +513,7 @@
         cursorword = {
           enable = true;
           minLength = 3;
-          hl = {
-            underline = true;
-          };
+          hl.underline = true;
         };
       };
 
@@ -592,6 +539,33 @@
         padding = true;
         # Whether the cursor should stay at its position
         sticky = true;
+        toggler = {
+          # line = "#";
+          # block = "#";
+        };
+      };
+
+      conform-nvim = {
+        enable = true;
+        notifyOnError = false;
+        formatOnSave = {
+          timeoutMs = 500;
+          lspFallback = true;
+        };
+
+        # Map of filetype to formatters
+        formattersByFt = {
+          lua = ["stylua"];
+          # Conform will run multiple formatters sequentially
+          python = ["isort" "black"];
+          # Use a sub-list to run only the first available formatter
+          javascript = [["prettierd" "prettier"]];
+          # Use the "*" filetype to run formatters on all filetypes.
+          "*" = ["codespell"];
+          # Use the "_" filetype to run formatters on filetypes that don't
+          # have other formatters configured.
+          "_" = ["trim_whitespace"];
+        };
       };
 
       # File Explorer Tree
@@ -600,9 +574,7 @@
         autoReloadOnWrite = true;
         hijackNetrw = true;
         actions = {
-          openFile = {
-            quitOnOpen = true;
-          };
+          openFile.quitOnOpen = true;
           changeDir = {
             enable = true;
             global = true;
@@ -695,22 +667,18 @@
           ];
         };
 
-        systemOpen = {
-          cmd = "${pkgs.xdg-utils}/bin/xdg-open";
-        };
+        systemOpen.cmd = "${pkgs.xdg-utils}/bin/xdg-open";
 
         diagnostics = {
           enable = true;
           showOnDirs = true;
           debounceDelay = 100;
-          severity = {
-            min = "warn";
-          };
+          severity.min = "warn";
         };
         selectPrompts = true;
       };
 
-			# Indent guides for Neovim
+      # Indent guides for Neovim
       indent-blankline = {
         enable = true;
         scope = {
@@ -730,6 +698,8 @@
           "<C-d>" = "cmp.mapping.scroll_docs(-4)";
           "<C-f>" = "cmp.mapping.scroll_docs(4)";
           "<C-Space>" = "cmp.mapping.complete()";
+          "<C-n>" = "cmp.mapping.select_next_item()";
+          "<C-p>" = "cmp.mapping.select_prev_item()";
           "<Tab>" = ''
             cmp.mapping(function(fallback)
               if cmp.visible() then
@@ -761,16 +731,16 @@
         };
 
         sources = [
-          {name = "luasnip";}
           {name = "nvim_lsp";}
+          {name = "luasnip";}
           {name = "path";}
           {name = "buffer";}
         ];
       };
 
-			# Git integration for buffers
+      # Git integration for buffers
       gitsigns.enable = true;
-			# Reveal the commit messages under the cursor
+      # Reveal the commit messages under the cursor
       gitmessenger.enable = true;
 
       # Magit port for neovim
@@ -787,12 +757,8 @@
     };
 
     filetype = {
-      filename = {
-        Jenkinsfile = "groovy";
-      };
-      extension = {
-        lalrpop = "lalrpop";
-      };
+      filename.Jenkinsfile = "groovy";
+      extension.lalrpop = "lalrpop";
     };
 
     extraConfigLuaPost = ''
