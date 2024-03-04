@@ -105,6 +105,7 @@
         "<leader>fh" = "<cmd> Telescope help_tags<CR>";
         "<leader>ft" = "<cmd> Telescope<CR>";
         "<leader>fs" = "<cmd> Telescope treesitter<CR>";
+        "<leader>fk" = "<cmd> Telescope keymaps<CR>";
         "<C-s>" = "<cmd>Telescope current_buffer_fuzzy_find<CR>";
 
         # Telescope w/ git
@@ -119,7 +120,10 @@
         "<leader>gG" = ":Neogit cwd=~/nix-config/<CR>";
         "<leader>g." = ":Neogit cwd=./<CR>";
 
-        # LSP
+        # Terminal
+        "<leader>s" = ":ToggleTerm<CR>";
+
+        # Lsp
         "<leader>flsb" = "<cmd> Telescope lsp_document_symbols<CR>";
         "<leader>flsw" = "<cmd> Telescope lsp_workspace_symbols<CR>";
 
@@ -129,20 +133,19 @@
         "<leader>flt" = "<cmd> Telescope lsp_type_definitions<CR>";
         "<leader>fld" = "<cmd> Telescope diagnostics<CR>";
 
-        "gr" = "<cmd>Telescope lsp_references<CR>";
-        "gI" = "<cmd>Telescope lsp_implementations<CR>";
-        "gW" = "<cmd>Telescope lsp_workspace_symbols<CR>";
-        "gF" = "<cmd>Telescope lsp_document_symbols<CR>";
-        "ge" = "<cmd>Telescope diagnostics bufnr=0<CR>";
-        "gE" = "<cmd>Telescope diagnostics<CR>";
-
-        # Terminal
-        "<leader>s" = ":ToggleTerm<CR>";
-
-        # Lsp
         "<leader>gd" = "<cmd>Trouble lsp_definitions<CR>";
         "<leader>gr" = "<cmd>Trouble lsp_references<CR>";
         "<leader>gI" = "<cmd>Trouble lsp_implementations<CR>";
+        "<leader>gW" = "<cmd>Telescope lsp_workspace_symbols<CR>";
+        "<leader>gF" = "<cmd>Telescope lsp_document_symbols<CR>";
+        "<leader>ge" = "<cmd>Telescope diagnostics bufnr=0<CR>";
+        "<leader>gE" = "<cmd>Telescope diagnostics<CR>";
+
+        "[d" = "<cmd> lua vim.diagnostic.goto_prev()<CR>";
+        "]d" = "<cmd> lua vim.diagnostic.goto_next()<CR>";
+        "<leader>e" = "<cmd>lua vim.diagnostic.open_float()<CR>"; # Show diagnostic error messages
+        "<leader>q" = "<cmd>lua vim.diagnostic.setloclist()<CR>"; # Open diagnostic quickfix list
+        "<leader>ca" = "<cmd>lua vim.lsp.buf.code_action()<CR>"; # Open diagnostic quickfix list
 
         # Buffers
         "<M-[>" = "<cmd>bprevious<CR>";
@@ -203,25 +206,22 @@
 
     # Plugins setup
     plugins = {
-      # Current favourite status line
+      # TODO: Try out
+      # mini = {
+      #   enable = true;
+      #   modules.statusline.enable = true;
+      # };
       lualine = {
         enable = true;
         iconsEnabled = true;
-        alwaysDivideMiddle = true;
         globalstatus = true;
         extensions = lib.optionals config.plugins.nvim-tree.enable ["nvim-tree"];
         ignoreFocus = lib.optionals config.plugins.nvim-tree.enable ["NvimTree"];
-        refresh = {
-          statusline = 1000;
-          tabline = 1000;
-          winbar = 1000;
-        };
       };
 
       # Ui replacement for messages, cmdline and the popupmenu
       noice = {
         enable = true;
-
         messages = {
           view = "notify";
           viewError = "notify";
