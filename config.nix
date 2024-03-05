@@ -5,7 +5,6 @@
   helpers,
   ...
 }: {
-  # TODO: Try out echasnovski/mini.nvim
   config = {
     autoGroups.nvim-highlight-yank.clear = true;
     autoCmd = [
@@ -89,7 +88,7 @@
     keymaps = let
       modeKeys = mode: lib.attrsets.mapAttrsToList (key: action: {inherit key action mode;});
       nm = modeKeys ["n"];
-      vs = modeKeys ["v"];
+      # vs = modeKeys ["v"];
     in
       helpers.keymaps.mkKeymaps {options.silent = true;} (nm {
         "<Esc>" = "<cmd>nohlsearch<CR>";
@@ -141,8 +140,8 @@
         "<leader>ge" = "<cmd>Telescope diagnostics bufnr=0<CR>";
         "<leader>gE" = "<cmd>Telescope diagnostics<CR>";
 
-        "[d" = "<cmd> lua vim.diagnostic.goto_prev()<CR>";
-        "]d" = "<cmd> lua vim.diagnostic.goto_next()<CR>";
+        "[d" = "<cmd>lua vim.diagnostic.goto_prev()<CR>";
+        "]d" = "<cmd>lua vim.diagnostic.goto_next()<CR>";
         "<leader>e" = "<cmd>lua vim.diagnostic.open_float()<CR>"; # Show diagnostic error messages
         "<leader>q" = "<cmd>lua vim.diagnostic.setloclist()<CR>"; # Open diagnostic quickfix list
         "<leader>ca" = "<cmd>lua vim.lsp.buf.code_action()<CR>"; # Open diagnostic quickfix list
@@ -162,9 +161,6 @@
         "<C-j>" = "<C-w><C-j>";
         "<C-k>" = "<C-w><C-k>";
         "<C-l>" = "<C-w><C-l>";
-      })
-      ++ (vs {
-        "<leader>zf" = "'<,'>ZkMatch<CR>";
       })
       ++ [
         {
@@ -529,7 +525,6 @@
       # Autopairs
       nvim-autopairs.enable = true;
 
-      # Highlight TODO keywords
       todo-comments.enable = true;
 
       # Comments on steroid
