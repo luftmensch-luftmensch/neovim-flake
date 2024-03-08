@@ -303,11 +303,14 @@
 
       ### Code support ###
       neodev.enable = true;
+      nvim-lightbulb = {
+        enable = true;
+        settings.autocmd.enabled = true;
+      };
       lsp = {
         enable = true;
         keymaps = {
           silent = true;
-
           lspBuf = {
             "gd" = "definition";
             "gD" = "declaration";
@@ -683,54 +686,54 @@
       };
 
       ### Completion ###
-      nvim-cmp = {
+      cmp = {
         enable = true;
 
-        snippet.expand = "luasnip";
-
-        mapping = {
-          "<CR>" = "cmp.mapping.confirm({select = true })";
-          "<C-d>" = "cmp.mapping.scroll_docs(-4)";
-          "<C-f>" = "cmp.mapping.scroll_docs(4)";
-          "<C-Space>" = "cmp.mapping.complete()";
-          "<C-n>" = "cmp.mapping.select_next_item()";
-          "<C-p>" = "cmp.mapping.select_prev_item()";
-          "<Tab>" = ''
-            cmp.mapping(function(fallback)
-              if cmp.visible() then
-                cmp.select_next_item()
-              -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-              -- they way you will only jump inside the snippet region
-              elseif luasnip.expand_or_locally_jumpable() then
-                luasnip.expand_or_jump()
-              elseif has_words_before() then
-                cmp.complete()
-              else
-                fallback()
-              end
-            end, { "i", "s" })
-          '';
-          "<S-Tab>" = ''
-            cmp.mapping(function(fallback)
-              if cmp.visible() then
-                cmp.select_prev_item()
-              elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-              else
-                fallback()
-              end
-            end, { "i", "s" })
-          '';
-          "<Down>" = "cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
-          "<Up>" = "cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
+        settings = {
+          mapping = {
+            "<CR>" = "cmp.mapping.confirm({select = true })";
+            "<C-d>" = "cmp.mapping.scroll_docs(-4)";
+            "<C-f>" = "cmp.mapping.scroll_docs(4)";
+            "<C-Space>" = "cmp.mapping.complete()";
+            "<C-n>" = "cmp.mapping.select_next_item()";
+            "<C-p>" = "cmp.mapping.select_prev_item()";
+            "<Tab>" = ''
+              cmp.mapping(function(fallback)
+                if cmp.visible() then
+                  cmp.select_next_item()
+                -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+                -- they way you will only jump inside the snippet region
+                elseif luasnip.expand_or_locally_jumpable() then
+                  luasnip.expand_or_jump()
+                elseif has_words_before() then
+                  cmp.complete()
+                else
+                  fallback()
+                end
+              end, { "i", "s" })
+            '';
+            "<S-Tab>" = ''
+              cmp.mapping(function(fallback)
+                if cmp.visible() then
+                  cmp.select_prev_item()
+                elseif luasnip.jumpable(-1) then
+                  luasnip.jump(-1)
+                else
+                  fallback()
+                end
+              end, { "i", "s" })
+            '';
+            "<Down>" = "cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
+            "<Up>" = "cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
+          };
+          sources = [
+            {name = "nvim_lsp";}
+            {name = "luasnip";}
+            {name = "path";}
+            {name = "buffer";}
+          ];
+          snippet.expand = "function(args) require('luasnip').lsp_expand(args.body) end";
         };
-
-        sources = [
-          {name = "nvim_lsp";}
-          {name = "luasnip";}
-          {name = "path";}
-          {name = "buffer";}
-        ];
       };
 
       # Git integration for buffers
@@ -741,10 +744,12 @@
       # Magit port for neovim
       neogit = {
         enable = true;
-        autoRefresh = true;
-        disableCommitConfirmation = true;
-        useMagitKeybindings = true;
-        commitPopup.kind = "split";
+        settings = {
+          auto_refresh = true;
+          disable_commit_confirmation = true;
+          use_magit_keybindings = true;
+          commit_popup.kind = "split";
+        };
       };
 
       ### Snippets ###
