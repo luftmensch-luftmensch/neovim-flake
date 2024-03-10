@@ -434,7 +434,7 @@
       };
 
       # Disabled it as I found it pretty annoying
-      treesitter-context.enable = true;
+      treesitter-context.enable = false;
 
       # Diagnostics, references, telescope results, quickfix and location list
       trouble = {
