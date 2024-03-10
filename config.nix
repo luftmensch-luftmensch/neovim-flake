@@ -21,6 +21,7 @@
         group = "nvim-highlight-yank";
       }
     ];
+
     # Global values
     globals = {
       mapleader = " ";
@@ -139,6 +140,7 @@
         "<leader>gF" = "<cmd>Telescope lsp_document_symbols<CR>";
         "<leader>ge" = "<cmd>Telescope diagnostics bufnr=0<CR>";
         "<leader>gE" = "<cmd>Telescope diagnostics<CR>";
+        "<leader>rn" = "<cmd>lua vim.lsp.buf.rename()<CR>";
 
         "[d" = "<cmd>lua vim.diagnostic.goto_prev()<CR>";
         "]d" = "<cmd>lua vim.diagnostic.goto_next()<CR>";
@@ -161,20 +163,7 @@
         "<C-j>" = "<C-w><C-j>";
         "<C-k>" = "<C-w><C-k>";
         "<C-l>" = "<C-w><C-l>";
-      })
-      ++ [
-        {
-          key = "<leader>rn";
-          mode = ["n"];
-          action = ''
-            function()
-            	return ":IncRename " .. vim.fn.expand("<cword>")
-            end
-          '';
-          lua = true;
-          options.expr = true;
-        }
-      ];
+      });
 
     # Neovim Editor Config support
     editorconfig.enable = true;
@@ -184,7 +173,7 @@
       local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-      	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
 
       -- [luasnip extra setup] --
@@ -202,11 +191,7 @@
 
     # Plugins setup
     plugins = {
-      # TODO: Try out
-      # mini = {
-      #   enable = true;
-      #   modules.statusline.enable = true;
-      # };
+      # TODO: Try out mini
       lualine = {
         enable = true;
         iconsEnabled = true;
@@ -234,7 +219,6 @@
         presets = {
           command_palette = true;
           long_message_to_split = true;
-          # inc_rename = true; # broken
           lsp_doc_border = false;
         };
 
@@ -244,14 +228,12 @@
         };
       };
 
-      # Notification manager for NeoVim
       notify = {
         enable = true;
         timeout = 1000;
-        stages = "static"; # slide, fade, fade_in_slide_out (default)
+        stages = "static";
       };
 
-      # Find, Filter, Preview, Pick. All lua, all the time
       telescope = {
         enable = true;
         defaults = {
@@ -282,7 +264,8 @@
               "<C-h>" = "which_key";
             };
           };
-          prompt_prefix = "🔍 "; # -- 
+
+          prompt_prefix = "🔍 ";
           selection_caret = " ";
           vimgrep_arguments = [
             "${pkgs.ripgrep}/bin/rg"
@@ -293,9 +276,7 @@
             "--column"
             "--smart-case"
           ];
-          pickers = {
-            find_command = "${pkgs.fd}/bin/fd";
-          };
+          pickers.find_command = "${pkgs.fd}/bin/fd";
         };
       };
 
@@ -303,20 +284,17 @@
 
       ### Code support ###
       neodev.enable = true;
-      nvim-lightbulb = {
-        enable = true;
-        settings.autocmd.enabled = true;
-      };
+
       lsp = {
         enable = true;
         keymaps = {
           silent = true;
           lspBuf = {
-            "gd" = "definition";
-            "gD" = "declaration";
-            "ca" = "code_action";
-            "ff" = "format";
-            "K" = "hover";
+            gd = "definition";
+            gD = "declaration";
+            ca = "code_action";
+            ff = "format";
+            K = "hover";
           };
         };
 
@@ -325,11 +303,7 @@
           bashls.enable = true;
           gopls.enable = true;
           dartls.enable = true;
-          efm.extraOptions = {
-            init_options = {
-              documentFormatting = true;
-            };
-          };
+          efm.extraOptions.init_options.documentFormatting = true;
           pylsp = {
             enable = true;
             settings = {
@@ -342,9 +316,7 @@
           };
           nil_ls = {
             enable = true;
-            settings = {
-              formatting.command = ["alejandra" "--quiet"];
-            };
+            settings.formatting.command = ["alejandra" "--quiet"];
           };
         };
       };
@@ -371,7 +343,6 @@
         };
       };
 
-      # Language support for C/C++ using Clang
       clangd-extensions = {
         enable = true;
         ast = {
@@ -435,27 +406,11 @@
         };
       };
 
-      # Incremental LSP renaming based on Neovim's command-preview feature
-      inc-rename.enable = true;
-
       # Treesitter
       treesitter = {
         enable = true;
         indent = true;
         nixvimInjections = true;
-
-        incrementalSelection = {
-          enable = true;
-          keymaps = {
-            initSelection = "gnn";
-            nodeIncremental = "grn";
-            scopeIncremental = "grc";
-            nodeDecremental = "grm";
-          };
-        };
-        # TODO: Investigate -> https://github.com/nix-community/nixvim/issues/39
-        nixGrammars = false;
-        ensureInstalled = [];
 
         grammarPackages = with config.plugins.treesitter.package.passthru.builtGrammars;
           [c cpp dart lua nix python sql]
@@ -502,7 +457,7 @@
         enable = true;
         direction = "horizontal";
         floatOpts = {
-          border = "curved"; # other options -> single, double, shadow
+          border = "curved";
           winblend = 3;
         };
       };
@@ -528,19 +483,13 @@
       # Autopairs
       nvim-autopairs.enable = true;
 
+      # Comments on steroid
       todo-comments.enable = true;
 
-      # Comments on steroid
       comment-nvim = {
         enable = true;
-        # Add a space b/w comment and the line
         padding = true;
-        # Whether the cursor should stay at its position
         sticky = true;
-        toggler = {
-          # line = "#";
-          # block = "#";
-        };
       };
 
       conform-nvim = {
@@ -737,7 +686,19 @@
       };
 
       # Git integration for buffers
-      gitsigns.enable = true;
+      gitsigns = {
+        enable = true;
+        trouble = config.plugins.trouble.enable;
+        currentLineBlame = false;
+        currentLineBlameOpts = {
+          virtText = true;
+          virtTextPos = "eol";
+          delay = 200;
+          ignoreWhitespace = false;
+        };
+        currentLineBlameFormatter.nonCommitted = "   <author> | <author_time:%h %d, %Y> | <summary>";
+      };
+
       # Reveal the commit messages under the cursor
       gitmessenger.enable = true;
 
@@ -756,18 +717,10 @@
       luasnip.enable = true;
     };
 
-    filetype = {
-      filename.Jenkinsfile = "groovy";
-      extension.lalrpop = "lalrpop";
-    };
-
     extraConfigLuaPost = ''
       require("luasnip.loaders.from_snipmate").lazy_load()
     '';
 
-    extraPlugins = with pkgs.vimPlugins; [
-      telescope-ui-select-nvim
-      markdown-preview-nvim
-    ];
+    extraPlugins = with pkgs.vimPlugins; [telescope-ui-select-nvim markdown-preview-nvim];
   };
 }
