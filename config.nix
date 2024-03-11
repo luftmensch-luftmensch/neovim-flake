@@ -163,6 +163,9 @@
         "<C-j>" = "<C-w><C-j>";
         "<C-k>" = "<C-w><C-k>";
         "<C-l>" = "<C-w><C-l>";
+
+        # mini-nvim
+        "<leader>M" = "<cmd>lua MiniMap.toggle()<CR>";
       });
 
     # Neovim Editor Config support
@@ -191,7 +194,6 @@
 
     # Plugins setup
     plugins = {
-      # TODO: Try out mini
       lualine = {
         enable = true;
         iconsEnabled = true;
@@ -203,10 +205,10 @@
       # Ui replacement for messages, cmdline and the popupmenu
       noice = {
         enable = true;
-        messages = {
+        messages = rec {
           view = "notify";
-          viewError = "notify";
-          viewWarn = "notify";
+          viewError = view;
+          viewWarn = view;
           viewHistory = "messages";
           viewSearch = "virtualtext";
         };
@@ -232,6 +234,20 @@
         enable = true;
         timeout = 1000;
         stages = "static";
+      };
+
+      mini = {
+        enable = true;
+        modules = {
+          # Visual enhancment (https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-ai.md)
+          ai = {};
+          # Interactive alignment (https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-align.md)
+          align = {};
+          # Enhanced surrounding (https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-surround.md)
+          surround = {};
+          # Minimap
+          map = {};
+        };
       };
 
       telescope = {
