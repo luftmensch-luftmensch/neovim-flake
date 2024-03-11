@@ -319,7 +319,10 @@
           bashls.enable = true;
           gopls.enable = true;
           dartls.enable = true;
-          efm.extraOptions.init_options.documentFormatting = true;
+          efm = {
+            enable = true;
+            extraOptions.init_options.documentFormatting = true;
+          };
           pylsp = {
             enable = true;
             settings = {
@@ -341,8 +344,14 @@
         enable = true;
 
         setup = {
-          sh.formatter = "shfmt";
-          bash.formatter = "shfmt";
+          sh = {
+            formatter = "shfmt";
+            linter = "shellcheck";
+          };
+          bash = {
+            formatter = "shfmt";
+            linter = "shellcheck";
+          };
           c.linter = "cppcheck";
           go = {
             formatter = "gofmt";
