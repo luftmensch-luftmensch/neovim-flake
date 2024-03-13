@@ -37,6 +37,7 @@
       number = true;
       relativenumber = true;
       showmode = false;
+      title = true;
       breakindent = true;
 
       # tabstop = 2;
