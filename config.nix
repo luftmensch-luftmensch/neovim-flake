@@ -477,8 +477,6 @@
         };
       };
 
-      fidget.enable = true;
-
       toggleterm = {
         enable = true;
         direction = "horizontal";
