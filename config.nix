@@ -248,6 +248,8 @@
           surround = {};
           # Minimap
           map = {};
+          # Enhanced commenting - Alternative to https://github.com/numToStr/Comment.nvim
+          comment = {};
         };
       };
 
@@ -509,12 +511,6 @@
 
       # Comments on steroid
       todo-comments.enable = true;
-
-      comment-nvim = {
-        enable = true;
-        padding = true;
-        sticky = true;
-      };
 
       conform-nvim = {
         enable = true;
