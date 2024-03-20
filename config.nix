@@ -249,7 +249,10 @@
         };
       };
 
-      silicon.enable = true;
+      silicon = {
+        enable = true;
+        flavour = "Monokai Extended Origin";
+      };
 
       telescope = {
         enable = true;
@@ -343,10 +346,6 @@
 
       efmls-configs = {
         enable = true;
-        # toolPackages = {
-        #   inherit (pkgs) cppcheck cpplint;
-        # };
-
         setup = rec {
           sh = {
             formatter = "shfmt";
