@@ -41,6 +41,12 @@
       flake = false;
     };
 
+    # Code images
+    "external-plugin:nvim-silicon" = {
+      url = "github:michaelrommel/nvim-silicon";
+      flake = false;
+    };
+
     ### ------------------------- Colorschemes ------------------------- ###
     "external-plugin:vim-moonfly-colors" = {
       url = "github:bluz71/vim-moonfly-colors";

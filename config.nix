@@ -252,6 +252,8 @@
         };
       };
 
+      silicon.enable = true;
+
       telescope = {
         enable = true;
         defaults = {
@@ -344,17 +346,21 @@
 
       efmls-configs = {
         enable = true;
+        # toolPackages = {
+        #   inherit (pkgs) cppcheck cpplint;
+        # };
 
-        setup = {
+        setup = rec {
           sh = {
             formatter = "shfmt";
             linter = "shellcheck";
           };
-          bash = {
-            formatter = "shfmt";
-            linter = "shellcheck";
+          bash = sh;
+          c = {
+            formatter = "clang_format";
+            linter = "cppcheck";
           };
-          c.linter = "cppcheck";
+          "c++" = c;
           go = {
             formatter = "gofmt";
             linter = "golint";
@@ -466,15 +472,16 @@
       # Diagnostics, references, telescope results, quickfix and location list
       trouble = {
         enable = true;
-        icons = true;
-        position = "bottom";
-        # icons / text used for a diagnostic
-        signs = {
-          error = "";
-          warning = "";
-          hint = "";
-          information = "";
-          other = "";
+        settings = {
+          icons = true;
+          position = "bottom";
+          signs = {
+            error = "";
+            warning = "";
+            hint = "";
+            information = "";
+            other = "";
+          };
         };
       };
 
