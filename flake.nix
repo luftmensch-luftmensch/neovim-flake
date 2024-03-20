@@ -18,11 +18,6 @@
     };
 
     #### ------------------------- PLUGINS ------------------------- ####
-    "plugin:plenary-nvim" = {
-      url = "github:nvim-lua/plenary.nvim";
-      flake = false;
-    };
-
     # Adds file type icons to neovim
     "plugin:nvim-web-devicons" = {
       url = "github:nvim-tree/nvim-web-devicons";

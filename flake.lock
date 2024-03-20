@@ -441,22 +441,6 @@
         "type": "github"
       }
     },
-    "plugin:plenary-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1709720625,
-        "narHash": "sha256-/ltkFqa5MTAI9z8oLv7+5SJ/Qq9l1kkuKGD955NbLi8=",
-        "owner": "nvim-lua",
-        "repo": "plenary.nvim",
-        "rev": "f7adfc4b3f4f91aab6caebf42b3682945fbc35be",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nvim-lua",
-        "repo": "plenary.nvim",
-        "type": "github"
-      }
-    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat_3",
@@ -494,8 +478,7 @@
         "nixvim": "nixvim",
         "plugin:neodev": "plugin:neodev",
         "plugin:nui-nvim": "plugin:nui-nvim",
-        "plugin:nvim-web-devicons": "plugin:nvim-web-devicons",
-        "plugin:plenary-nvim": "plugin:plenary-nvim"
+        "plugin:nvim-web-devicons": "plugin:nvim-web-devicons"
       }
     },
     "systems": {
