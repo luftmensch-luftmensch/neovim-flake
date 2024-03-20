@@ -181,9 +181,6 @@
 
       -- [luasnip extra setup] --
       local luasnip = require("luasnip")
-      require'neodev'.setup({})
-      -- [Web Dev Icons setup] --
-      require'nvim-web-devicons'.setup({})
 
       -- [Lsp logging setup] --
       -- Disable logging

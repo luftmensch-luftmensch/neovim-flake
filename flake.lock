@@ -393,54 +393,6 @@
         "type": "github"
       }
     },
-    "plugin:neodev": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1709144748,
-        "narHash": "sha256-VyJTGbWBzGmuEkotKwTxAVpznfrrQ26aaBc31n6ZjlE=",
-        "owner": "folke",
-        "repo": "neodev.nvim",
-        "rev": "84e0290f5600e8b89c0dfcafc864f45496a53400",
-        "type": "github"
-      },
-      "original": {
-        "owner": "folke",
-        "repo": "neodev.nvim",
-        "type": "github"
-      }
-    },
-    "plugin:nui-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1710740032,
-        "narHash": "sha256-Zr5CNx6BIM6naCXW8YBc/Oj1qOtWV/3tuMoaaZjoSZA=",
-        "owner": "MunifTanjim",
-        "repo": "nui.nvim",
-        "rev": "cbd2668414331c10039278f558630ed19b93e69b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "MunifTanjim",
-        "repo": "nui.nvim",
-        "type": "github"
-      }
-    },
-    "plugin:nvim-web-devicons": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1710551591,
-        "narHash": "sha256-3AKsnCvNiQloFfgFKsAHTga0rEEfL8TGmN0BEeO0EQ0=",
-        "owner": "nvim-tree",
-        "repo": "nvim-web-devicons",
-        "rev": "cb0c967c9723a76ccb1be0cc3a9a10e577d2f6ec",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nvim-tree",
-        "repo": "nvim-web-devicons",
-        "type": "github"
-      }
-    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat_3",
@@ -475,10 +427,7 @@
         "external-plugin:vim-moonfly-colors": "external-plugin:vim-moonfly-colors",
         "neovim-flake": "neovim-flake",
         "nixpkgs": "nixpkgs",
-        "nixvim": "nixvim",
-        "plugin:neodev": "plugin:neodev",
-        "plugin:nui-nvim": "plugin:nui-nvim",
-        "plugin:nvim-web-devicons": "plugin:nvim-web-devicons"
+        "nixvim": "nixvim"
       }
     },
     "systems": {

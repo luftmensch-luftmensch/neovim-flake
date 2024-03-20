@@ -17,24 +17,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    #### ------------------------- PLUGINS ------------------------- ####
-    # Adds file type icons to neovim
-    "plugin:nvim-web-devicons" = {
-      url = "github:nvim-tree/nvim-web-devicons";
-      flake = false;
-    };
-
-    # UI Component Library for Neovim
-    "plugin:nui-nvim" = {
-      url = "github:MunifTanjim/nui.nvim";
-      flake = false;
-    };
-
-    # Signature helper
-    "plugin:neodev" = {
-      url = "github:folke/neodev.nvim";
-      flake = false;
-    };
+    #### ------------------------- External plugins ------------------------- ####
 
     # Code images
     "external-plugin:nvim-silicon" = {
@@ -42,7 +25,7 @@
       flake = false;
     };
 
-    ### ------------------------- Colorschemes ------------------------- ###
+    # Current favourite colorscheme
     "external-plugin:vim-moonfly-colors" = {
       url = "github:bluz71/vim-moonfly-colors";
       flake = false;
