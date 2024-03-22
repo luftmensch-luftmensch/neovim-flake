@@ -300,7 +300,18 @@
         };
       };
 
-      which-key.enable = true;
+      which-key = {
+        enable = true;
+        window = {
+          border = "rounded";
+          margin = {
+            top = 1;
+            bottom = 1;
+            left = 1;
+            right = 1;
+          };
+        };
+      };
 
       ### Code support ###
       neodev.enable = true;
@@ -775,5 +786,12 @@
     '';
 
     extraPlugins = with pkgs.vimPlugins; [telescope-ui-select-nvim markdown-preview-nvim];
+    extraPackages = with lib;
+    with config.plugins;
+      (optionals lsp.enable (with pkgs; [fswatch cppcheck nodePackages.bash-language-server]))
+      ++ (optionals conform-nvim.enable (with pkgs; [codespell isort prettierd]));
+    # extraPackages = with pkgs;
+    #   []
+    #   ++ lib.optionals config.plugins.conform-nvim.enable (with pkgs; [codespell isort prettierd]);
   };
 }
