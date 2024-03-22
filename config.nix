@@ -179,12 +179,9 @@
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
 
-      -- [luasnip extra setup] --
-      local luasnip = require("luasnip")
-
       -- [Lsp logging setup] --
       -- Disable logging
-      vim.lsp.set_log_level("off") -- change to debug only for testing
+      -- vim.lsp.set_log_level("off") -- change to debug only for testing
     '';
 
     colorschemes.moonfly.enable = true;
@@ -315,6 +312,7 @@
 
       ### Code support ###
       neodev.enable = true;
+      cloak.enable = true;
 
       lsp = {
         enable = true;
