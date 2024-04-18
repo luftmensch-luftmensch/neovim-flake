@@ -30,7 +30,7 @@
     };
 
     # Custom option
-    options = {
+    opts = {
       # True color support
       termguicolors = true;
 
@@ -253,7 +253,7 @@
 
       telescope = {
         enable = true;
-        defaults = {
+        settings.defaults = {
           layout_config = {
             prompt_position = "bottom";
             horizontal = {
@@ -492,10 +492,12 @@
 
       toggleterm = {
         enable = true;
-        direction = "horizontal";
-        floatOpts = {
-          border = "curved";
-          winblend = 3;
+        settings = {
+          direction = "horizontal";
+          float_opts = {
+            border = "curved";
+            winblend = 3;
+          };
         };
       };
 
@@ -659,9 +661,11 @@
       # Indent guides for Neovim
       indent-blankline = {
         enable = true;
-        scope = {
-          enabled = true;
-          showStart = true;
+        settings = {
+          scope = {
+            enabled = true;
+            show_start = true;
+          };
         };
       };
 
@@ -719,15 +723,17 @@
       # Git integration for buffers
       gitsigns = {
         enable = true;
-        trouble = config.plugins.trouble.enable;
-        currentLineBlame = false;
-        currentLineBlameOpts = {
-          virtText = true;
-          virtTextPos = "eol";
-          delay = 200;
-          ignoreWhitespace = false;
+        settings = {
+          trouble = config.plugins.trouble.enable;
+          current_line_blame = false;
+          current_line_blame_opts = {
+            virt_text = true;
+            virt_text_pos = "eol";
+            delay = 200;
+            ignoreWhitespace = false;
+          };
+          current_line_blame_formatter_nc = "   <author> | <author_time:%h %d, %Y> | <summary>";
         };
-        currentLineBlameFormatter.nonCommitted = "   <author> | <author_time:%h %d, %Y> | <summary>";
       };
 
       # Reveal the commit messages under the cursor
