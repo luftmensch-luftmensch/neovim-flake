@@ -536,6 +536,7 @@
         # Map of filetype to formatters
         formattersByFt = {
           lua = ["stylua"];
+          tex = ["latexindent"];
           # Conform will run multiple formatters sequentially
           python = ["isort" "black"];
           # Use a sub-list to run only the first available formatter
@@ -794,8 +795,5 @@
     with config.plugins;
       (optionals lsp.enable (with pkgs; [fswatch cppcheck nodePackages.bash-language-server]))
       ++ (optionals conform-nvim.enable (with pkgs; [codespell isort prettierd]));
-    # extraPackages = with pkgs;
-    #   []
-    #   ++ lib.optionals config.plugins.conform-nvim.enable (with pkgs; [codespell isort prettierd]);
   };
 }
