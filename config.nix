@@ -90,7 +90,7 @@
     keymaps = let
       modeKeys = mode: lib.attrsets.mapAttrsToList (key: action: {inherit key action mode;});
       nm = modeKeys ["n"];
-      # vs = modeKeys ["v"];
+      vs = modeKeys ["v"];
     in
       helpers.keymaps.mkKeymaps {options.silent = true;} (nm {
         "<Esc>" = "<cmd>nohlsearch<CR>";
@@ -167,6 +167,11 @@
 
         # mini-nvim
         "<leader>M" = "<cmd>lua MiniMap.toggle()<CR>";
+      })
+      ++ (vs {
+        # Retain selection in visual mode when indenting blocks
+        "<" = "<gv";
+        ">" = ">gv";
       });
 
     editorconfig.enable = true;
