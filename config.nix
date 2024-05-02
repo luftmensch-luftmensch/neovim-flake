@@ -317,7 +317,20 @@
 
       ### Code support ###
       neodev.enable = true;
-      cloak.enable = true;
+      cloak = {
+        enable = true;
+        settings = {
+          cloak_character = "*";
+          highlight_group = "Comment";
+          cloak_telescope = true;
+          patterns = [
+            {
+              cloak_pattern = "=.+";
+              file_pattern = [".env*" ".dev.vars"];
+            }
+          ];
+        };
+      };
 
       lsp = {
         enable = true;
