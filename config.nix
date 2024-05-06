@@ -813,6 +813,7 @@
     extraPackages = with lib;
     with config.plugins;
       (optionals lsp.enable (with pkgs; [fswatch cppcheck nodePackages.bash-language-server]))
-      ++ (optionals conform-nvim.enable (with pkgs; [codespell isort prettierd]));
+      ++ (optionals conform-nvim.enable (with pkgs; [codespell isort prettierd]))
+      ++ (optionals luasnip.enable (with pkgs.luajitPackages; [jsregexp]));
   };
 }
