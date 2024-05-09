@@ -22,6 +22,9 @@
       }
     ];
 
+    viAlias = true;
+    vimAlias = true;
+
     # Global values
     globals = {
       mapleader = " ";
