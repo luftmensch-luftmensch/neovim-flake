@@ -207,6 +207,17 @@
       # Ui replacement for messages, cmdline and the popupmenu
       noice = {
         enable = true;
+        # Dirty hack to fix latest changes from neovim (https://github.com/folke/noice.nvim/pull/785)
+        # TODO: Disable it when a newer version lands on nixpkgs
+        package = pkgs.vimPlugins.noice-nvim.overrideAttrs (_oldAttrs: {
+          version = "2024-05-10";
+          src = pkgs.fetchFromGitHub {
+            owner = "folke";
+            repo = "noice.nvim";
+            rev = "09102ca2e9a3e9302119fdaf7a059a034e4a626d";
+            sha256 = "1gzdwgizbl60fqiiiwrzfqbbds182qqlr3gyyzvgxbxijs3ajsk1";
+          };
+        });
         messages = rec {
           view = "notify";
           viewError = view;
