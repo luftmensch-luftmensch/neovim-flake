@@ -30,6 +30,12 @@
       url = "github:bluz71/vim-moonfly-colors";
       flake = false;
     };
+
+    # Enhanced markdown reading
+    "external-plugin:markdown-nvim" = {
+      url = "github:MeanderingProgrammer/markdown.nvim";
+      flake = false;
+    };
   };
 
   outputs = {

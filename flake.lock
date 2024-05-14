@@ -22,6 +22,22 @@
         "type": "github"
       }
     },
+    "external-plugin:markdown-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1714790389,
+        "narHash": "sha256-CM4ouxuZdbGXxcPWyLK5hgZaFtt4XqcI12yBeSejw/c=",
+        "owner": "MeanderingProgrammer",
+        "repo": "markdown.nvim",
+        "rev": "556dcc2c36f240653adef87bc8973025a1ad73e3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MeanderingProgrammer",
+        "repo": "markdown.nvim",
+        "type": "github"
+      }
+    },
     "external-plugin:nvim-silicon": {
       "flake": false,
       "locked": {
@@ -440,6 +456,7 @@
     },
     "root": {
       "inputs": {
+        "external-plugin:markdown-nvim": "external-plugin:markdown-nvim",
         "external-plugin:nvim-silicon": "external-plugin:nvim-silicon",
         "external-plugin:vim-moonfly-colors": "external-plugin:vim-moonfly-colors",
         "neovim-flake": "neovim-flake",

@@ -264,6 +264,7 @@
           comment = {};
         };
       };
+      markdown-nvim.enable = true;
 
       silicon = {
         enable = true;
