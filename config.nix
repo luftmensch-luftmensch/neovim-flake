@@ -379,9 +379,11 @@
               };
             };
           };
-          nil_ls = {
+          nixd = {
             enable = true;
-            settings.formatting.command = ["alejandra" "--quiet"];
+            settings = {
+              formatting.command = [(lib.getExe pkgs.nixfmt-rfc-style)];
+            };
           };
         };
       };
@@ -829,6 +831,7 @@
     with config.plugins;
       (optionals lsp.enable (with pkgs; [fswatch cppcheck nodePackages.bash-language-server]))
       ++ (optionals conform-nvim.enable (with pkgs; [codespell isort prettierd]))
-      ++ (optionals luasnip.enable (with pkgs.luajitPackages; [jsregexp]));
+      ++ (optionals luasnip.enable (with pkgs.luajitPackages; [jsregexp]))
+      ++ [pkgs.nixfmt-rfc-style];
   };
 }
