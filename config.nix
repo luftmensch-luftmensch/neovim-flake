@@ -4,8 +4,7 @@
   config,
   helpers,
   ...
-}:
-{
+}: {
   config = {
     autoGroups.nvim-highlight-yank.clear = true;
     autoCmd = [
@@ -95,13 +94,12 @@
     };
 
     ### MAPPINGS ###
-    keymaps =
-      let
-        modeKeys = mode: lib.attrsets.mapAttrsToList (key: action: { inherit key action mode; });
-        nm = modeKeys [ "n" ];
-        vs = modeKeys [ "v" ];
-      in
-      helpers.keymaps.mkKeymaps { options.silent = true; } (nm {
+    keymaps = let
+      modeKeys = mode: lib.attrsets.mapAttrsToList (key: action: {inherit key action mode;});
+      nm = modeKeys ["n"];
+      vs = modeKeys ["v"];
+    in
+      helpers.keymaps.mkKeymaps {options.silent = true;} (nm {
         "<Esc>" = "<cmd>nohlsearch<CR>";
         # File Tree
         "<leader>d" = "<cmd>NvimTreeToggle<CR>";
@@ -206,24 +204,13 @@
         enable = true;
         iconsEnabled = true;
         globalstatus = true;
-        extensions = lib.optionals config.plugins.nvim-tree.enable [ "nvim-tree" ];
-        ignoreFocus = lib.optionals config.plugins.nvim-tree.enable [ "NvimTree" ];
+        extensions = lib.optionals config.plugins.nvim-tree.enable ["nvim-tree"];
+        ignoreFocus = lib.optionals config.plugins.nvim-tree.enable ["NvimTree"];
       };
 
       # Ui replacement for messages, cmdline and the popupmenu
       noice = {
         enable = true;
-        # Dirty hack to fix latest changes from neovim (https://github.com/folke/noice.nvim/pull/785)
-        # TODO: Disable it when a newer version lands on nixpkgs
-        package = pkgs.vimPlugins.noice-nvim.overrideAttrs (_oldAttrs: {
-          version = "2024-05-10";
-          src = pkgs.fetchFromGitHub {
-            owner = "folke";
-            repo = "noice.nvim";
-            rev = "09102ca2e9a3e9302119fdaf7a059a034e4a626d";
-            sha256 = "1gzdwgizbl60fqiiiwrzfqbbds182qqlr3gyyzvgxbxijs3ajsk1";
-          };
-        });
         messages = rec {
           view = "notify";
           viewError = view;
@@ -259,15 +246,15 @@
         enable = true;
         modules = {
           # Visual enhancment (https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-ai.md)
-          ai = { };
+          ai = {};
           # Interactive alignment (https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-align.md)
-          align = { };
+          align = {};
           # Enhanced surrounding (https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-surround.md)
-          surround = { };
+          surround = {};
           # Minimap
-          map = { };
+          map = {};
           # Enhanced commenting - Alternative to https://github.com/numToStr/Comment.nvim
-          comment = { };
+          comment = {};
         };
       };
       markdown-nvim.enable = true;
@@ -391,7 +378,7 @@
           nil_ls = {
             enable = true;
             settings = {
-              formatting.command = [ (lib.getExe pkgs.nixfmt-rfc-style) ];
+              formatting.command = [(lib.getExe pkgs.nixfmt-rfc-style)];
             };
           };
         };
@@ -494,8 +481,7 @@
         indent = true;
         nixvimInjections = true;
 
-        grammarPackages =
-          with config.plugins.treesitter.package.passthru.builtGrammars;
+        grammarPackages = with config.plugins.treesitter.package.passthru.builtGrammars;
           [
             c
             cpp
@@ -619,9 +605,9 @@
 
         # Map of filetype to formatters
         formattersByFt = {
-          lua = [ "stylua" ];
-          tex = [ "latexindent" ];
-          c = [ "clang-format" ]; # "astyle"
+          lua = ["stylua"];
+          tex = ["latexindent"];
+          c = ["clang-format"]; # "astyle"
           # Conform will run multiple formatters sequentially
           python = [
             "isort"
@@ -635,10 +621,10 @@
             ]
           ];
           # Use the "*" filetype to run formatters on all filetypes.
-          "*" = [ "codespell" ];
+          "*" = ["codespell"];
           # Use the "_" filetype to run formatters on filetypes that don't
           # have other formatters configured.
-          "_" = [ "trim_whitespace" ];
+          "_" = ["trim_whitespace"];
         };
       };
 
@@ -805,10 +791,10 @@
             "<Up>" = "cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
           };
           sources = [
-            { name = "nvim_lsp"; }
-            { name = "luasnip"; }
-            { name = "path"; }
-            { name = "buffer"; }
+            {name = "nvim_lsp";}
+            {name = "luasnip";}
+            {name = "path";}
+            {name = "buffer";}
           ];
           snippet.expand = "function(args) require('luasnip').lsp_expand(args.body) end";
         };
@@ -887,26 +873,23 @@
       telescope-ui-select-nvim
       markdown-preview-nvim
     ];
-    extraPackages =
-      with lib;
-      with config.plugins;
+    extraPackages = with lib;
+    with config.plugins;
       (optionals lsp.enable (
-        with pkgs;
-        [
+        with pkgs; [
           fswatch
           cppcheck
           nodePackages.bash-language-server
         ]
       ))
       ++ (optionals conform-nvim.enable (
-        with pkgs;
-        [
+        with pkgs; [
           codespell
           isort
           prettierd
         ]
       ))
-      ++ (optionals luasnip.enable (with pkgs.luajitPackages; [ jsregexp ]))
-      ++ [ pkgs.nixfmt-rfc-style ];
+      ++ (optionals luasnip.enable (with pkgs.luajitPackages; [jsregexp]))
+      ++ [pkgs.nixfmt-rfc-style];
   };
 }

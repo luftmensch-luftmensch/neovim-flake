@@ -5,12 +5,6 @@
     # Nixpkgs / NixOS version to use (Living on the edge)
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    # Neovim bleeding edge version provided by nix-community
-    neovim-flake = {
-      url = "github:nix-community/neovim-nightly-overlay"; # "github:neovim/neovim?dir=contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Useful goodies to configure Neovim with nix
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -42,7 +36,6 @@
     self,
     nixpkgs,
     nixvim,
-    neovim-flake,
     ...
   } @ inputs:
     with builtins; let
@@ -55,9 +48,6 @@
           ./plugins
           ./modules
         ];
-
-        # Bleeding edge neovim version
-        package = neovim-flake.packages."${system}".neovim;
       };
 
       # Parse the inputs taking only the plugins needed to extend neovim capabilities
@@ -94,15 +84,6 @@
                 ) (inputsMatching "external-plugin")
               );
           })
-          (final: prev: {
-            vimPlugins =
-              prev.vimPlugins
-              // {
-                nvim-treesitter = prev.vimPlugins.nvim-treesitter.overrideAttrs (
-                  prev.callPackage ./nvim-treesitter/override.nix {} final.vimPlugins prev.vimPlugins
-                );
-              };
-          })
         ];
       };
 
@@ -115,13 +96,6 @@
       packages."${system}" = {
         inherit nvim;
         inherit (pkgs.vimPlugins) nvim-treesitter;
-
-        # Treesitter auto update
-        upstream = module.package;
-        update-nvim-treesitter = pkgs.callPackage ./nvim-treesitter {
-          inherit (self.packages."${system}") nvim-treesitter upstream;
-        };
-
         default = nvim;
       };
     };
