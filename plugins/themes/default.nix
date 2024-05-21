@@ -1,5 +1,1 @@
-{...}: {
-  imports = [
-    ./moonfly.nix
-  ];
-}
+_: { imports = [ ./moonfly.nix ]; }

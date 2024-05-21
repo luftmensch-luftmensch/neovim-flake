@@ -1,5 +1,1 @@
-{...}: {
-  imports = [
-    ./commands.nix
-  ];
-}
+_: { imports = [ ./commands.nix ]; }

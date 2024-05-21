@@ -1,4 +1,4 @@
-{...}: {
+_: {
   imports = [
     ./markdown-nvim.nix
     ./neodev.nix

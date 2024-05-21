@@ -4,16 +4,16 @@
   pkgs,
   ...
 }:
-with lib; {
-  options.colorschemes.moonfly = {
-    enable = mkEnableOption "A dark charcoal theme for modern Neovim & classic Vim";
-  };
+with lib;
+{
+  options.colorschemes.moonfly.enable = mkEnableOption "A dark charcoal theme for modern Neovim & classic Vim";
 
-  config = let
-    cfg = config.colorschemes.moonfly;
-  in
+  config =
+    let
+      cfg = config.colorschemes.moonfly;
+    in
     mkIf cfg.enable {
-      extraPlugins = with pkgs.vimPlugins; [vim-moonfly-colors];
+      extraPlugins = with pkgs.vimPlugins; [ vim-moonfly-colors ];
 
       extraConfigLua = ''
         -- Enable transparency
