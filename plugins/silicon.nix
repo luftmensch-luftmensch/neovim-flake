@@ -5,7 +5,8 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.plugins.silicon;
   flavours = [
     "1337"
@@ -33,14 +34,15 @@ with lib; let
     "gruvbox-light"
     "zenburn"
   ];
-in {
+in
+{
   options.plugins.silicon = {
     enable = mkEnableOption "Enable nvim-silicon";
     flavour = helpers.defaultNullOpts.mkEnumFirstDefault flavours "Theme flavour";
   };
 
   config = mkIf cfg.enable {
-    extraPlugins = with pkgs.vimPlugins; [nvim-silicon];
+    extraPlugins = with pkgs.vimPlugins; [ nvim-silicon ];
     extraConfigLua = ''
       require('silicon').setup {
         font                = "VictorMono NF=34",
@@ -56,7 +58,7 @@ in {
         output = function()
           return "~/" .. os.date("!%d-%m-%Y %H-%M-%S") .. ".png"
         end,
-        command = "${pkgs.silicon}/bin/silicon",
+        command = "${lib.getExe pkgs.silicon}",
         window_title = function()
           local fn = vim.api.nvim_buf_get_name(0)
           if vim.fn.empty(fn) == 1 then return end

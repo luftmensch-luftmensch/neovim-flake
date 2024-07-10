@@ -298,7 +298,7 @@
           prompt_prefix = "🔍 ";
           selection_caret = " ";
           vimgrep_arguments = [
-            "${pkgs.ripgrep}/bin/rg"
+            "${lib.getExe pkgs.ripgrep}/"
             "--color=never"
             "--no-heading"
             "--with-filename"
@@ -306,7 +306,7 @@
             "--column"
             "--smart-case"
           ];
-          pickers.find_command = "${pkgs.fd}/bin/fd";
+          pickers.find_command = "${lib.getExe pkgs.fd}";
         };
       };
 
