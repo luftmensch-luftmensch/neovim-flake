@@ -478,7 +478,7 @@
       # Treesitter
       treesitter = {
         enable = true;
-        indent = true;
+        settings.indent.enable = true;
         nixvimInjections = true;
 
         grammarPackages =
