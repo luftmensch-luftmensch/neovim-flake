@@ -478,7 +478,10 @@
       # Treesitter
       treesitter = {
         enable = true;
-        settings.indent.enable = true;
+        settings = {
+          indent.enable = true;
+          highlight.enable = true;
+        };
         nixvimInjections = true;
 
         grammarPackages =
@@ -792,10 +795,13 @@
             "<Up>" = "cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
           };
           sources = [
-            { name = "nvim_lsp"; }
             { name = "luasnip"; }
+            { name = "nvim_lsp"; }
             { name = "path"; }
             { name = "buffer"; }
+            { name = "calc"; }
+            { name = "git"; }
+            { name = "omni"; }
           ];
           snippet.expand = "function(args) require('luasnip').lsp_expand(args.body) end";
         };
