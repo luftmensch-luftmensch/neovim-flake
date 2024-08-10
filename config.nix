@@ -257,7 +257,8 @@
           comment = { };
         };
       };
-      markdown-nvim.enable = true;
+
+      markview-nvim.enable = true;
 
       silicon = {
         enable = true;

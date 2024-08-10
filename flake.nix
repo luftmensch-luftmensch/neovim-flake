@@ -26,19 +26,26 @@
     };
 
     # Enhanced markdown reading
-    "external-plugin:markdown-nvim" = {
-      url = "github:MeanderingProgrammer/markdown.nvim";
+    "external-plugin:markview-nvim" = {
+      url = "github:OXY2DEV/markview.nvim";
       flake = false;
     };
+
+    # "external-plugin:markdown-nvim" = {
+    #   url = "github:MeanderingProgrammer/markdown.nvim";
+    #   flake = false;
+    # };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixvim,
-    ...
-  } @ inputs:
-    with builtins; let
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixvim,
+      ...
+    }@inputs:
+    with builtins;
+    let
       system = "x86_64-linux";
 
       # Modules used to configure neovim
@@ -51,15 +58,12 @@
       };
 
       # Parse the inputs taking only the plugins needed to extend neovim capabilities
-      inputsMatching = prefix:
-        pkgs.lib.mapAttrs'
-        (prefixedName: value: {
+      inputsMatching =
+        prefix:
+        pkgs.lib.mapAttrs' (prefixedName: value: {
           name = substring (stringLength "${prefix}:") (stringLength prefixedName) prefixedName;
           inherit value;
-        })
-        (pkgs.lib.filterAttrs
-          (name: _: (match "${prefix}:.*" name) != null)
-          inputs);
+        }) (pkgs.lib.filterAttrs (name: _: (match "${prefix}:.*" name) != null) inputs);
 
       pkgs = import nixpkgs {
         inherit system;
@@ -69,30 +73,27 @@
               prev.vimPlugins
               // (pkgs.lib.mapAttrs (
                 pname: src:
-                  prev.vimPlugins."${pname}".overrideAttrs (_old: {
-                    version = src.shortRev;
-                    inherit src;
-                  })
+                prev.vimPlugins."${pname}".overrideAttrs (_old: {
+                  version = src.shortRev;
+                  inherit src;
+                })
               ) (inputsMatching "plugin"))
-              // (
-                pkgs.lib.mapAttrs (
-                  pname: src:
-                    prev.vimUtils.buildVimPlugin {
-                      inherit pname src;
-                      version = src.shortRev;
-                    }
-                ) (inputsMatching "external-plugin")
-              );
+              // (pkgs.lib.mapAttrs (
+                pname: src:
+                prev.vimUtils.buildVimPlugin {
+                  inherit pname src;
+                  version = src.shortRev;
+                }
+              ) (inputsMatching "external-plugin"));
           })
         ];
       };
 
       nixvim' = nixvim.legacyPackages."${system}";
-      nvim = nixvim'.makeNixvimWithModule {inherit module pkgs;};
-    in {
-      devShells."${system}".default = pkgs.mkShell {
-        packages = [nvim];
-      };
+      nvim = nixvim'.makeNixvimWithModule { inherit module pkgs; };
+    in
+    {
+      devShells."${system}".default = pkgs.mkShell { packages = [ nvim ]; };
       packages."${system}" = {
         inherit nvim;
         inherit (pkgs.vimPlugins) nvim-treesitter;

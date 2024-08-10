@@ -1,6 +1,6 @@
 _: {
   imports = [
-    ./markdown-nvim.nix
+    ./markview-nvim.nix
     ./neodev.nix
     ./silicon.nix
     ./themes

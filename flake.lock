@@ -22,19 +22,19 @@
         "type": "github"
       }
     },
-    "external-plugin:markdown-nvim": {
+    "external-plugin:markview-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1721099336,
-        "narHash": "sha256-mVSF+1HY8Fs59K6RHPxB8M5Y1sj1/MuDqKMiYu9uW1g=",
-        "owner": "MeanderingProgrammer",
-        "repo": "markdown.nvim",
-        "rev": "0bbc03c5a208274c89f15c625a0ee3700c9adda8",
+        "lastModified": 1723267222,
+        "narHash": "sha256-i86EKeJYM0dZzUyZ2JylS1+ExRyWw29dRPjcIkZ3qVA=",
+        "owner": "OXY2DEV",
+        "repo": "markview.nvim",
+        "rev": "7f4639a53b3e3aac3ad5deab99b21097264f07cc",
         "type": "github"
       },
       "original": {
-        "owner": "MeanderingProgrammer",
-        "repo": "markdown.nvim",
+        "owner": "OXY2DEV",
+        "repo": "markview.nvim",
         "type": "github"
       }
     },
@@ -262,7 +262,7 @@
     },
     "root": {
       "inputs": {
-        "external-plugin:markdown-nvim": "external-plugin:markdown-nvim",
+        "external-plugin:markview-nvim": "external-plugin:markview-nvim",
         "external-plugin:nvim-silicon": "external-plugin:nvim-silicon",
         "external-plugin:vim-moonfly-colors": "external-plugin:vim-moonfly-colors",
         "nixpkgs": "nixpkgs",
