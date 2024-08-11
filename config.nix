@@ -313,15 +313,7 @@
 
       which-key = {
         enable = true;
-        window = {
-          border = "rounded";
-          margin = {
-            top = 1;
-            bottom = 1;
-            left = 1;
-            right = 1;
-          };
-        };
+        settings.win.border = "rounded";
       };
 
       ### Code support ###
