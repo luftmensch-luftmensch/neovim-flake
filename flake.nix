@@ -19,22 +19,11 @@
       flake = false;
     };
 
-    # Current favourite colorscheme
-    "external-plugin:vim-moonfly-colors" = {
-      url = "github:bluz71/vim-moonfly-colors";
-      flake = false;
-    };
-
     # Enhanced markdown reading
     "external-plugin:markview-nvim" = {
       url = "github:OXY2DEV/markview.nvim";
       flake = false;
     };
-
-    # "external-plugin:markdown-nvim" = {
-    #   url = "github:MeanderingProgrammer/markdown.nvim";
-    #   flake = false;
-    # };
   };
 
   outputs =

@@ -53,22 +53,6 @@
         "type": "github"
       }
     },
-    "external-plugin:vim-moonfly-colors": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1721880393,
-        "narHash": "sha256-F2U8QgkMoUyQVifUFKmAO1TT8chAIh0GWkHgCsSqU4A=",
-        "owner": "bluz71",
-        "repo": "vim-moonfly-colors",
-        "rev": "4f7d18cb471ede7407dd966c7563868cae7f4f99",
-        "type": "github"
-      },
-      "original": {
-        "owner": "bluz71",
-        "repo": "vim-moonfly-colors",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "locked": {
         "lastModified": 1696426674,
@@ -286,7 +270,6 @@
       "inputs": {
         "external-plugin:markview-nvim": "external-plugin:markview-nvim",
         "external-plugin:nvim-silicon": "external-plugin:nvim-silicon",
-        "external-plugin:vim-moonfly-colors": "external-plugin:vim-moonfly-colors",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim"
       }

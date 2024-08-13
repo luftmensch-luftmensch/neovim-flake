@@ -196,6 +196,7 @@
       -- vim.lsp.set_log_level("off") -- change to debug only for testing
     '';
 
+    # Current favourite colorscheme
     colorschemes.modus.enable = true;
 
     # Plugins setup
