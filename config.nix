@@ -196,7 +196,7 @@
       -- vim.lsp.set_log_level("off") -- change to debug only for testing
     '';
 
-    colorschemes.moonfly.enable = true;
+    colorschemes.modus.enable = true;
 
     # Plugins setup
     plugins = {
@@ -206,6 +206,7 @@
         globalstatus = true;
         extensions = lib.optionals config.plugins.nvim-tree.enable [ "nvim-tree" ];
         ignoreFocus = lib.optionals config.plugins.nvim-tree.enable [ "NvimTree" ];
+        theme = if config.colorschemes.modus.enable then "modus-vivendi" else "auto";
       };
 
       # Ui replacement for messages, cmdline and the popupmenu
