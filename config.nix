@@ -160,7 +160,7 @@
         "<M-[>" = "<cmd>bprevious<CR>";
         "<M-]>" = "<cmd>bnext<CR>";
 
-        # Splitting & Window managment
+        # Splitting & Window management
         "<leader>v" = "<cmd>vsplit<CR>";
         "<leader>h" = "<cmd>split<CR>";
         "<leader>x" = "<cmd>only<CR>"; # close all but current window (in a single tab, aka close all other splits)
@@ -247,7 +247,7 @@
       mini = {
         enable = true;
         modules = {
-          # Visual enhancment (https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-ai.md)
+          # Visual enhancement (https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-ai.md)
           ai = { };
           # Interactive alignment (https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-align.md)
           align = { };
@@ -359,6 +359,7 @@
           efm = {
             enable = true;
             extraOptions.init_options.documentFormatting = true;
+            settings.logLevel = 1;
           };
           pylsp = {
             enable = true;
@@ -622,6 +623,7 @@
             ];
             # Use the "*" filetype to run formatters on all filetypes.
             "*" = [ "codespell" ];
+            "nix" = [ "nixfmt" ];
             # Use the "_" filetype to run formatters on filetypes that don't
             # have other formatters configured.
             "_" = [ "trim_whitespace" ];
