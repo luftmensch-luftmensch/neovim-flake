@@ -7,7 +7,10 @@
 }:
 {
   config = {
-    autoGroups.nvim-highlight-yank.clear = true;
+    autoGroups = {
+      nvim-highlight-yank.clear = true;
+      BigFileOptimizer = { };
+    };
     autoCmd = [
       {
         event = "VimLeave";
@@ -21,6 +24,48 @@
         callback.__raw = "function() vim.highlight.on_yank() end";
         group = "nvim-highlight-yank";
       }
+
+      # Stolen from traxys
+      {
+        event = "BufReadPost";
+        pattern = [
+          "*.md"
+          "*.rs"
+          "*.lua"
+          "*.sh"
+          "*.bash"
+          "*.zsh"
+          "*.js"
+          "*.jsx"
+          "*.ts"
+          "*.tsx"
+          "*.c"
+          ".h"
+          "*.cc"
+          ".hh"
+          "*.cpp"
+          "*.nix"
+        ];
+        group = "BigFileOptimizer";
+        callback = helpers.mkRaw ''
+          function(auEvent)
+            local bufferCurrentLinesCount = vim.api.nvim_buf_line_count(0)
+
+            if bufferCurrentLinesCount > 2048 then
+              vim.notify("bigfile: disabling features", vim.log.levels.WARN)
+
+              vim.cmd("TSBufDisable refactor.highlight_definitions")
+              vim.g.matchup_matchparen_enabled = 0
+              require("nvim-treesitter.configs").setup({
+                matchup = {
+                  enable = false
+                }
+              })
+            end
+          end
+        '';
+      }
+
     ];
 
     viAlias = true;
@@ -198,6 +243,15 @@
 
     # Current favourite colorscheme
     colorschemes.modus.enable = true;
+
+    performance = {
+      byteCompileLua = {
+        enable = true;
+        nvimRuntime = true;
+        configs = true;
+        plugins = true;
+      };
+    };
 
     # Plugins setup
     plugins = {
