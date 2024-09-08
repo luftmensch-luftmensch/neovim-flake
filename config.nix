@@ -425,7 +425,7 @@
               };
             };
           };
-          nil-ls = {
+          nixd = {
             enable = true;
             settings = {
               formatting.command = [ (lib.getExe pkgs.nixfmt-rfc-style) ];
