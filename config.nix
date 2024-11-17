@@ -251,6 +251,7 @@
         configs = true;
         plugins = true;
       };
+      combinePlugins.standalonePlugins = [ "nvim-cmp" ];
     };
 
     # Plugins setup
@@ -411,6 +412,10 @@
             K = "hover";
           };
         };
+
+        capabilities = ''
+          capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+        '';
 
         servers = {
           clangd.enable = true;
@@ -853,58 +858,63 @@
       };
 
       ### Completion ###
-      cmp = {
-        enable = true;
+      blink-cmp = {
+        luaConfig.pre = # lua
+          ''
+            require('blink.compat').setup({debug = true})
+          '';
 
+        enable = true;
         settings = {
-          mapping = {
-            "<CR>" = "cmp.mapping.confirm({select = true })";
-            "<C-d>" = "cmp.mapping.scroll_docs(-4)";
-            "<C-f>" = "cmp.mapping.scroll_docs(4)";
-            "<C-Space>" = "cmp.mapping.complete()";
-            "<C-n>" = "cmp.mapping.select_next_item()";
-            "<C-p>" = "cmp.mapping.select_prev_item()";
-            "<Tab>" = ''
-              cmp.mapping(function(fallback)
-                if cmp.visible() then
-                  cmp.select_next_item()
-                -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-                -- they way you will only jump inside the snippet region
-                elseif luasnip.expand_or_locally_jumpable() then
-                  luasnip.expand_or_jump()
-                elseif has_words_before() then
-                  cmp.complete()
-                else
-                  fallback()
-                end
-              end, { "i", "s" })
-            '';
-            "<S-Tab>" = ''
-              cmp.mapping(function(fallback)
-                if cmp.visible() then
-                  cmp.select_prev_item()
-                elseif luasnip.jumpable(-1) then
-                  luasnip.jump(-1)
-                else
-                  fallback()
-                end
-              end, { "i", "s" })
-            '';
-            "<Down>" = "cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
-            "<Up>" = "cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'})";
+          keymap = {
+            preset = "enter";
+            "<A-Tab>" = [
+              "snippet_forward"
+              "fallback"
+            ];
+            "<A-S-Tab>" = [
+              "snippet_backward"
+              "fallback"
+            ];
+            "<Tab>" = [
+              "select_next"
+              "fallback"
+            ];
+            "<S-Tab>" = [
+              "select_prev"
+              "fallback"
+            ];
           };
-          sources = [
-            { name = "luasnip"; }
-            { name = "nvim_lsp"; }
-            { name = "path"; }
-            { name = "buffer"; }
-            { name = "calc"; }
-            { name = "git"; }
-            { name = "omni"; }
+          completion.enabled_providers = [
+            "lsp"
+            "buffer"
+            "path"
+            "git"
+            "calc"
+            "omni"
           ];
-          snippet.expand = "function(args) require('luasnip').lsp_expand(args.body) end";
+          # Does not seem to work
+          providers = {
+            git = {
+              name = "git";
+              module = "blink.compat.source";
+            };
+            calc = {
+              name = "calc";
+              module = "blink.compat.source";
+            };
+            omni = {
+              name = "omni";
+              module = "blink.compat.source";
+            };
+          };
+
         };
       };
+
+      cmp-git.enable = true;
+      cmp-omni.enable = true;
+      cmp-calc.enable = true;
 
       # Git integration for buffers
       gitsigns = {
@@ -978,6 +988,7 @@
     extraPlugins = with pkgs.vimPlugins; [
       telescope-ui-select-nvim
       markdown-preview-nvim
+      blink-compat
     ];
     extraPackages =
       with lib;
