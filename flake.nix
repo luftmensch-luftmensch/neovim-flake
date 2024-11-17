@@ -45,7 +45,7 @@
       # Modules used to configure neovim
       module = {
         imports = [
-          ./config.nix
+          ./config
           ./plugins
           ./modules
         ];
