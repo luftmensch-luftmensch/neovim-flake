@@ -107,6 +107,8 @@
 
       # Number of screen lines to use for the command-line. (Disabled as we are going to use Noice folke plugin)
       cmdheight = 1;
+      # Completion window height
+      pumheight = 15;
 
       cot = [
         "menu"
