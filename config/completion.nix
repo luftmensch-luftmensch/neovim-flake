@@ -8,12 +8,8 @@
 {
   config = {
     plugins = {
+      blink-compat.enable = true;
       blink-cmp = {
-        luaConfig.pre = # lua
-          ''
-            require('blink.compat').setup({debug = true})
-          '';
-
         enable = true;
         settings = {
           keymap = {
@@ -37,7 +33,7 @@
           };
 
           sources = {
-            completion.enabled_providers = [
+            default = [
               "lsp"
               "buffer"
               "path"

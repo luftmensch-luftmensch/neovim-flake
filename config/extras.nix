@@ -100,9 +100,9 @@
       # Boost neovim % (Modern matchit and matchparen)
       vim-matchup = {
         enable = true;
-        treesitterIntegration = {
+        treesitter = {
           enable = true;
-          includeMatchWords = true;
+          include_match_words = true;
         };
       };
 

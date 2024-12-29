@@ -24,11 +24,6 @@
       url = "github:OXY2DEV/markview.nvim";
       flake = false;
     };
-
-    "external-plugin:blink-compat" = {
-      url = "github:saghen/blink.compat";
-      flake = false;
-    };
   };
 
   outputs =
