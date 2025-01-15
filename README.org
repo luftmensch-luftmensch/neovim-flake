@@ -1,0 +1,58 @@
+#+OPTIONS: date:nil title:nil toc:nil author:nil
+#+STARTUP: overview
+* My personal neovim configuration with flakes
+#+BEGIN_HTML
+<div align="center">
+
+  <!-- License -->
+  <a href="https://github.com/luftmensch-luftmensch/neovim-flake/blob/master/LICENSE"
+          ><img
+              src="https://img.shields.io/badge/MIT-blue.svg?style=for-the-badge&color=red"
+              alt="License"
+      /></a>
+
+  <!-- Repository Size -->
+  <a href="https://github.com/luftmensch-luftmensch/neovim-flake/archive/refs/heads/master.zip"
+          ><img
+              src="https://img.shields.io/github/repo-size/luftmensch-luftmensch/neovim-flake?style=for-the-badge"
+              alt="GitHub repository size"
+      /></a>
+
+  <!-- Last commit -->
+  <a href="https://github.com/luftmensch-luftmensch/neovim-flake/commits/master"
+          ><img
+              src="https://img.shields.io/github/last-commit/luftmensch-luftmensch/neovim-flake?style=for-the-badge"
+              alt="Last commit"
+      /></a>
+ <!-- Work on my machine -->
+ <a href="https://img.shields.io/badge/WORKS%20ON-MY%20MACHINE-red?style=for-the-badge"
+           ><img
+             src="https://img.shields.io/badge/WORKS%20ON-MY%20MACHINE-red?style=for-the-badge"
+             alt="Work on my machine"
+      /></a>
+</div>
+#+END_HTML
+* About
+This is a neovim configuration built on top of [[https://github.com/pta2002/nixvim][NixVim]].
+
+Most of the options are defined in [[file:config/][config]] directory.
+
+It has a few specificities to help managing a configuration through nixvim:
+
+- Extra modules & plugins not packaged in nixvim in and [plugins](./config/plugins).
+- Git version of all plugins
+
+This is done through the sources of the ~flake.nix~. All plugins are prefixed with ~plugin:~ and ~external-plugin:~.
+Those plugins are overridden from ~nixpkgs~ with their source.
+* Installation
+In order to test the configuration, you can clone this repository and execute the following command:
+
+#+begin_src nix
+nix run .# -- /path/to/file
+#+end_src
+
+Or pulling directly with
+
+#+begin_src nix
+nix run github:luftmensch-luftmensch/neovim-flake
+#+end_src
