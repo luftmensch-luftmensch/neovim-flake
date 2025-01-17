@@ -42,18 +42,26 @@
       ignorecase = true;
       smartcase = true; # Don't ignore case with capitals
 
-      
       cursorline = true; # Highlight the screen line of the cursor
 
       scrolloff = 7; # Minimum number of screen lines to keep above and below the cursor
-      mouse = "a" ; # Enable mouse support
+      mouse = "a"; # Enable mouse support
 
-      foldmethod = "manual"; # Set folding method to manual
-      foldenable = false; # Disable folding by default
+      # foldmethod = "manual"; # Set folding method to manual
+      # foldenable = false; # Disable folding by default
+
+      # These options were recommended by nvim-ufo
+      # See: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
+      foldcolumn = "auto";
+      foldenable = true;
+      foldmethod = "expr";
+      foldexpr = "v:lua.vim.treesitter#foldexpr()";
+      foldminlines = 1;
+      foldnestmax = 3;
+      foldlevel = 99;
 
       linebreak = true; # Wrap long lines at a character in 'breakat'
 
-      
       spell = false; # Disable spell checking
 
       swapfile = false;
@@ -62,13 +70,12 @@
       laststatus = 3;
 
       timeout = true;
-      
+
       timeoutlen = 300; # Time in milliseconds to wait for a mapped sequence to complete
 
       termguicolors = true; # Enable 24-bit RGB color in the TUI
       showmode = false; # Don't show mode in the command line
 
-      
       splitbelow = true; # Open new split below the current window
       splitright = true; # Open new split to the right of the current window
       splitkeep = "screen"; # Keep the screen when splitting
