@@ -2,7 +2,6 @@
   lib,
   config,
   helpers,
-  pkgs,
   utils,
   ...
 }:
@@ -109,7 +108,6 @@
           "Outline"
           "TelescopePrompt"
           "alpha"
-          "harpoon"
           "reason"
         ];
       };

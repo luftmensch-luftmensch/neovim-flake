@@ -110,7 +110,6 @@
       };
     };
 
-
     extraPackages =
       with lib;
       with config.plugins;

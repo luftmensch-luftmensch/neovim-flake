@@ -45,7 +45,6 @@
         timeout = 1000;
         stages = "static";
       };
-      
 
       lualine = {
         enable = true;
@@ -218,7 +217,6 @@
           options = {
             diagnostics = "nvim_lsp";
             mode = "buffers";
-
             close_icon = " ";
             buffer_close_icon = "󰱝 ";
             modified_icon = "󰔯 ";
@@ -238,7 +236,7 @@
 
     keymaps = helpers.keymaps.mkKeymaps { options.silent = true; } (
       utils.nkmap (
-        lib.optionalAttrs config.plugins.nvim-tree.enable {
+        lib.optionalAttrs config.plugins.bufferline.enable {
           "[b" = "<cmd>BufferLineCyclePrev<cr>"; # Cycle to previous buffer
           "]b" = "<cmd>BufferLineCycleNext<cr>"; # Cycle to next buffer
           "<leader>bh" = "<cmd>BufferLineCyclePrev<cr>"; # Cycle to previous buffer

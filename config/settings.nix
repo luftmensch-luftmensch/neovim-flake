@@ -1,5 +1,12 @@
 {
   config = {
+    globals = {
+      # Disable useless providers
+      loaded_ruby_provider = 0; # Ruby
+      loaded_perl_provider = 0; # Perl
+      loaded_python_provider = 0; # Python 2
+    };
+
     viAlias = true;
     vimAlias = true;
 
@@ -10,94 +17,65 @@
       vim.fn.sign_define("diagnosticsigninfo", { text = " ", texthl = "diagnosticinfo", linehl = "", numhl = "" })
     '';
 
-    # clipboard.providers.wl-copy.enable = true;
+    # Use system clipboard
+    clipboard.register = "unnamedplus";
 
     opts = {
-      # Show line numbers
-      number = true;
+      number = true; # Show line numbers
+      relativenumber = true; # Show relative line numbers
 
-      # Show relative line numbers
-      relativenumber = true;
-
-      # Use the system clipboard
-      clipboard = "unnamedplus";
-
-      # Number of spaces that represent a <TAB>
-      tabstop = 2;
+      tabstop = 2; # Number of spaces that represent a <TAB>
       softtabstop = 2;
+      showtabline = 2; # Show tabline always
 
-      # Show tabline always
-      showtabline = 2;
+      expandtab = false; # Use spaces instead of tabs
+      smarttab = false; # Adaptive (Tab or spaces)
+      smartindent = true; # Enable smart indentation
 
-      # Use spaces instead of tabs
-      expandtab = false;
+      shiftwidth = 2; # Number of spaces to use for each step of (auto)indent
+      shiftround = true; # Even number of shift
 
-      # Adaptive (Tab or spaces)
-      smarttab = false;
+      breakindent = true; # Enable smart indenting (see https://stackoverflow.com/questions/1204149/smart-wrap-in-vim)
 
-      # Enable smart indentation
-      smartindent = true;
+      hlsearch = true;
+      incsearch = true;
+      ignorecase = true;
+      smartcase = true; # Don't ignore case with capitals
 
-      # Number of spaces to use for each step of (auto)indent
-      shiftwidth = 2;
+      
+      cursorline = true; # Highlight the screen line of the cursor
 
-      # Even number of shift
-      shiftround = true;
+      scrolloff = 7; # Minimum number of screen lines to keep above and below the cursor
+      mouse = "a" ; # Enable mouse support
 
-      # Enable break indent
-      breakindent = true;
+      foldmethod = "manual"; # Set folding method to manual
+      foldenable = false; # Disable folding by default
 
-      # Highlight the screen line of the cursor
-      cursorline = true;
+      linebreak = true; # Wrap long lines at a character in 'breakat'
 
-      # Minimum number of screen lines to keep above and below the cursor
-      scrolloff = 7;
+      
+      spell = false; # Disable spell checking
 
-      # Enable mouse support
-      mouse = "a";
-
-      # Set folding method to manual
-      foldmethod = "manual";
-
-      # Disable folding by default
-      foldenable = false;
-
-      # Wrap long lines at a character in 'breakat'
-      linebreak = true;
-
-      # Disable spell checking
-      spell = false;
-
-      # Disable swap file creation
       swapfile = false;
       backup = false;
       writebackup = false;
       laststatus = 3;
 
       timeout = true;
-      # Time in milliseconds to wait for a mapped sequence to complete
-      timeoutlen = 300;
+      
+      timeoutlen = 300; # Time in milliseconds to wait for a mapped sequence to complete
 
-      # Enable 24-bit RGB color in the TUI
-      termguicolors = true;
+      termguicolors = true; # Enable 24-bit RGB color in the TUI
+      showmode = false; # Don't show mode in the command line
 
-      # Don't show mode in the command line
-      showmode = false;
+      
+      splitbelow = true; # Open new split below the current window
+      splitright = true; # Open new split to the right of the current window
+      splitkeep = "screen"; # Keep the screen when splitting
 
-      # Open new split below the current window
-      splitbelow = true;
+      cmdheight = 0; # Hide command line unless needed
 
-      # Keep the screen when splitting
-      splitkeep = "screen";
-
-      # Open new split to the right of the current window
-      splitright = true;
-
-      # Hide command line unless needed
-      cmdheight = 0;
-
-      # Remove EOB
-      fillchars.eob = " ";
+      fillchars.eob = " "; # Remove EOB
 
       list = true;
 
@@ -106,6 +84,9 @@
         trail = "·";
         nbsp = "␣";
       };
+
+      encoding = "utf-8";
+      fileencoding = "utf-8";
     };
 
     autoGroups = {
