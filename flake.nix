@@ -33,7 +33,12 @@
     in
     {
       formatter."${system}" = pkgs.nixfmt-rfc-style;
-      packages."${system}".default = nvim;
+      # packages."${system}".default = nvim;
+      packages."${system}" = {
+        inherit nvim;
+        # inherit (pkgs.vimPlugins) nvim-treesitter;
+        default = nvim;
+      };
       devShells."${system}".default = pkgs.mkShell { packages = [ nvim ]; };
     };
 }
