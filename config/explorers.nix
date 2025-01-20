@@ -20,7 +20,6 @@
           "<leader>:" = "<cmd>Telescope command_history<CR>";
           "<C-s>" = "<cmd>Telescope current_buffer_fuzzy_find<CR>";
           "<leader>fk" = "<cmd> Telescope keymaps<CR>";
-          # "<leader>fg" = "<cmd> Telescope live_grep<CR>";
           # "<leader>fh" = "<cmd> Telescope help_tags<CR>";
           # "<leader>ft" = "<cmd> Telescope<CR>";
           # "<leader>fs" = "<cmd> Telescope treesitter<CR>";
@@ -123,7 +122,7 @@
             prompt_prefix = "🔍 ";
             selection_caret = " ";
             vimgrep_arguments = [
-              "${lib.getExe pkgs.ripgrep}/"
+              "${lib.getExe pkgs.ripgrep}"
               "--color=never"
               "--no-heading"
               "--with-filename"
