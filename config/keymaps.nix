@@ -60,6 +60,8 @@
         }
       )
       ++ (utils.vkmap {
+        "<" = "<gv";
+        ">" = ">gv";
         "<A-j>" = ":m '>+1<cr>gv=gv"; # Move Down
         "<A-k>" = ":m '<-2<cr>gv=gv"; # Move Up
       })

@@ -59,6 +59,15 @@
           };
 
           mapping = {
+            "<Tab>".__raw = ''
+              cmp.mapping(function(fallback)
+                if cmp.visible() then
+                  cmp.mapping.select_next_item()(fallback)  -- Move to next item if suggestions are visible
+                else
+                  cmp.mapping.complete()(fallback)  -- Trigger completion if no suggestions are visible
+                end
+              end, { 'i', 's' })
+            '';
             "<C-Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
             "<C-j>" = "cmp.mapping.select_next_item()";
             "<C-k>" = "cmp.mapping.select_prev_item()";
