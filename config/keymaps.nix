@@ -47,12 +47,6 @@
 
           "<leader>h" = "<C-W>s"; # Split Window Below
           "<leader>v" = "<C-W>v"; # Split Window Right
-          "<leader><tab>l" = "<cmd>tablast<cr>"; # Last Tab
-          "<leader><tab>f" = "<cmd>tabfirst<cr>"; # First Tab
-          "<leader><tab><tab>" = "<cmd>tabnew<cr>"; # New Tab
-          "<leader><tab>[" = "<cmd>tabprevious<cr>"; # Previous Tab
-          "<leader><tab>]" = "<cmd>tabprevious<cr>"; # Next Tab
-          "<leader><tab>d" = "<cmd>tabclose<cr>"; # Next Tab
 
           "<leader>x" = "<cmd>only<CR>"; # close all but current window (in a single tab, aka close all other splits)
           "<leader>z" = "<cmd>bdelete<CR>"; # close focused window/buffer

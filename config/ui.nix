@@ -245,6 +245,12 @@
           "<leader>bo" = "<cmd>BufferLineCloseOthers<cr>"; # Delete other buffers
           "<leader>bp" = "<cmd>BufferLineTogglePin<cr>"; # Toggle pin
           "<leader>bP" = "<Cmd>BufferLineGroupClose ungrouped<CR>"; # Delete non-pinned buffers
+
+          "<leader>bf" = "<cmd>BufferLineGoToBuffer 1<cr>"; # First Tab
+          "<leader>bL" = "<cmd>BufferLineGoToBuffer N<cr>"; # Last Tab
+          "<leader>bn" = "<cmd>tabnew<cr>"; # New Tab
+          "<leader>b[" = "<cmd>BufferLineCyclePrev<cr>"; # Previous Tab
+          "<leader>b]" = "<cmd>BufferLineCycleNext<cr>"; # Next Tab
         }
       )
     );
