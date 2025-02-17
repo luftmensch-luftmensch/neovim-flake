@@ -42,8 +42,10 @@
 
       notify = {
         enable = true;
-        timeout = 1000;
-        stages = "static";
+        settings = {
+          timeout = 1000;
+          stages = "static";
+        };
       };
 
       lualine = {
