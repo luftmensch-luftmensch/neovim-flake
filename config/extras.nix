@@ -64,6 +64,8 @@
           surround = { };
           # Minimap
           map = { };
+          # Minimal and fast autopairs
+          pairs = { };
           # Enhanced commenting - Alternative to https://github.com/numToStr/Comment.nvim
           comment = { };
         };
