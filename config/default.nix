@@ -1,18 +1,11 @@
-_: {
-  imports = [
-    # General Configuration
-    ./settings.nix
-    ./keymaps.nix
-
-    # Plugins configuration
-    ./completion.nix
-    ./git.nix
-    ./lsp.nix
-    ./extras.nix
-    ./explorers.nix
-    ./ui.nix
-    ./treesitter.nix
-
-    ./plugins
-  ];
+{ lib, ... }:
+{
+  # Automatically import nix files in this current directory
+  imports =
+    with builtins;
+    with lib;
+    map (fn: ./${fn}) (
+      filter (fn: (fn != "default.nix" && hasSuffix "nix" "${fn}")) (attrNames (readDir ./.))
+    )
+    ++ [ ./plugins ];
 }

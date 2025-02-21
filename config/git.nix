@@ -1,6 +1,4 @@
 {
-  lib,
-  config,
   helpers,
   utils,
   ...
@@ -16,7 +14,6 @@
       neogit = {
         enable = true;
         settings = {
-          trouble = config.plugins.trouble.enable;
           auto_refresh = true;
           disable_commit_confirmation = true;
           use_magit_keybindings = true;

@@ -139,8 +139,6 @@
           "Startup"
           "startup"
           "neo-tree"
-          "Trouble"
-          "trouble"
           "notify"
         ];
         callback = {
