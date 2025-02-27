@@ -55,7 +55,7 @@
       foldcolumn = "auto";
       foldenable = true;
       foldmethod = "expr";
-      foldexpr = "v:lua.vim.treesitter#foldexpr()";
+      foldexpr = "v:lua.vim.treesitter.foldexpr()";
       foldminlines = 1;
       foldnestmax = 3;
       foldlevel = 99;
