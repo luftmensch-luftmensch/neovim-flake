@@ -52,7 +52,7 @@
 
       # These options were recommended by nvim-ufo
       # See: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
-      foldcolumn = "auto";
+      foldcolumn = "0";
       foldenable = true;
       foldmethod = "expr";
       foldexpr = "v:lua.vim.treesitter.foldexpr()";
