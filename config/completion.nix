@@ -46,7 +46,7 @@ in
           documentation = {
             auto_show = true;
             auto_show_delay_ms = 350;
-            update_delay_ms = 25;
+            update_delay_ms = 50;
             window.winblend = 20;
           };
 
@@ -129,6 +129,19 @@ in
           window.direction_priority = [ "s" ];
         };
 
+        cmdline.sources.__raw = ''
+          function()
+            local type = vim.fn.getcmdtype()
+            if type == "/" or type == "?" then
+              return { "buffer" }
+            end
+            if type == ":" or type == "@" then
+              return { "cmdline", "path" }
+            end
+            return {}
+          end
+        '';
+
         sources = {
           default = [
             "lsp"
@@ -139,19 +152,6 @@ in
             "omni"
             "ripgrep"
           ];
-
-          cmdline.__raw = ''
-            function()
-              local type = vim.fn.getcmdtype()
-              if type == "/" or type == "?" then
-                return { "buffer" }
-              end
-              if type == ":" or type == "@" then
-                return { "cmdline", "path" }
-              end
-              return {}
-            end
-          '';
 
           providers = {
             lsp = {

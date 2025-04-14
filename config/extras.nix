@@ -25,19 +25,21 @@
       markview = {
         enable = true;
         settings = {
-          modes = [
-            "n"
-            "i"
-            "no"
-            "c"
-          ];
-          hybrid_modes = [ "i" ];
-          callback.on_enable = ''
-            function (_, win)
-              vim.wo[win].conceallevel = 2;
-              vim.wo[win].concealcursor = "nc";
-            end
-          '';
+          preview = {
+            modes = [
+              "n"
+              "i"
+              "no"
+              "c"
+            ];
+            hybrid_modes = [ "i" ];
+            callback.on_enable = ''
+              function (_, win)
+                vim.wo[win].conceallevel = 2;
+                vim.wo[win].concealcursor = "nc";
+              end
+            '';
+          };
         };
       };
       markdown-preview = {
