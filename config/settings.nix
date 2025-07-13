@@ -117,7 +117,7 @@
         group = "highlight_yank";
         desc = "Highlight when yanking text";
         pattern = "*";
-        callback.__raw = "function() vim.highlight.on_yank() end";
+        callback.__raw = "function() vim.hl.on_yank() end";
       }
       {
         group = "vim_enter";

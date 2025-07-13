@@ -250,9 +250,11 @@
 
           "<leader>bf" = "<cmd>BufferLineGoToBuffer 1<cr>"; # First Tab
           "<leader>bL" = "<cmd>BufferLineGoToBuffer N<cr>"; # Last Tab
-          "<leader>bn" = "<cmd>tabnew<cr>"; # New Tab
+          "<leader>bN" = "<cmd>tabnew<cr>"; # New Tab
           "<leader>b[" = "<cmd>BufferLineCyclePrev<cr>"; # Previous Tab
           "<leader>b]" = "<cmd>BufferLineCycleNext<cr>"; # Next Tab
+          "<leader>b<Tab>" = "<cmd>BufferLineCycleNext<cr>"; # Next Tab
+          "<leader>bn" = "<cmd>BufferLineCycleNext<cr>"; # Next Tab
         }
       )
     );
