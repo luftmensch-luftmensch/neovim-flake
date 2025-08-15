@@ -248,7 +248,16 @@
           "<leader>bp" = "<cmd>BufferLineTogglePin<cr>"; # Toggle pin
           "<leader>bP" = "<Cmd>BufferLineGroupClose ungrouped<CR>"; # Delete non-pinned buffers
 
-          "<leader>bf" = "<cmd>BufferLineGoToBuffer 1<cr>"; # First Tab
+          "<leader>b1" = "<cmd>BufferLineGoToBuffer 1<cr>"; # First Tab
+          "<leader>b2" = "<cmd>BufferLineGoToBuffer 2<cr>"; # Second Tab
+          "<leader>b3" = "<cmd>BufferLineGoToBuffer 3<cr>"; # Third Tab
+          "<leader>b4" = "<cmd>BufferLineGoToBuffer 4<cr>"; # Fourth Tab
+          "<leader>b5" = "<cmd>BufferLineGoToBuffer 5<cr>"; # Fifth Tab
+          "<leader>b6" = "<cmd>BufferLineGoToBuffer 6<cr>"; # Sixth Tab
+          "<leader>b7" = "<cmd>BufferLineGoToBuffer 7<cr>"; # Seventh Tab
+          "<leader>b8" = "<cmd>BufferLineGoToBuffer 8<cr>"; # Eighth Tab
+          "<leader>b9" = "<cmd>BufferLineGoToBuffer 9<cr>"; # Ninth Tab
+
           "<leader>bL" = "<cmd>BufferLineGoToBuffer N<cr>"; # Last Tab
           "<leader>bN" = "<cmd>tabnew<cr>"; # New Tab
           "<leader>b[" = "<cmd>BufferLineCyclePrev<cr>"; # Previous Tab
