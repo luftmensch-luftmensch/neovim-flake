@@ -248,42 +248,6 @@
       };
 
       # VSCode-like pictograms for neovim lsp completion items
-      lspkind = {
-        enable = true;
-        cmp.enable = true;
-        extraOptions = {
-          maxwidth = 50;
-          ellipsis_char = "...";
-        };
-
-        symbolMap = {
-          Text = "󰉿";
-          Module = "";
-          Method = " ";
-          Function = "󰡱 ";
-          Constructor = " ";
-          Field = " ";
-          Variable = "󱀍 ";
-          Class = " ";
-          Interface = " ";
-          Property = " ";
-          Unit = " ";
-          Value = " ";
-          Enum = " ";
-          Keyword = " ";
-          Snippet = " ";
-          Color = " ";
-          File = "";
-          Reference = " ";
-          Folder = " ";
-          EnumMember = " ";
-          Constant = " ";
-          Struct = " ";
-          Event = " ";
-          Operator = " ";
-          TypeParameter = " ";
-        };
-      };
     };
   };
 }
