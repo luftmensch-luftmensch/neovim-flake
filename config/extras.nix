@@ -134,7 +134,7 @@
         ]
       ))
       ++ (optionals luasnip.enable (with pkgs.luajitPackages; [ jsregexp ]))
-      ++ [ pkgs.nixfmt-rfc-style ];
+      ++ [ pkgs.nixfmt ];
 
   };
 }

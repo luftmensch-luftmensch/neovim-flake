@@ -70,7 +70,7 @@
               "black"
             ];
             lua = [ "stylua" ];
-            nix = [ "nixfmt-rfc-style" ];
+            nix = [ "nixfmt" ];
             bash = [
               "shellcheck"
               "shfmt"
@@ -88,7 +88,7 @@
           formatters = {
             black.command = "${lib.getExe pkgs.black}";
             isort.command = "${lib.getExe pkgs.isort}";
-            nixfmt-rfc-style.command = "${lib.getExe pkgs.nixfmt-rfc-style}";
+            nixfmt.command = "${lib.getExe pkgs.nixfmt}";
             alejandra.command = "${lib.getExe pkgs.alejandra}";
             jq.command = "${lib.getExe pkgs.jq}";
             prettier.command = "${lib.getExe pkgs.prettierd}";
@@ -195,7 +195,7 @@
           # nil_ls.enable = true;
           nixd = {
             enable = true;
-            settings.formatting.command = [ (lib.getExe pkgs.nixfmt-rfc-style) ];
+            settings.formatting.command = [ (lib.getExe pkgs.nixfmt) ];
           };
           ts_ls.enable = true;
           marksman.enable = true;

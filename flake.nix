@@ -32,7 +32,7 @@
       nvim = nixvim'.makeNixvimWithModule nixvimModule;
     in
     {
-      formatter."${system}" = pkgs.nixfmt-rfc-style;
+      formatter."${system}" = pkgs.nixfmt;
       # packages."${system}".default = nvim;
       packages."${system}" = {
         inherit nvim;
