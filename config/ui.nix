@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  helpers,
   utils,
   ...
 }:
@@ -239,7 +238,7 @@
       };
     };
 
-    keymaps = helpers.keymaps.mkKeymaps { options.silent = true; } (
+    keymaps = lib.nixvim.keymaps.mkKeymaps { options.silent = true; } (
       utils.nkmap (
         lib.optionalAttrs config.plugins.bufferline.enable {
           "[b" = "<cmd>BufferLineCyclePrev<cr>"; # Cycle to previous buffer

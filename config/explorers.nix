@@ -1,14 +1,13 @@
 {
   lib,
   config,
-  helpers,
   pkgs,
   utils,
   ...
 }:
 {
   config = {
-    keymaps = helpers.keymaps.mkKeymaps { options.silent = true; } (
+    keymaps = lib.nixvim.keymaps.mkKeymaps { options.silent = true; } (
       utils.nkmap (
         lib.optionalAttrs config.plugins.neo-tree.enable {
           "<leader>d" = "<cmd>Neotree toggle<CR>";

@@ -2,13 +2,12 @@
   lib,
   config,
   pkgs,
-  helpers,
   utils,
   ...
 }:
 {
   config = {
-    keymaps = helpers.keymaps.mkKeymaps { options.silent = true; } (
+    keymaps = lib.nixvim.keymaps.mkKeymaps { options.silent = true; } (
       utils.nkmap (
         lib.optionalAttrs config.plugins.markdown-preview.enable {
           "<leader>mp" = "<cmd>MarkdownPreview<cr>";

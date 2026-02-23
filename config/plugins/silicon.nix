@@ -1,6 +1,5 @@
 {
   config,
-  helpers,
   lib,
   pkgs,
   ...
@@ -38,7 +37,7 @@ in
 {
   options.plugins.silicon = {
     enable = mkEnableOption "Enable nvim-silicon";
-    flavour = helpers.defaultNullOpts.mkEnumFirstDefault flavours "Theme flavour";
+    flavour = lib.nixvim.defaultNullOpts.mkEnumFirstDefault flavours "Theme flavour";
   };
 
   config = mkIf cfg.enable {

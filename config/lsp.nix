@@ -246,8 +246,6 @@
           require('lspconfig.ui.windows').default_options = {border = "rounded"}
         '';
       };
-
-      # VSCode-like pictograms for neovim lsp completion items
     };
   };
 }

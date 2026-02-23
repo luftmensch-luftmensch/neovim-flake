@@ -1,11 +1,11 @@
 {
-  helpers,
+  lib,
   utils,
   ...
 }:
 {
   config = {
-    keymaps = helpers.keymaps.mkKeymaps { options.silent = true; } (
+    keymaps = lib.nixvim.keymaps.mkKeymaps { options.silent = true; } (
       utils.nkmap { "<leader>g." = ":Neogit cwd=./<CR>"; }
     );
 

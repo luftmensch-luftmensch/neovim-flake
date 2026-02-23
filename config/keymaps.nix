@@ -1,8 +1,5 @@
 {
   lib,
-  pkgs,
-  config,
-  helpers,
   utils,
   ...
 }:
@@ -15,7 +12,7 @@
     };
 
     keymaps =
-      helpers.keymaps.mkKeymaps { options.silent = true; } (
+      lib.nixvim.keymaps.mkKeymaps { options.silent = true; } (
         utils.nkmap {
           "<esc>" = "<cmd>noh<cr><esc>"; # Escape and Clear hlsearch
           "<C-Up>" = "<cmd>resize +2<cr>"; # Increase Window Height
