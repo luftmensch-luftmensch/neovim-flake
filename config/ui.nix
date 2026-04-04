@@ -58,13 +58,6 @@
             ++ lib.optionals config.plugins.nvim-tree.enable [ "nvim-tree" ]
             ++ lib.optionals config.plugins.neo-tree.enable [ "neo-tree" ];
             ignoreFocus = lib.optionals config.plugins.nvim-tree.enable [ "NvimTree" ];
-
-            disabledFiletypes = {
-              statusline = [
-                "startup"
-                "alpha"
-              ];
-            };
             theme = if config.colorschemes.modus.enable then "modus-vivendi" else "auto";
           };
           sections = {
@@ -132,89 +125,6 @@
           };
         };
       };
-      startup = {
-        enable = true;
-
-        settings = {
-          colors = {
-            background = "#ffffff";
-            foldedSection = "#ffffff";
-          };
-
-          sections = {
-            header = {
-              type = "text";
-              oldfilesDirectory = false;
-              align = "center";
-              foldSection = false;
-              title = "Header";
-              margin = 5;
-              content = [
-                "                                                                       "
-                "                                                                     "
-                "       ████ ██████           █████      ██                     "
-                "      ███████████             █████                             "
-                "      █████████ ███████████████████ ███   ███████████   "
-                "     █████████  ███    █████████████ █████ ██████████████   "
-                "    █████████ ██████████ █████████ █████ █████ ████ █████   "
-                "  ███████████ ███    ███ █████████ █████ █████ ████ █████  "
-                " ██████  █████████████████████ ████ █████ █████ ████ ██████ "
-                "                                                                       "
-                "                                                                       "
-                "                                                                       "
-              ];
-              highlight = "Statement";
-              defaultColor = "";
-              oldfilesAmount = 0;
-            };
-
-            body = {
-              type = "mapping";
-              oldfilesDirectory = false;
-              align = "center";
-              foldSection = false;
-              title = "Menu";
-              margin = 5;
-              content = [
-                [
-                  " Find File"
-                  "Telescope find_files"
-                  "ff"
-                ]
-                [
-                  "󰍉 Find Word"
-                  "Telescope live_grep"
-                  "fr"
-                ]
-                [
-                  " Recent Files"
-                  "Telescope oldfiles"
-                  "fg"
-                ]
-                [
-                  " File Browser"
-                  "Telescope file_browser"
-                  "fe"
-                ]
-              ];
-              highlight = "string";
-              defaultColor = "";
-              oldfilesAmount = 0;
-            };
-          };
-
-          options.paddings = [
-            1
-            3
-          ];
-
-          parts = [
-            "header"
-            "body"
-          ];
-        };
-      };
-
       bufferline = {
         enable = true;
         settings = {

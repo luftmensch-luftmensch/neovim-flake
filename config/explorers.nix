@@ -17,8 +17,32 @@
           "<leader>." = "<cmd>Telescope find_files<CR>";
           "<leader>/" = "<cmd>Telescope live_grep<CR>";
           "<leader>:" = "<cmd>Telescope command_history<CR>";
-          "<C-s>" = "<cmd>Telescope current_buffer_fuzzy_find<CR>";
           "<leader>fk" = "<cmd> Telescope keymaps<CR>";
+          # Handy way to make telescope work like normal search
+          "<C-s>".__raw = ''
+            function()
+              require("telescope.builtin").current_buffer_fuzzy_find({
+                attach_mappings = function(prompt_bufnr, map)
+                  local actions = require("telescope.actions")
+                  local action_state = require("telescope.actions.state")
+
+                  local function confirm()
+                    local picker = action_state.get_current_picker(prompt_bufnr)
+                    local query = picker:_get_prompt()
+                    if query and query ~= "" then
+                      vim.fn.setreg("/", query)
+                      vim.opt.hlsearch = true
+                    end
+                    actions.select_default(prompt_bufnr)
+                  end
+
+                  map("i", "<CR>", confirm)
+                  map("n", "<CR>", confirm)
+                  return true
+                end,
+              })
+            end
+          '';
           # "<leader>fh" = "<cmd> Telescope help_tags<CR>";
           # "<leader>ft" = "<cmd> Telescope<CR>";
           # "<leader>fs" = "<cmd> Telescope treesitter<CR>";

@@ -121,7 +121,7 @@
         [
           fswatch
           cppcheck
-          nodePackages.bash-language-server
+          bash-language-server
         ]
       ))
       ++ (optionals conform-nvim.enable (

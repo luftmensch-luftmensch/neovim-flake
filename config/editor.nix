@@ -107,7 +107,6 @@
           filetypesDenylist = [
             "Outline"
             "TelescopePrompt"
-            "alpha"
             "reason"
           ];
         };

@@ -120,23 +120,10 @@
         callback.__raw = "function() vim.hl.on_yank() end";
       }
       {
-        group = "vim_enter";
-        event = [ "VimEnter" ];
-        pattern = "*";
-        callback = {
-          __raw = ''
-            function()
-              vim.cmd('Startup')
-            end
-          '';
-        };
-      }
-      {
         group = "indentscope";
         event = [ "FileType" ];
         pattern = [
           "help"
-          "Startup"
           "startup"
           "neo-tree"
           "notify"
