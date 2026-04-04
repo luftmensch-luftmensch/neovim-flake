@@ -23,6 +23,7 @@
     opts = {
       number = true; # Show line numbers
       relativenumber = true; # Show relative line numbers
+      winborder = "rounded";
 
       tabstop = 2; # Number of spaces that represent a <TAB>
       softtabstop = 2;
