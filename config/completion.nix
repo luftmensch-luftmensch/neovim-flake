@@ -112,16 +112,16 @@ in
             "fallback"
           ];
 
-          "<C-1>".__raw = ''{ function(cmp) cmp.accept({ index = 1 }) end }'';
-          "<C-2>".__raw = ''{ function(cmp) cmp.accept({ index = 2 }) end }'';
-          "<C-3>".__raw = ''{ function(cmp) cmp.accept({ index = 3 }) end }'';
-          "<C-4>".__raw = ''{ function(cmp) cmp.accept({ index = 4 }) end }'';
-          "<C-5>".__raw = ''{ function(cmp) cmp.accept({ index = 5 }) end }'';
-          "<C-6>".__raw = ''{ function(cmp) cmp.accept({ index = 6 }) end }'';
-          "<C-7>".__raw = ''{ function(cmp) cmp.accept({ index = 7 }) end }'';
-          "<C-8>".__raw = ''{ function(cmp) cmp.accept({ index = 8 }) end }'';
-          "<C-9>".__raw = ''{ function(cmp) cmp.accept({ index = 9 }) end }'';
-          "<C-0>".__raw = ''{ function(cmp) cmp.accept({ index = 10 }) end }'';
+          "<C-1>".__raw = "{ function(cmp) cmp.accept({ index = 1 }) end }";
+          "<C-2>".__raw = "{ function(cmp) cmp.accept({ index = 2 }) end }";
+          "<C-3>".__raw = "{ function(cmp) cmp.accept({ index = 3 }) end }";
+          "<C-4>".__raw = "{ function(cmp) cmp.accept({ index = 4 }) end }";
+          "<C-5>".__raw = "{ function(cmp) cmp.accept({ index = 5 }) end }";
+          "<C-6>".__raw = "{ function(cmp) cmp.accept({ index = 6 }) end }";
+          "<C-7>".__raw = "{ function(cmp) cmp.accept({ index = 7 }) end }";
+          "<C-8>".__raw = "{ function(cmp) cmp.accept({ index = 8 }) end }";
+          "<C-9>".__raw = "{ function(cmp) cmp.accept({ index = 9 }) end }";
+          "<C-0>".__raw = "{ function(cmp) cmp.accept({ index = 10 }) end }";
         };
 
         signature = {
@@ -148,7 +148,6 @@ in
             "buffer"
             "path"
             "git"
-            "calc"
             "omni"
             "ripgrep"
           ];
@@ -174,10 +173,6 @@ in
 
             git = {
               name = "git";
-              module = "blink.compat.source";
-            };
-            calc = {
-              name = "calc";
               module = "blink.compat.source";
             };
             omni = {
