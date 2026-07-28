@@ -11,7 +11,6 @@ in
   config.plugins = {
     blink-compat.enable = true;
     blink-ripgrep.enable = lib.hasAttr "ripgrep" blink-providers;
-    blink-emoji.enable = lib.hasAttr "emoji" blink-providers;
 
     blink-cmp = {
       enable = true;
@@ -178,12 +177,6 @@ in
             omni = {
               name = "omni";
               module = "blink.compat.source";
-            };
-            emoji = {
-              module = "blink-emoji";
-              name = "Emoji";
-              score_offset = 15;
-              opts.insert = true;
             };
             buffer = {
               name = "BUF";
